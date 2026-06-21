@@ -246,22 +246,30 @@ export default function Index() {
 
       {/* БЛОК 3: Миссия и философия */}
       <section className="py-20 md:py-28">
-        <div className="container grid items-center gap-12 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl">
-            <img src={MISSION_IMG} alt="Миссия MerchGroups" className="h-full w-full object-cover" />
-          </div>
-          <div className="space-y-10">
-            <div>
-              <div className="mb-2 h-1.5 w-12 rounded bg-brand-green" />
-              <h2 className="font-heading text-3xl font-bold">Наша миссия</h2>
-              <p className="mt-3 text-lg text-neutral-600">
+        <div className="container">
+          {/* Миссия */}
+          <div className="border-b border-neutral-100 pb-16 md:flex md:items-start md:gap-20">
+            <div className="shrink-0">
+              <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">01</span>
+              <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>миссия</h2>
+            </div>
+            <div className="mt-8 md:mt-3 md:pt-1">
+              <div className="h-0.5 w-16 bg-brand-green mb-8" />
+              <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
                 Оказывать качественные услуги в сфере рекламы и маркетинга, способствующие развитию клиентского бизнеса и укрепления его на рынке.
               </p>
             </div>
-            <div>
-              <div className="mb-2 h-1.5 w-12 rounded bg-brand-blue" />
-              <h2 className="font-heading text-3xl font-bold">Наша философия</h2>
-              <p className="mt-3 text-lg text-neutral-600">
+          </div>
+
+          {/* Философия */}
+          <div className="pt-16 md:flex md:items-start md:gap-20 md:flex-row-reverse">
+            <div className="shrink-0 md:text-right">
+              <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">02</span>
+              <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>философия</h2>
+            </div>
+            <div className="mt-8 md:mt-3 md:pt-1 md:flex-1">
+              <div className="h-0.5 w-16 bg-brand-blue mb-8" />
+              <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
                 Мы уверены, что сила нашего успеха — это персонал. Именно поэтому в нашей компании работают самые внимательные, ответственные сотрудники, имеющие многолетний опыт работы в сфере рекламы.
               </p>
             </div>
@@ -269,7 +277,7 @@ export default function Index() {
         </div>
 
         {/* Преимущества-цифры */}
-        <div className="container mt-16 grid gap-6 md:grid-cols-3">
+        <div className="container mt-20 grid gap-6 md:grid-cols-3">
           {STATS.map((s) => (
             <div key={s.title} className="rounded-3xl border border-neutral-100 bg-neutral-50 p-8 transition-shadow hover:shadow-xl">
               <div className={`font-heading text-5xl font-black ${s.color}`}>{s.num}</div>
