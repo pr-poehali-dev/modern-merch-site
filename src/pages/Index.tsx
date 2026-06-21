@@ -224,10 +224,10 @@ export default function Index() {
 
             {/* Правая часть */}
             <div className="flex items-center gap-2">
-              {/* Mobile: иконка телефона */}
-              <a href={`tel:${PHONES[0].tel}`} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green lg:hidden">
+              {/* Mobile: иконка телефона → попап */}
+              <button onClick={() => setPhonePopupOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green lg:hidden">
                 <Icon name="Phone" size={20} className="text-white" />
-              </a>
+              </button>
               <Button className="hidden rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90 sm:flex">
                 Связаться с нами
               </Button>
@@ -245,7 +245,7 @@ export default function Index() {
         {/* Строка 2: меню + поиск (desktop) */}
         <div className="relative z-10 hidden border-b border-white/10 lg:block">
           <div className="container flex items-center justify-between gap-4 py-3">
-            <nav className="flex flex-wrap gap-x-7 gap-y-2">
+            <nav className="flex flex-wrap gap-x-10 gap-y-2">
               {NAV.map((n, i) => (
                 <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/90 hover:text-brand-blue'}`}>
                   {n}
