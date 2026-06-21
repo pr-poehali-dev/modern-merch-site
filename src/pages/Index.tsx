@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
@@ -126,9 +126,44 @@ export default function Index() {
   const [tab, setTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white font-sans text-black">
+
+      {/* Плавающая мобильная шапка */}
+      <div className={`fixed top-0 left-0 right-0 z-50 lg:hidden transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+        <div className={`backdrop-blur-md border-b border-white/10 transition-all duration-300 ${scrolled ? 'bg-black/80 py-2' : 'bg-transparent py-4'}`}>
+          <div className="container flex items-center justify-between gap-3">
+            <img
+              src={LOGO2}
+              alt="MerchGroups"
+              className={`transition-all duration-300 ${scrolled ? 'h-8' : 'h-12'}`}
+            />
+            <div className="flex items-center gap-2">
+              <a
+                href={`tel:${PHONES[0].tel}`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-green"
+              >
+                <Icon name="Phone" size={17} className="text-white" />
+              </a>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white"
+              >
+                <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* БЛОК 1 + 2: Шапка поверх hero */}
       <header className="relative">
         <div className="absolute inset-0 z-0">
