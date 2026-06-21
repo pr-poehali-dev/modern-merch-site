@@ -232,30 +232,51 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Mobile: выпадающее меню */}
-        {mobileMenuOpen && (
-          <div className="relative z-20 border-b border-white/10 bg-black/90 backdrop-blur lg:hidden">
-            <nav className="container flex flex-col py-4">
+        {/* Mobile: попап-меню (полноэкранное) */}
+        <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          {/* Затемнение */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
+          {/* Панель */}
+          <div className={`absolute right-0 top-0 bottom-0 w-72 bg-neutral-950 shadow-2xl flex flex-col transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            {/* Шапка попапа */}
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+              <img src={LOGO2} alt="MerchGroups" className="h-8" />
+              <button onClick={() => setMobileMenuOpen(false)} className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white">
+                <Icon name="X" size={20} />
+              </button>
+            </div>
+            {/* Навигация */}
+            <nav className="flex flex-col px-6 pt-6 flex-1">
               {NAV.map((n, i) => (
                 <a
                   key={n}
                   href="#"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`border-b border-white/10 py-3 text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/80 hover:text-white'}`}
+                  className={`border-b border-white/10 py-4 text-sm font-semibold uppercase tracking-wider transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/70 hover:text-white'}`}
                 >
                   {n}
                 </a>
               ))}
-              <div className="mt-4 flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
-                <Icon name="Search" size={16} className="text-white/60" />
-                <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-white placeholder:text-white/50 focus:outline-none" />
+              <div className="mt-6 flex items-center gap-2 rounded-full bg-white/10 px-4 py-3">
+                <Icon name="Search" size={16} className="text-white/50" />
+                <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none" />
               </div>
-              <a href="mailto:info@merch-groups.ru" className="mt-3 flex items-center gap-2 text-sm text-white/60">
-                <Icon name="Mail" size={14} /> info@merch-groups.ru
-              </a>
             </nav>
+            {/* Контакты внизу */}
+            <div className="border-t border-white/10 px-6 py-6 space-y-3">
+              {PHONES.map((p) => (
+                <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-3 text-white/60 hover:text-white">
+                  <Icon name="Phone" size={15} className="text-brand-green" />
+                  <span className="text-sm">{p.num}</span>
+                </a>
+              ))}
+              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-3 text-white/60 hover:text-white">
+                <Icon name="Mail" size={15} className="text-brand-blue" />
+                <span className="text-sm">info@merch-groups.ru</span>
+              </a>
+            </div>
           </div>
-        )}
+        </div>
 
         {/* Hero контент */}
         <div className="relative z-10">
