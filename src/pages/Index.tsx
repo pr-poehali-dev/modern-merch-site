@@ -42,7 +42,7 @@ const SERVICES = [
   { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50' },
   { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#00afef' },
   { title: 'Торговый аудит', icon: 'ClipboardCheck', color: '#ffff00', dark: true },
-  { title: 'BTL мероприятия', icon: 'PartyPopper', color: '#ffc000', dark: true },
+  { title: 'BTL мероприятия', icon: 'Users', color: '#ffc000', dark: true },
 ];
 
 const TABS = [
