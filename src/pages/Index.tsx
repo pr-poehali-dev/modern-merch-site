@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const LOGO = 'https://cdn.poehali.dev/files/6a547e27-4b11-4695-94f5-7c447eebdf12.png';
 const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
-const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/ea928111-988d-4323-ab90-baece32d7118.jpg';
+const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/28fac548-2488-4d76-8d83-7a1bd9f1c28f.jpg';
 const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d2809aca-e2f0-4e42-993f-19153ade8fd1.jpg';
 
 const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Блог', 'Контакты'];
