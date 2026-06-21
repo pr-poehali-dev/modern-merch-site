@@ -473,11 +473,11 @@ export default function Index() {
       {/* Подвал */}
       <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
         <div className="container">
-          {/* Верхняя часть: 3 колонки */}
-          <div className="grid gap-10 md:grid-cols-[1fr_1fr_1fr]">
+          {/* Верхняя часть: на мобильном — центр, на десктопе — 3 колонки */}
+          <div className="flex flex-col items-center text-center gap-8 md:grid md:grid-cols-[1fr_1fr_1fr] md:items-start md:text-left">
 
             {/* Колонка 1: Лого + аннотация + кнопка */}
-            <div>
+            <div className="flex flex-col items-center md:items-start">
               <img src={LOGO2} alt="MerchGroups" className="h-14" />
               <p className="mt-3 text-sm text-white/50">Агентство мерчандайзинга</p>
               <Button className="mt-5 rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
@@ -485,8 +485,8 @@ export default function Index() {
               </Button>
             </div>
 
-            {/* Колонка 2: Меню в 2 столбца */}
-            <nav className="grid grid-cols-2 gap-x-10 gap-y-2 content-start justify-self-center">
+            {/* Колонка 2: Меню — только на десктопе */}
+            <nav className="hidden md:grid grid-cols-2 gap-x-10 gap-y-2 content-start justify-self-center">
               {NAV.map((n, i) => (
                 <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
                   {n}
@@ -495,13 +495,13 @@ export default function Index() {
             </nav>
 
             {/* Колонка 3: Телефоны + email */}
-            <div className="flex flex-col gap-5 justify-self-end">
+            <div className="flex flex-col items-center gap-5 md:items-end md:justify-self-end">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-brand-green/30">
                     <Icon name="Phone" size={16} className="text-brand-green" />
                   </div>
-                  <div className="leading-snug">
+                  <div className="leading-snug text-left">
                     <div className="text-base font-bold transition-colors group-hover:text-brand-green">{p.num}</div>
                     <div className="text-[12px] font-bold text-white/70">{p.name}</div>
                     <div className="text-[11px] text-white/40">{p.role}</div>
@@ -515,7 +515,7 @@ export default function Index() {
           </div>
 
           {/* Нижняя строка */}
-          <div className="mt-10 border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-4 text-sm text-white/30">
+          <div className="mt-10 border-t border-white/10 pt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-white/30 md:justify-between">
             <span>© 2026 MerchGroups — агентство мерчандайзинга</span>
             <div className="flex gap-5">
               <a href="#" className="hover:text-white/60 transition-colors">Политика конфиденциальности</a>
