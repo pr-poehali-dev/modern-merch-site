@@ -109,6 +109,7 @@ const ADVANTAGES = [
 export default function Index() {
   const [tab, setTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white font-sans text-black">
@@ -121,31 +122,51 @@ export default function Index() {
 
         {/* Строка 1: контакты */}
         <div className="relative z-10 border-b border-white/15">
-          <div className="container flex flex-wrap items-center justify-between gap-4 py-4">
+          <div className="container flex items-center justify-between gap-4 py-4">
             <img src={LOGO2} alt="MerchGroups" className="h-16" />
-            <div className="hidden flex-wrap items-center gap-6 lg:flex">
+
+            {/* Desktop: телефоны + email */}
+            <div className="hidden flex-wrap items-center gap-8 lg:flex">
               {PHONES.map((p) => (
-                <a key={p.tel} href={`https://t.me/${p.tel}`} target="_blank" rel="noreferrer" className="group flex items-center gap-2 text-white">
-                  <Icon name="Send" size={18} className="text-brand-blue" />
-                  <div className="leading-tight">
-                    <div className="text-sm font-semibold transition-colors group-hover:text-brand-blue">{p.num}</div>
-                    <div className="text-[11px] text-white/60">{p.name} — {p.role}</div>
+                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3 text-white">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-brand-green/30">
+                    <Icon name="Phone" size={18} className="text-brand-green" />
+                  </div>
+                  <div className="leading-snug">
+                    <div className="text-base font-bold tracking-wide transition-colors group-hover:text-brand-green">{p.num}</div>
+                    <div className="text-[12px] font-bold text-white/80">{p.name}</div>
+                    <div className="text-[11px] text-white/50">{p.role}</div>
                   </div>
                 </a>
               ))}
-              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-white/80 hover:text-white">
+              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-white/70 hover:text-white">
                 <Icon name="Mail" size={16} /> info@merch-groups.ru
               </a>
             </div>
-            <Button className="rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
-              Связаться с нами
-            </Button>
+
+            {/* Правая часть */}
+            <div className="flex items-center gap-2">
+              {/* Mobile: иконка телефона */}
+              <a href={`tel:${PHONES[0].tel}`} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green lg:hidden">
+                <Icon name="Phone" size={20} className="text-white" />
+              </a>
+              <Button className="hidden rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90 sm:flex">
+                Связаться с нами
+              </Button>
+              {/* Mobile: кнопка меню */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white lg:hidden"
+              >
+                <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={22} />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Строка 2: меню + поиск */}
-        <div className="relative z-10 border-b border-white/10">
-          <div className="container flex flex-wrap items-center justify-between gap-4 py-3">
+        {/* Строка 2: меню + поиск (desktop) */}
+        <div className="relative z-10 hidden border-b border-white/10 lg:block">
+          <div className="container flex items-center justify-between gap-4 py-3">
             <nav className="flex flex-wrap gap-x-7 gap-y-2">
               {NAV.map((n, i) => (
                 <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/90 hover:text-brand-blue'}`}>
@@ -159,6 +180,31 @@ export default function Index() {
             </div>
           </div>
         </div>
+
+        {/* Mobile: выпадающее меню */}
+        {mobileMenuOpen && (
+          <div className="relative z-20 border-b border-white/10 bg-black/90 backdrop-blur lg:hidden">
+            <nav className="container flex flex-col py-4">
+              {NAV.map((n, i) => (
+                <a
+                  key={n}
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`border-b border-white/10 py-3 text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/80 hover:text-white'}`}
+                >
+                  {n}
+                </a>
+              ))}
+              <div className="mt-4 flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
+                <Icon name="Search" size={16} className="text-white/60" />
+                <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-white placeholder:text-white/50 focus:outline-none" />
+              </div>
+              <a href="mailto:info@merch-groups.ru" className="mt-3 flex items-center gap-2 text-sm text-white/60">
+                <Icon name="Mail" size={14} /> info@merch-groups.ru
+              </a>
+            </nav>
+          </div>
+        )}
 
         {/* Hero контент */}
         <div className="relative z-10">
@@ -401,18 +447,49 @@ export default function Index() {
       </section>
 
       {/* Подвал */}
-      <footer className="border-t border-neutral-100 bg-neutral-950 py-12 text-white">
-        <div className="container flex flex-col items-center gap-6 md:flex-row md:justify-between">
-          <img src={LOGO2} alt="MerchGroups" className="h-12" />
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-white/60">
-            {PHONES.map((p) => (
-              <a key={p.tel} href={`https://t.me/${p.tel}`} className="flex items-center gap-1.5 hover:text-white">
-                <Icon name="Send" size={15} className="text-brand-blue" /> {p.num}
+      <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
+        <div className="container">
+          {/* Верхняя часть */}
+          <div className="grid gap-10 md:grid-cols-3">
+            {/* Лого + email */}
+            <div>
+              <img src={LOGO2} alt="MerchGroups" className="h-14" />
+              <a href="mailto:info@merch-groups.ru" className="mt-4 flex items-center gap-2 text-sm text-white/50 hover:text-white">
+                <Icon name="Mail" size={14} /> info@merch-groups.ru
               </a>
-            ))}
-            <a href="mailto:info@merch-groups.ru" className="hover:text-white">info@merch-groups.ru</a>
+            </div>
+
+            {/* Телефоны */}
+            <div className="flex flex-col gap-5">
+              {PHONES.map((p) => (
+                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-brand-green/30">
+                    <Icon name="Phone" size={16} className="text-brand-green" />
+                  </div>
+                  <div className="leading-snug">
+                    <div className="text-base font-bold transition-colors group-hover:text-brand-green">{p.num}</div>
+                    <div className="text-[12px] font-bold text-white/70">{p.name}</div>
+                    <div className="text-[11px] text-white/40">{p.role}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Меню */}
+            <nav className="flex flex-col gap-2">
+              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Навигация</div>
+              {NAV.map((n, i) => (
+                <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
+                  {n}
+                </a>
+              ))}
+            </nav>
           </div>
-          <div className="text-sm text-white/40">© 2026 MerchGroups</div>
+
+          {/* Нижняя строка */}
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-white/30">
+            © 2026 MerchGroups — агентство мерчандайзинга
+          </div>
         </div>
       </footer>
     </div>
