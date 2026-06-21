@@ -20,7 +20,13 @@ const STATS = [
   { num: '100%', title: 'вовлеченность в Ваш проект', desc: 'Мы работаем на результат, заботясь о вашем товаре и имидже в каждой торговой точке.', color: 'text-brand-orange' },
 ];
 
-const CLIENTS = ['Магнит', 'Пятёрочка', 'Лента', 'Ашан', 'Перекрёсток', 'METRO', 'Дикси', 'ВкусВилл'];
+const CLIENTS = [
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fde397df-26e6-4375-a03e-4fd9bea6373c.png',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/4d102773-5a5b-4614-90de-98a1ab016516.png',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/07e9ed49-9508-45a7-ac11-f36b3adcfc4a.png',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/5fe1ec75-7fa0-489a-b1f3-54e75f96cc47.png',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/485b63a8-8581-461e-9cd8-7d336e85c9b6.png',
+];
 
 const SERVICES = [
   { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50' },
@@ -268,10 +274,14 @@ export default function Index() {
       <section className="border-y border-neutral-100 bg-neutral-50 py-16">
         <div className="container">
           <h2 className="text-center font-heading text-2xl font-bold">Наши клиенты</h2>
-          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {CLIENTS.map((c) => (
-              <div key={c} className="flex h-20 items-center justify-center rounded-2xl bg-white font-heading text-lg font-bold text-neutral-400 shadow-sm transition-colors hover:text-black">
-                {c}
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <div key={i} className="flex h-24 items-center justify-center rounded-2xl bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+                {CLIENTS[i] ? (
+                  <img src={CLIENTS[i]} alt={`Клиент ${i + 1}`} className="max-h-full max-w-full object-contain" />
+                ) : (
+                  <Icon name="Image" size={28} className="text-neutral-200" />
+                )}
               </div>
             ))}
           </div>
