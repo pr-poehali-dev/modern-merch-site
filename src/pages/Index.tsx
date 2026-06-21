@@ -466,7 +466,7 @@ export default function Index() {
       <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
         <div className="container">
           {/* Верхняя часть: 3 колонки */}
-          <div className="grid gap-10 md:grid-cols-[1fr_auto_auto]">
+          <div className="grid gap-10 md:grid-cols-[1fr_1fr_1fr]">
 
             {/* Колонка 1: Лого + аннотация + кнопка */}
             <div>
@@ -478,7 +478,7 @@ export default function Index() {
             </div>
 
             {/* Колонка 2: Меню в 2 столбца */}
-            <nav className="grid grid-cols-2 gap-x-10 gap-y-2 content-start">
+            <nav className="grid grid-cols-2 gap-x-10 gap-y-2 content-start justify-self-center">
               {NAV.map((n, i) => (
                 <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
                   {n}
