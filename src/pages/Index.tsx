@@ -3,6 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
 const LOGO = 'https://cdn.poehali.dev/files/6a547e27-4b11-4695-94f5-7c447eebdf12.png';
+const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
 const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/ea928111-988d-4323-ab90-baece32d7118.jpg';
 const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d2809aca-e2f0-4e42-993f-19153ade8fd1.jpg';
 
@@ -121,7 +122,7 @@ export default function Index() {
         {/* Строка 1: контакты */}
         <div className="relative z-10 border-b border-white/15">
           <div className="container flex flex-wrap items-center justify-between gap-4 py-4">
-            <img src={LOGO} alt="MerchGroups" className="h-16 brightness-0 invert" />
+            <img src={LOGO2} alt="MerchGroups" className="h-16" />
             <div className="hidden flex-wrap items-center gap-6 lg:flex">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`https://t.me/${p.tel}`} target="_blank" rel="noreferrer" className="group flex items-center gap-2 text-white">
@@ -312,7 +313,7 @@ export default function Index() {
             </div>
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-green via-brand-blue to-brand-orange p-12">
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/20 blur-2xl" />
-              <img src={LOGO} alt="MerchGroups" className="relative mx-auto h-16 brightness-0 invert" />
+              <img src={LOGO2} alt="MerchGroups" className="relative mx-auto h-24" />
             </div>
           </div>
 
@@ -402,7 +403,7 @@ export default function Index() {
       {/* Подвал */}
       <footer className="border-t border-neutral-100 bg-neutral-950 py-12 text-white">
         <div className="container flex flex-col items-center gap-6 md:flex-row md:justify-between">
-          <img src={LOGO} alt="MerchGroups" className="h-10 brightness-0 invert" />
+          <img src={LOGO2} alt="MerchGroups" className="h-12" />
           <div className="flex flex-wrap justify-center gap-6 text-sm text-white/60">
             {PHONES.map((p) => (
               <a key={p.tel} href={`https://t.me/${p.tel}`} className="flex items-center gap-1.5 hover:text-white">
