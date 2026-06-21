@@ -333,6 +333,19 @@ export default function Index() {
         </div>
       </header>
 
+      {/* Цифры под hero */}
+      <section className="border-b border-neutral-100 bg-white py-12">
+        <div className="container grid gap-6 md:grid-cols-3">
+          {STATS.map((s) => (
+            <div key={s.title} className="rounded-3xl border border-neutral-100 bg-neutral-50 p-8 transition-shadow hover:shadow-xl">
+              <div className={`font-heading text-5xl font-black ${s.color}`}>{s.num}</div>
+              <div className="mt-3 font-heading text-lg font-bold">{s.title}</div>
+              <p className="mt-2 text-sm text-neutral-500">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* БЛОК 3: Миссия и философия */}
       <section className="py-20 md:py-28">
         <div className="container">
@@ -365,16 +378,6 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Преимущества-цифры */}
-        <div className="container mt-20 grid gap-6 md:grid-cols-3">
-          {STATS.map((s) => (
-            <div key={s.title} className="rounded-3xl border border-neutral-100 bg-neutral-50 p-8 transition-shadow hover:shadow-xl">
-              <div className={`font-heading text-5xl font-black ${s.color}`}>{s.num}</div>
-              <div className="mt-3 font-heading text-lg font-bold">{s.title}</div>
-              <p className="mt-2 text-sm text-neutral-500">{s.desc}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* БЛОК 4: Клиенты */}
