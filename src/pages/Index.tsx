@@ -126,6 +126,7 @@ export default function Index() {
   const [tab, setTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [phonePopupOpen, setPhonePopupOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -137,22 +138,18 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-white font-sans text-black">
 
-      {/* Плавающая мобильная шапка */}
-      <div className={`fixed top-0 left-0 right-0 z-50 lg:hidden transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-        <div className={`backdrop-blur-md border-b border-white/10 transition-all duration-300 ${scrolled ? 'bg-black/80 py-2' : 'bg-transparent py-4'}`}>
+      {/* Плавающая мобильная шапка (z-30 — ниже попапов меню/телефона z-40) */}
+      <div className={`fixed top-0 left-0 right-0 z-30 lg:hidden transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+        <div className="backdrop-blur-md border-b border-white/10 bg-black/80 py-2 transition-all duration-300">
           <div className="container flex items-center justify-between gap-3">
-            <img
-              src={LOGO2}
-              alt="MerchGroups"
-              className={`transition-all duration-300 ${scrolled ? 'h-8' : 'h-12'}`}
-            />
+            <img src={LOGO2} alt="MerchGroups" className="h-8 transition-all duration-300" />
             <div className="flex items-center gap-2">
-              <a
-                href={`tel:${PHONES[0].tel}`}
+              <button
+                onClick={() => setPhonePopupOpen(true)}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-green"
               >
                 <Icon name="Phone" size={17} className="text-white" />
-              </a>
+              </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white"
@@ -161,6 +158,36 @@ export default function Index() {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Попап телефонов */}
+      <div className={`fixed inset-0 z-50 lg:hidden flex items-end transition-all duration-300 ${phonePopupOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setPhonePopupOpen(false)} />
+        <div className={`relative w-full bg-neutral-950 rounded-t-3xl p-6 pb-10 transition-transform duration-300 ${phonePopupOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+          <div className="flex items-center justify-between mb-6">
+            <span className="font-heading text-lg font-bold text-white">Контакты</span>
+            <button onClick={() => setPhonePopupOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white">
+              <Icon name="X" size={18} />
+            </button>
+          </div>
+          <div className="flex flex-col gap-5">
+            {PHONES.map((p) => (
+              <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-green/20">
+                  <Icon name="Phone" size={20} className="text-brand-green" />
+                </div>
+                <div className="leading-snug">
+                  <div className="text-base font-bold text-white group-hover:text-brand-green transition-colors">{p.num}</div>
+                  <div className="text-[13px] font-semibold text-white/70">{p.name}</div>
+                  <div className="text-[11px] text-white/40">{p.role}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+          <Button className="mt-8 w-full rounded-full bg-brand-green font-bold text-white hover:bg-brand-green/90">
+            Связаться с нами
+          </Button>
         </div>
       </div>
 
@@ -263,11 +290,17 @@ export default function Index() {
               </div>
             </nav>
             {/* Контакты внизу */}
-            <div className="border-t border-white/10 px-6 py-6 space-y-3">
+            <div className="border-t border-white/10 px-6 py-6 space-y-4">
               {PHONES.map((p) => (
-                <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-3 text-white/60 hover:text-white">
-                  <Icon name="Phone" size={15} className="text-brand-green" />
-                  <span className="text-sm">{p.num}</span>
+                <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-3 group">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-green/20">
+                    <Icon name="Phone" size={15} className="text-brand-green" />
+                  </div>
+                  <div className="leading-snug">
+                    <div className="text-sm font-bold text-white/80 group-hover:text-brand-green transition-colors">{p.num}</div>
+                    <div className="text-[12px] font-semibold text-white/50">{p.name}</div>
+                    <div className="text-[11px] text-white/30">{p.role}</div>
+                  </div>
                 </a>
               ))}
               <a href="mailto:info@merch-groups.ru" className="flex items-center gap-3 text-white/60 hover:text-white">
