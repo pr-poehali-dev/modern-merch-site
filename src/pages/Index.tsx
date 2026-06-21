@@ -542,10 +542,18 @@ export default function Index() {
       {/* БЛОК 10: Контроль качества */}
       <section className="bg-neutral-50 py-20 md:py-28">
         <div className="container">
-          {/* Верхняя часть: заголовок справа, карточка слева */}
+          {/* Верхняя часть: заголовок слева, карточка справа */}
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-8">
 
-            {/* Карточка 01 — акцентная */}
+            {/* Заголовок */}
+            <div className="flex flex-col justify-center">
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">О контроле качества</span>
+              <div className="mt-2 h-0.5 w-10 bg-brand-green" />
+              <h2 className="mt-4 font-heading text-4xl font-black leading-tight md:text-5xl">Контроль качества</h2>
+              <p className="mt-4 text-lg text-neutral-500">Каждый отчёт проходит строгую проверку перед передачей Вам</p>
+            </div>
+
+            {/* Карточка 01 */}
             <div className="relative overflow-hidden rounded-3xl bg-white p-8 shadow-sm">
               <span className="absolute right-6 top-4 font-heading text-6xl font-black text-neutral-100 select-none">01</span>
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green/10">
@@ -554,14 +562,6 @@ export default function Index() {
               <p className="relative text-neutral-700 leading-relaxed">
                 <span className="font-bold text-black">{QUALITY[0][0]}</span>{QUALITY[0][1]}
               </p>
-            </div>
-
-            {/* Заголовок */}
-            <div className="flex flex-col justify-center">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">О контроле качества</span>
-              <div className="mt-2 h-0.5 w-10 bg-brand-green" />
-              <h2 className="mt-4 font-heading text-4xl font-black leading-tight md:text-5xl">Контроль качества</h2>
-              <p className="mt-4 text-lg text-neutral-500">Каждый отчёт проходит строгую проверку перед передачей Вам</p>
             </div>
           </div>
 
