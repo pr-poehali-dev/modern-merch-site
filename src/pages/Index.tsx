@@ -544,17 +544,22 @@ export default function Index() {
         <div className="container">
           <h2 className="text-center font-heading text-3xl font-bold md:text-5xl">Контроль качества</h2>
           <p className="mt-3 text-center text-neutral-500">Каждый отчёт проходит строгую проверку перед передачей Вам</p>
-          <div className="mx-auto mt-14 grid max-w-4xl gap-x-12 gap-y-10 md:grid-cols-2">
-            {QUALITY.map(([bold, rest]) => (
-              <div key={bold} className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-green/10">
-                  <Icon name="ShieldCheck" size={26} className="text-brand-green" />
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {QUALITY.map(([bold, rest], i) => {
+              const colors = ['bg-brand-green', 'bg-brand-blue', 'bg-brand-orange', 'bg-brand-green'];
+              return (
+                <div key={bold} className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm transition-shadow hover:shadow-xl">
+                  <div className={`${colors[i]} flex items-center justify-center py-8`}>
+                    <Icon name="ShieldCheck" size={52} className="text-white drop-shadow" />
+                  </div>
+                  <div className="flex flex-col flex-1 p-6">
+                    <p className="text-neutral-700 leading-relaxed">
+                      <span className="font-bold text-black">{bold}</span>{rest}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-neutral-600">
-                  <span className="font-semibold text-black">{bold}</span>{rest}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
