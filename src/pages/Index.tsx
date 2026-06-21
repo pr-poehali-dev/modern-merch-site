@@ -121,7 +121,7 @@ export default function Index() {
         {/* Строка 1: контакты */}
         <div className="relative z-10 border-b border-white/15">
           <div className="container flex flex-wrap items-center justify-between gap-4 py-4">
-            <img src={LOGO} alt="MerchGroups" className="h-10 brightness-0 invert" />
+            <img src={LOGO} alt="MerchGroups" className="h-16 brightness-0 invert" />
             <div className="hidden flex-wrap items-center gap-6 lg:flex">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`https://t.me/${p.tel}`} target="_blank" rel="noreferrer" className="group flex items-center gap-2 text-white">
