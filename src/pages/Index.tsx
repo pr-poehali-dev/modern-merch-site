@@ -76,6 +76,28 @@ const TABS = [
   },
 ];
 
+const MAP_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/064cade3-72b1-4454-b3cb-bd2dc59f004e.jpg';
+const MARKER = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/07a93ba5-f34c-40b0-9057-eb7c9b1235c1.png';
+const APP_MOBILE = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/694acc0f-6a0a-4895-92f6-3133b98de332.png';
+const APP_DESKTOP = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/0873700f-551a-467c-ad56-8c748c568754.png';
+
+const MAP_POINTS = [
+  { top: '40%', left: '11%' }, { top: '52%', left: '19%' }, { top: '50%', left: '27%' },
+  { top: '58%', left: '35%' }, { top: '57%', left: '70%' }, { top: '72%', left: '18%' }, { top: '82%', left: '17%' },
+];
+
+const SOFTWARE = [
+  { title: 'Мобильное приложение', desc: 'Для автоматизации работы мерчендайзера по сбору информации о наличии продукции и товаров конкурентов, контролю выкладки (планограмм), мониторингу цен, проведению промо-акций и опросов.', img: APP_MOBILE, mobile: true },
+  { title: 'Desktop приложение', desc: 'Все проекты в одной системе! По всем вашим проектам, будь то мерчендайзеры, тайные покупатели, аудиты, промо или продавцы-консультанты, вся информация собирается и обрабатывается в едином облачном пространстве онлайн отчетности.', img: APP_DESKTOP, mobile: false },
+];
+
+const QUALITY = [
+  ['100% отчетов мерчандайзеров', ' проходят строгую оценку на качество выполнения работ.'],
+  ['Мы сами отклоним отчет', ', если качество работы нашего сотрудника не соответствует требованиям.'],
+  ['Вы видите только те отчеты', ', которые соответствуют заданным параметрам контракта.'],
+  ['Благодаря возможностям программы Optimum', ' вы можете участвовать в процессе работы полевых сотрудников, вносить коррективы и получать максимально качественный результат.'],
+];
+
 const ADVANTAGES = [
   'Мы составляем для вас эффективную адресную программу',
   'Мы умеем преподнести товар потребителю так, чтобы он его не просто заметил, но и приобрел',
@@ -301,6 +323,76 @@ export default function Index() {
                   {i + 1}
                 </div>
                 <p className="text-neutral-700">{a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* БЛОК 8: География покрытия */}
+      <section className="bg-neutral-50 py-20 md:py-28">
+        <div className="container">
+          <h2 className="font-heading text-3xl font-bold md:text-5xl">География покрытия</h2>
+          <p className="mt-3 max-w-xl text-neutral-500">
+            Наши мерчендайзеры присутствуют в 87 регионах России — в каждом городе под Ваш проект.
+          </p>
+          <div className="relative mt-10 overflow-hidden rounded-3xl">
+            <img src={MAP_BG} alt="Карта покрытия MerchGroups" className="w-full" />
+            {MAP_POINTS.map((p, i) => (
+              <img
+                key={i}
+                src={MARKER}
+                alt=""
+                className="absolute h-8 w-8 -translate-x-1/2 -translate-y-1/2 animate-scale-in drop-shadow-lg md:h-10 md:w-10"
+                style={{ top: p.top, left: p.left, animationDelay: `${i * 0.1}s` }}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* БЛОК 9: Программное обеспечение */}
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <h2 className="text-center font-heading text-3xl font-bold md:text-4xl">Программное обеспечение</h2>
+          <p className="mt-3 text-center text-neutral-500">Единая облачная система онлайн-отчётности Optimum</p>
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            {SOFTWARE.map((s) => (
+              <div key={s.title} className="flex flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50">
+                <div className="p-8">
+                  <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/10">
+                    <Icon name={s.mobile ? 'Smartphone' : 'Monitor'} size={24} className="text-brand-blue" />
+                  </div>
+                  <h3 className="font-heading text-2xl font-bold">{s.title}</h3>
+                  <p className="mt-3 text-neutral-600">{s.desc}</p>
+                </div>
+                <div className={`mt-auto flex items-center justify-center bg-neutral-100 p-8 ${s.mobile ? 'py-10' : ''}`}>
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    className={`rounded-2xl object-contain shadow-lg ${s.mobile ? 'h-72' : 'w-full'}`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* БЛОК 10: Контроль качества */}
+      <section className="bg-neutral-50 py-20 md:py-28">
+        <div className="container">
+          <h2 className="text-center font-heading text-3xl font-bold md:text-5xl">Контроль качества</h2>
+          <p className="mt-3 text-center text-neutral-500">Каждый отчёт проходит строгую проверку перед передачей Вам</p>
+          <div className="mx-auto mt-14 grid max-w-4xl gap-x-12 gap-y-10 md:grid-cols-2">
+            {QUALITY.map(([bold, rest]) => (
+              <div key={bold} className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-green/10">
+                  <Icon name="ShieldCheck" size={26} className="text-brand-green" />
+                </div>
+                <p className="text-neutral-600">
+                  <span className="font-semibold text-black">{bold}</span>{rest}
+                </p>
               </div>
             ))}
           </div>
