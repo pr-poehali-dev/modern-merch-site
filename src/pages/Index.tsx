@@ -487,7 +487,7 @@ export default function Index() {
             </nav>
 
             {/* Колонка 3: Телефоны + email */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 justify-self-end">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-brand-green/30">
