@@ -465,17 +465,28 @@ export default function Index() {
       {/* Подвал */}
       <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
         <div className="container">
-          {/* Верхняя часть */}
-          <div className="grid gap-10 md:grid-cols-3">
-            {/* Лого + email */}
+          {/* Верхняя часть: 3 колонки */}
+          <div className="grid gap-10 md:grid-cols-[1fr_auto_auto]">
+
+            {/* Колонка 1: Лого + аннотация + кнопка */}
             <div>
               <img src={LOGO2} alt="MerchGroups" className="h-14" />
-              <a href="mailto:info@merch-groups.ru" className="mt-4 flex items-center gap-2 text-sm text-white/50 hover:text-white">
-                <Icon name="Mail" size={14} /> info@merch-groups.ru
-              </a>
+              <p className="mt-3 text-sm text-white/50">Агентство мерчандайзинга</p>
+              <Button className="mt-5 rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
+                Связаться с нами
+              </Button>
             </div>
 
-            {/* Телефоны */}
+            {/* Колонка 2: Меню в 2 столбца */}
+            <nav className="grid grid-cols-2 gap-x-10 gap-y-2 content-start">
+              {NAV.map((n, i) => (
+                <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
+                  {n}
+                </a>
+              ))}
+            </nav>
+
+            {/* Колонка 3: Телефоны + email */}
             <div className="flex flex-col gap-5">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3">
@@ -489,22 +500,19 @@ export default function Index() {
                   </div>
                 </a>
               ))}
+              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-white/50 hover:text-white">
+                <Icon name="Mail" size={14} /> info@merch-groups.ru
+              </a>
             </div>
-
-            {/* Меню */}
-            <nav className="flex flex-col gap-2">
-              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Навигация</div>
-              {NAV.map((n, i) => (
-                <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
-                  {n}
-                </a>
-              ))}
-            </nav>
           </div>
 
           {/* Нижняя строка */}
-          <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-white/30">
-            © 2026 MerchGroups — агентство мерчандайзинга
+          <div className="mt-10 border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-4 text-sm text-white/30">
+            <span>© 2026 MerchGroups — агентство мерчандайзинга</span>
+            <div className="flex gap-5">
+              <a href="#" className="hover:text-white/60 transition-colors">Политика конфиденциальности</a>
+              <a href="#" className="hover:text-white/60 transition-colors">Пользовательское соглашение</a>
+            </div>
           </div>
         </div>
       </footer>
