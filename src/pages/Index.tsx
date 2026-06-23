@@ -39,10 +39,10 @@ const CLIENTS = [
 ];
 
 const SERVICES = [
-  { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50' },
-  { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#00afef' },
-  { title: 'Торговый аудит', icon: 'ClipboardCheck', color: '#ffff00', dark: true },
-  { title: 'BTL мероприятия', icon: 'Users', color: '#ffc000', dark: true },
+  { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50', desc: 'Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.' },
+  { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#00afef', desc: 'Установка и обслуживание торгового оборудования, размещение POS-материалов и брендирование зон.' },
+  { title: 'Торговый аудит', icon: 'ClipboardCheck', color: '#ffff00', dark: true, desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.' },
+  { title: 'BTL мероприятия', icon: 'Users', color: '#ffc000', dark: true, desc: 'Организация промоакций, дегустаций и праздничных мероприятий с подбором и обучением персонала.' },
 ];
 
 const TABS = [
@@ -473,18 +473,39 @@ export default function Index() {
         <div className="container">
           <h2 className="text-center font-heading text-3xl font-bold md:text-4xl">Основные услуги</h2>
           <p className="mt-3 text-center text-neutral-500">Полный спектр услуг для роста ваших продаж</p>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {SERVICES.map((s) => (
+          <div className="mt-12 grid gap-0 md:grid-cols-2">
+            {SERVICES.map((s, idx) => (
               <div
                 key={s.title}
-                className="group relative flex items-center gap-6 overflow-hidden rounded-3xl p-8 transition-transform hover:-translate-y-1"
+                className="group relative overflow-hidden p-10 md:p-14 transition-all duration-300 cursor-pointer"
                 style={{ backgroundColor: s.color }}
               >
-                <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
+                {/* Затемнение при наведении */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+
+                {/* Номер */}
+                <div className={`relative font-heading text-8xl font-black leading-none select-none mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
+                  {String(idx + 1).padStart(2, '0')}
+                </div>
+
+                {/* Иконка */}
+                <div className={`relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
                   <Icon name={s.icon} size={32} className={s.dark ? 'text-black' : 'text-white'} />
                 </div>
-                <h3 className={`font-heading text-2xl font-bold ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
-                <Icon name="ArrowUpRight" size={28} className={`ml-auto transition-transform group-hover:translate-x-1 ${s.dark ? 'text-black/60' : 'text-white/70'}`} />
+
+                {/* Название */}
+                <h3 className={`relative font-heading text-3xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
+
+                {/* Описание — появляется при наведении */}
+                <p className={`relative text-base leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
+                  {s.desc}
+                </p>
+
+                {/* Ссылка */}
+                <div className={`relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-75 ${s.dark ? 'text-black' : 'text-white'}`}>
+                  Подробнее
+                  <Icon name="ArrowRight" size={16} />
+                </div>
               </div>
             ))}
           </div>
