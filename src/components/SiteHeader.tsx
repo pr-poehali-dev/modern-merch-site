@@ -5,7 +5,7 @@ import Icon from '@/components/ui/icon';
 
 const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
 
-const NAV = ['Главная', 'О компании', 'Услуги', 'Мерчандайзинг', 'Наши кейсы', 'Новости', 'Контакты'];
+const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Новости', 'Контакты'];
 
 const PHONES = [
   { num: '+7 931 342 23 37', name: 'Лилия', role: 'Руководитель проектов', tel: '+79313422337' },
