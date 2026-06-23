@@ -5,7 +5,7 @@ import Icon from '@/components/ui/icon';
 
 const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
 
-const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Новости', 'Контакты'];
+const NAV = ['Главная', 'О компании', 'Услуги', 'Мерчандайзинг', 'Наши кейсы', 'Новости', 'Контакты'];
 
 const PHONES = [
   { num: '+7 931 342 23 37', name: 'Лилия', role: 'Руководитель проектов', tel: '+79313422337' },
@@ -212,6 +212,13 @@ export default function SiteHeader() {
                     </div>
                   );
                 }
+                if (n === 'Мерчандайзинг') {
+                  return (
+                    <Link key={n} to="/merchandising" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
                 return (
                   <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-brand-blue'}`}>
                     {n}
@@ -267,6 +274,13 @@ export default function SiteHeader() {
                         </div>
                       )}
                     </div>
+                  );
+                }
+                if (n === 'Мерчандайзинг') {
+                  return (
+                    <Link key={n} to="/merchandising" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
+                      {n}
+                    </Link>
                   );
                 }
                 return (
