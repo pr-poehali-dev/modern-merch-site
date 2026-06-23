@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
@@ -39,14 +40,14 @@ const CLIENTS = [
 ];
 
 const SERVICES_ROW1 = [
-  { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50', desc: 'Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.' },
-  { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#00afef', desc: 'Установка и обслуживание торгового оборудования, размещение POS-материалов и брендирование зон.' },
+  { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50', desc: 'Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.', slug: '/merchandising' },
+  { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#00afef', desc: 'Установка и обслуживание торгового оборудования, размещение POS-материалов и брендирование зон.', slug: '/tech-merchandising' },
 ];
 
 const SERVICES_ROW2 = [
-  { title: 'Тайный покупатель', icon: 'UserSearch', color: '#ffff00', dark: true, desc: 'Независимая проверка качества обслуживания и соблюдения стандартов через визиты инкогнито-аудиторов.' },
-  { title: 'Аудит торговых сетей', icon: 'ClipboardCheck', color: '#ffc000', dark: true, desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.' },
-  { title: 'BTL услуги + Организация дегустаций', icon: 'Users', color: '#ff6b35', desc: 'Промоакции, дегустации и праздничные мероприятия с подбором и обучением персонала.' },
+  { title: 'Тайный покупатель', icon: 'UserSearch', color: '#ffff00', dark: true, desc: 'Независимая проверка качества обслуживания и соблюдения стандартов через визиты инкогнито-аудиторов.', slug: '/mystery-shopper' },
+  { title: 'Аудит торговых сетей', icon: 'ClipboardCheck', color: '#ffc000', dark: true, desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.', slug: '/retail-audit' },
+  { title: 'BTL услуги + Организация дегустаций', icon: 'Users', color: '#ff6b35', desc: 'Промоакции, дегустации и праздничные мероприятия с подбором и обучением персонала.', slug: '/btl' },
 ];
 
 const TABS = [
@@ -237,7 +238,7 @@ function CountUp({ value, className }: { value: string; className?: string }) {
   return <div ref={ref} className={className}>{display}</div>;
 }
 
-function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string }; idx: number }) {
+function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string; slug: string }; idx: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [trail, setTrail] = useState({ x: -999, y: -999, show: false });
@@ -259,9 +260,10 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
   };
 
   return (
-    <div
-      ref={ref}
-      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 cursor-pointer transition-all duration-700"
+    <div ref={ref}>
+    <Link
+      to={s.slug}
+      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 cursor-pointer transition-all duration-700 block"
       style={{
         backgroundColor: s.color,
         opacity: visible ? 1 : 0,
@@ -297,6 +299,7 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
         Подробнее
         <Icon name="ArrowRight" size={16} />
       </div>
+    </Link>
     </div>
   );
 }
