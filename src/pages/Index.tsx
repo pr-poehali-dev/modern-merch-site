@@ -804,7 +804,7 @@ export default function Index() {
       </section>
 
       {/* CTA-блок */}
-      <div className="relative z-10 -mb-16 px-4">
+      <div className="relative z-10 -mb-16 bg-neutral-950 px-4">
         <div className="container">
           <div className="rounded-3xl bg-brand-green px-8 py-14 text-center shadow-2xl">
             <h2 className="font-heading text-3xl font-black text-white md:text-4xl">Готовы начать сотрудничество?</h2>
