@@ -4,18 +4,10 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import SiteFooter from '@/components/SiteFooter';
 import SiteCTA from '@/components/SiteCTA';
+import SiteHeader from '@/components/SiteHeader';
 
-const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
-const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
 const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/28fac548-2488-4d76-8d83-7a1bd9f1c28f.jpg';
 const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d2809aca-e2f0-4e42-993f-19153ade8fd1.jpg';
-
-const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Новости', 'Контакты'];
-
-const PHONES = [
-  { num: '+7 931 342 23 37', name: 'Лилия', role: 'Руководитель проектов', tel: '+79313422337' },
-  { num: '+7 926 473 53 70', name: 'Николоз', role: 'Менеджер по развитию', tel: '+79264735370' },
-];
 
 const STATS = [
   { num: '87', title: 'регионов покрытия', desc: 'В каждом городе у нас есть мерчендайзер под Ваш проект', color: 'text-brand-green' },
@@ -309,289 +301,35 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
 export default function Index() {
   const [tab, setTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [phonePopupOpen, setPhonePopupOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [clientsExpanded, setClientsExpanded] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   return (
     <div className="min-h-screen bg-white font-sans text-black">
 
-      {/* Плавающая мобильная шапка (z-30 — ниже попапов меню/телефона z-40) */}
-      <div className={`fixed top-0 left-0 right-0 z-30 lg:hidden transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-        <div className="backdrop-blur-md border-b border-black/5 bg-white/70 py-2 transition-all duration-300">
-          <div className="container flex items-center justify-between gap-3">
-            <img src={LOGO} alt="MerchGroups" className="h-8 transition-all duration-300" />
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setPhonePopupOpen(true)}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-green"
-              >
-                <Icon name="Phone" size={17} className="text-white" />
-              </button>
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-black/10 text-neutral-800"
-              >
-                <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={20} />
-              </button>
+      <SiteHeader />
+
+      {/* Hero */}
+      <div className="relative overflow-hidden bg-neutral-50">
+        <img src={HERO_BG} alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 bg-white/80" />
+        <div className="relative z-10 container py-24 md:py-36">
+          <div className="max-w-2xl animate-fade-in">
+            <div className="mb-4 inline-block rounded-full bg-brand-green/10 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/30">
+              Агентство мерчандайзинга №1
             </div>
+            <h1 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-7xl">
+              MerchGroups — агентство мерчандайзинга
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-neutral-500">
+              Специализированное агентство, предоставляющее услуги по мерчандайзингу, проведению независимого аудита, техническому мерчандайзингу и организации промоакций и праздничных мероприятий.
+            </p>
+            <Button size="lg" className="mt-8 rounded-full bg-brand-green px-8 text-base font-bold text-white hover:bg-brand-green/90">
+              Получить расчет стоимости
+              <Icon name="ArrowRight" size={18} className="ml-2" />
+            </Button>
           </div>
         </div>
       </div>
-
-      {/* Попап телефонов */}
-      <div className={`fixed inset-0 z-50 lg:hidden flex items-end transition-all duration-300 ${phonePopupOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setPhonePopupOpen(false)} />
-        <div className={`relative w-full bg-white rounded-t-3xl p-6 pb-10 shadow-2xl transition-transform duration-300 ${phonePopupOpen ? 'translate-y-0' : 'translate-y-full'}`}>
-          <div className="flex items-center justify-between mb-6">
-            <span className="font-heading text-lg font-bold text-neutral-900">Контакты</span>
-            <button onClick={() => setPhonePopupOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 text-neutral-600">
-              <Icon name="X" size={18} />
-            </button>
-          </div>
-          <div className="flex flex-col gap-5">
-            {PHONES.map((p) => (
-              <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-green/10">
-                  <Icon name="Phone" size={20} className="text-brand-green" />
-                </div>
-                <div className="leading-snug">
-                  <div className="text-base font-bold text-neutral-900 group-hover:text-brand-green transition-colors">{p.num}</div>
-                  <div className="text-[13px] font-semibold text-neutral-500">{p.name}</div>
-                  <div className="text-[11px] text-neutral-400">{p.role}</div>
-                </div>
-              </a>
-            ))}
-          </div>
-          <a href="mailto:info@merch-groups.ru" className="mt-4 flex items-center gap-3 text-neutral-500 hover:text-neutral-800">
-            <Icon name="Mail" size={16} className="text-brand-blue" />
-            <span className="text-sm">info@merch-groups.ru</span>
-          </a>
-          <Button className="mt-6 w-full rounded-full bg-brand-green font-bold text-white hover:bg-brand-green/90">
-            Связаться с нами
-          </Button>
-        </div>
-      </div>
-
-      {/* БЛОК 1 + 2: Шапка поверх hero */}
-      <header className="bg-white">
-
-        {/* Строка 1: контакты */}
-        <div className="border-b border-neutral-100">
-          <div className="container flex items-center justify-between gap-4 py-4">
-            <img src={LOGO} alt="MerchGroups" className="h-20" />
-
-            {/* Правая часть: контакты + кнопка */}
-            <div className="hidden items-center gap-10 lg:flex">
-              {PHONES.map((p) => (
-                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3 text-neutral-800">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
-                    <Icon name="Phone" size={18} className="text-brand-green" />
-                  </div>
-                  <div className="leading-snug">
-                    <div className="text-base font-bold tracking-wide transition-colors group-hover:text-brand-green">{p.num}</div>
-                    <div className="text-[12px] font-bold text-neutral-500">{p.name}</div>
-                    <div className="text-[11px] text-neutral-400">{p.role}</div>
-                  </div>
-                </a>
-              ))}
-              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-800">
-                <Icon name="Mail" size={16} /> info@merch-groups.ru
-              </a>
-              <Button className="rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
-                Связаться с нами
-              </Button>
-            </div>
-
-            {/* Mobile */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button onClick={() => setPhonePopupOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green lg:hidden">
-                <Icon name="Phone" size={20} className="text-white" />
-              </button>
-              <Button className="hidden rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90 sm:flex">
-                Связаться с нами
-              </Button>
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 text-neutral-700 lg:hidden"
-              >
-                <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={22} />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Строка 2: меню + поиск (desktop) */}
-        <div className="hidden border-b border-neutral-100 lg:block">
-          <div className="container flex items-center justify-between gap-4 py-3">
-            <nav className="flex flex-wrap gap-x-14 gap-y-2">
-              {NAV.map((n, i) => {
-                if (n === 'Услуги') {
-                  return (
-                    <div key={n} className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-                      <a href="/services" className="flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
-                        {n}
-                        <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
-                      </a>
-                      {/* Дропдаун */}
-                      <div className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
-                        <div className="w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
-                          {TABS.map((service) => {
-                            const allSvcs = [...SERVICES_ROW1, ...SERVICES_ROW2];
-                            const svc = allSvcs.find((s) => s.title === service.name);
-                            return (
-                              <div key={service.name} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden">
-                                {/* Иконка в углу */}
-                                <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity" style={{ backgroundColor: svc?.color }}>
-                                  <Icon name={svc?.icon ?? 'Star'} size={18} className="text-white" style={{ color: svc?.dark ? '#000' : '#fff' }} />
-                                </div>
-                                <a href="#" className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">{service.name}</a>
-                                <ul className="space-y-1">
-                                  {service.sub.map((sub) => (
-                                    <li key={sub.name}>
-                                      <a href="#" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-brand-green transition-colors">
-                                        <span className="h-1 w-1 rounded-full bg-brand-green shrink-0" />
-                                        {sub.name}
-                                      </a>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-                return (
-                  <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-brand-blue'}`}>
-                    {n}
-                  </a>
-                );
-              })}
-            </nav>
-            <div className="flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2">
-              <Icon name="Search" size={16} className="text-neutral-400" />
-              <input placeholder="Поиск по сайту" className="w-56 bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: попап-меню */}
-        <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className={`absolute right-0 top-0 bottom-0 w-72 bg-white shadow-2xl flex flex-col transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-            <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-5">
-              <img src={LOGO} alt="MerchGroups" className="h-8" />
-              <button onClick={() => setMobileMenuOpen(false)} className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-700">
-                <Icon name="X" size={20} />
-              </button>
-            </div>
-            <nav className="flex flex-col px-6 pt-6 flex-1 overflow-y-auto">
-              {NAV.map((n, i) => {
-                if (n === 'Услуги') {
-                  return (
-                    <div key={n} className="border-b border-neutral-100">
-                      <div className="flex items-center justify-between py-4">
-                        <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-brand-green transition-colors">
-                          {n}
-                        </a>
-                        <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-100">
-                          <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
-                      {mobileServicesOpen && (
-                        <div className="mb-3 space-y-2">
-                          {TABS.map((service) => (
-                            <div key={service.name} className="rounded-xl bg-neutral-50 p-3">
-                              <a href={`/services/${service.name.toLowerCase().replace(/\s+/g, '-')}`} onClick={() => setMobileMenuOpen(false)} className="block text-[11px] font-bold uppercase tracking-wide text-neutral-500 hover:text-brand-green mb-2 transition-colors">{service.name}</a>
-                              <ul className="space-y-2">
-                                {service.sub.map((sub) => (
-                                  <li key={sub.name}>
-                                    <a href="#" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-green transition-colors">
-                                      <span className="h-1.5 w-1.5 rounded-full bg-brand-green shrink-0" />
-                                      {sub.name}
-                                    </a>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-                return (
-                  <a
-                    key={n}
-                    href="#"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-neutral-900'}`}
-                  >
-                    {n}
-                  </a>
-                );
-              })}
-              <div className="mt-6 mb-4 flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-3">
-                <Icon name="Search" size={16} className="text-neutral-400" />
-                <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
-              </div>
-            </nav>
-            <div className="border-t border-neutral-100 px-6 py-6 space-y-4">
-              {PHONES.map((p) => (
-                <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-3 group">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-green/10">
-                    <Icon name="Phone" size={15} className="text-brand-green" />
-                  </div>
-                  <div className="leading-snug">
-                    <div className="text-sm font-bold text-neutral-800 group-hover:text-brand-green transition-colors">{p.num}</div>
-                    <div className="text-[12px] font-semibold text-neutral-500">{p.name}</div>
-                    <div className="text-[11px] text-neutral-400">{p.role}</div>
-                  </div>
-                </a>
-              ))}
-              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-3 text-neutral-500 hover:text-neutral-800">
-                <Icon name="Mail" size={15} className="text-brand-blue" />
-                <span className="text-sm">info@merch-groups.ru</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero контент */}
-        <div className="relative overflow-hidden bg-neutral-50">
-          <img src={HERO_BG} alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
-          <div className="absolute inset-0 bg-white/80" />
-          <div className="relative z-10 container py-24 md:py-36">
-            <div className="max-w-2xl animate-fade-in">
-              <div className="mb-4 inline-block rounded-full bg-brand-green/10 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/30">
-                Агентство мерчандайзинга №1
-              </div>
-              <h1 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-7xl">
-                MerchGroups — агентство мерчандайзинга
-              </h1>
-              <p className="mt-6 text-lg leading-relaxed text-neutral-500">
-                Специализированное агентство, предоставляющее услуги по мерчандайзингу, проведению независимого аудита, техническому мерчандайзингу и организации промоакций и праздничных мероприятий.
-              </p>
-              <Button size="lg" className="mt-8 rounded-full bg-brand-green px-8 text-base font-bold text-white hover:bg-brand-green/90">
-                Получить расчет стоимости
-                <Icon name="ArrowRight" size={18} className="ml-2" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Цифры под hero */}
       <section className="border-b border-neutral-100 bg-white py-12">
