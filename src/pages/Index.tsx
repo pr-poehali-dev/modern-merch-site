@@ -253,10 +253,10 @@ export default function Index() {
                 if (n === 'Услуги') {
                   return (
                     <div key={n} className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-                      <button className="flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
+                      <a href="/services" className="flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
                         {n}
                         <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
-                      </button>
+                      </a>
                       {/* Дропдаун */}
                       <div className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
                         <div className="w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
@@ -327,7 +327,7 @@ export default function Index() {
                         <div className="mb-3 space-y-2">
                           {TABS.map((service) => (
                             <div key={service.name} className="rounded-xl bg-neutral-50 p-3">
-                              <div className="text-[11px] font-bold uppercase tracking-wide text-neutral-400 mb-2">{service.name}</div>
+                              <a href={`/services/${service.name.toLowerCase().replace(/\s+/g, '-')}`} onClick={() => setMobileMenuOpen(false)} className="block text-[11px] font-bold uppercase tracking-wide text-neutral-500 hover:text-brand-green mb-2 transition-colors">{service.name}</a>
                               <ul className="space-y-2">
                                 {service.sub.map((sub) => (
                                   <li key={sub.name}>
