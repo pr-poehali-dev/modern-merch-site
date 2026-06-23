@@ -240,6 +240,7 @@ function CountUp({ value, className }: { value: string; className?: string }) {
 function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string }; idx: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [trail, setTrail] = useState({ x: -999, y: -999, show: false });
 
   useEffect(() => {
     const el = ref.current;
@@ -252,6 +253,11 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
     return () => observer.disconnect();
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTrail({ x: e.clientX - rect.left, y: e.clientY - rect.top, show: true });
+  };
+
   return (
     <div
       ref={ref}
@@ -262,7 +268,20 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
         transform: visible ? 'translateY(0)' : 'translateY(40px)',
         transitionDelay: `${idx * 100}ms`,
       }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setTrail(t => ({ ...t, show: false }))}
     >
+      <div
+        className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-300"
+        style={{
+          left: trail.x,
+          top: trail.y,
+          width: 280,
+          height: 280,
+          background: s.dark ? 'radial-gradient(circle, rgba(0,0,0,0.12) 0%, transparent 70%)' : 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%)',
+          opacity: trail.show ? 1 : 0,
+        }}
+      />
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
       <div className={`relative font-heading text-8xl font-black leading-none select-none mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
         {String(idx + 1).padStart(2, '0')}
