@@ -357,7 +357,7 @@ export default function Index() {
                   </a>
                 );
               })}
-              <div className="mt-6 flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-3">
+              <div className="mt-6 mb-4 flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-3">
                 <Icon name="Search" size={16} className="text-neutral-400" />
                 <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
               </div>
