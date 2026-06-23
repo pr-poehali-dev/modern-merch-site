@@ -157,9 +157,9 @@ export default function Index() {
 
       {/* Плавающая мобильная шапка (z-30 — ниже попапов меню/телефона z-40) */}
       <div className={`fixed top-0 left-0 right-0 z-30 lg:hidden transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-        <div className="backdrop-blur-md border-b border-white/10 bg-black/80 py-2 transition-all duration-300">
+        <div className="backdrop-blur-md border-b border-black/5 bg-white/70 py-2 transition-all duration-300">
           <div className="container flex items-center justify-between gap-3">
-            <img src={LOGO2} alt="MerchGroups" className="h-8 transition-all duration-300" />
+            <img src={LOGO} alt="MerchGroups" className="h-8 transition-all duration-300" />
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setPhonePopupOpen(true)}
@@ -169,7 +169,7 @@ export default function Index() {
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-black/10 text-neutral-800"
               >
                 <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={20} />
               </button>
