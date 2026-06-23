@@ -38,11 +38,15 @@ const CLIENTS = [
   'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/22931d5e-00e5-498c-bf8b-ef05bb16c4ff.png',
 ];
 
-const SERVICES = [
+const SERVICES_ROW1 = [
   { title: 'Мерчандайзинг', icon: 'Store', color: '#00af50', desc: 'Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.' },
-  { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#00afef', desc: 'Установка и обслуживание торгового оборудования, размещение POS-материалов и брендирование зон.' },
-  { title: 'Торговый аудит', icon: 'ClipboardCheck', color: '#ffff00', dark: true, desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.' },
-  { title: 'BTL мероприятия', icon: 'Users', color: '#ffc000', dark: true, desc: 'Организация промоакций, дегустаций и праздничных мероприятий с подбором и обучением персонала.' },
+  { title: 'Тайный покупатель', icon: 'UserSearch', color: '#00afef', desc: 'Независимая проверка качества обслуживания и соблюдения стандартов через визиты инкогнито-аудиторов.' },
+];
+
+const SERVICES_ROW2 = [
+  { title: 'Технический мерчандайзинг', icon: 'Wrench', color: '#ffff00', dark: true, desc: 'Установка и обслуживание торгового оборудования, размещение POS-материалов и брендирование зон.' },
+  { title: 'Аудит торговых сетей', icon: 'ClipboardCheck', color: '#ffc000', dark: true, desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.' },
+  { title: 'BTL услуги + Организация дегустаций', icon: 'Users', color: '#ff6b35', desc: 'Промоакции, дегустации и праздничные мероприятия с подбором и обучением персонала.' },
 ];
 
 const TABS = [
@@ -68,6 +72,14 @@ const TABS = [
     ],
   },
   {
+    name: 'Тайный покупатель',
+    sub: [{ name: 'Проверка инкогнито', points: [
+      'Независимая оценка качества обслуживания.',
+      'Соблюдение стандартов и скриптов сотрудниками.',
+      'Детальный фотоотчёт по итогам визита.',
+    ]}],
+  },
+  {
     name: 'Технический мерчандайзинг',
     sub: [{ name: 'Монтаж оборудования', points: [
       'Установка и обслуживание торгового оборудования.',
@@ -76,7 +88,7 @@ const TABS = [
     ]}],
   },
   {
-    name: 'Торговый аудит',
+    name: 'Аудит торговых сетей',
     sub: [{ name: 'Независимый аудит', points: [
       'Оценка представленности товара и доли полки.',
       'Контроль цен и соблюдения планограмм.',
@@ -84,7 +96,7 @@ const TABS = [
     ]}],
   },
   {
-    name: 'BTL мероприятия',
+    name: 'BTL услуги + Организация дегустаций',
     sub: [{ name: 'Промоакции', points: [
       'Организация дегустаций и промоакций под ключ.',
       'Подбор и обучение промо-персонала.',
@@ -121,6 +133,31 @@ const ADVANTAGES = [
   'Мы оперативно подстраиваемся под ваши желания — подключение новых торговых точек происходит в течение 1-2 недель',
   'Мы имеем широкое покрытие городов России и сотрудничаем со всеми крупными сетями',
 ];
+
+function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string }; idx: number }) {
+  return (
+    <div
+      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 transition-all duration-300 cursor-pointer"
+      style={{ backgroundColor: s.color }}
+    >
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+      <div className={`relative font-heading text-8xl font-black leading-none select-none mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
+        {String(idx + 1).padStart(2, '0')}
+      </div>
+      <div className={`relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
+        <Icon name={s.icon} size={32} className={s.dark ? 'text-black' : 'text-white'} />
+      </div>
+      <h3 className={`relative font-heading text-3xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
+      <p className={`relative text-base leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
+        {s.desc}
+      </p>
+      <div className={`relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-75 ${s.dark ? 'text-black' : 'text-white'}`}>
+        Подробнее
+        <Icon name="ArrowRight" size={16} />
+      </div>
+    </div>
+  );
+}
 
 export default function Index() {
   const [tab, setTab] = useState(0);
@@ -261,7 +298,8 @@ export default function Index() {
                       <div className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
                         <div className="w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
                           {TABS.map((service) => {
-                            const svc = SERVICES.find((s) => s.title === service.name);
+                            const allSvcs = [...SERVICES_ROW1, ...SERVICES_ROW2];
+                            const svc = allSvcs.find((s) => s.title === service.name);
                             return (
                               <div key={service.name} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden">
                                 {/* Иконка в углу */}
@@ -473,40 +511,16 @@ export default function Index() {
         <div className="container">
           <h2 className="text-center font-heading text-3xl font-bold md:text-4xl">Основные услуги</h2>
           <p className="mt-3 text-center text-neutral-500">Полный спектр услуг для роста ваших продаж</p>
+          {/* Ряд 1: 2 блока */}
           <div className="mt-12 grid gap-4 md:grid-cols-2">
-            {SERVICES.map((s, idx) => (
-              <div
-                key={s.title}
-                className="group relative overflow-hidden rounded-3xl p-10 md:p-14 transition-all duration-300 cursor-pointer"
-                style={{ backgroundColor: s.color }}
-              >
-                {/* Затемнение при наведении */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-
-                {/* Номер */}
-                <div className={`relative font-heading text-8xl font-black leading-none select-none mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
-                  {String(idx + 1).padStart(2, '0')}
-                </div>
-
-                {/* Иконка */}
-                <div className={`relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
-                  <Icon name={s.icon} size={32} className={s.dark ? 'text-black' : 'text-white'} />
-                </div>
-
-                {/* Название */}
-                <h3 className={`relative font-heading text-4xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
-
-                {/* Описание — появляется при наведении */}
-                <p className={`relative text-base leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
-                  {s.desc}
-                </p>
-
-                {/* Ссылка */}
-                <div className={`relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-75 ${s.dark ? 'text-black' : 'text-white'}`}>
-                  Подробнее
-                  <Icon name="ArrowRight" size={16} />
-                </div>
-              </div>
+            {SERVICES_ROW1.map((s, idx) => (
+              <ServiceCard key={s.title} s={s} idx={idx} />
+            ))}
+          </div>
+          {/* Ряд 2: 3 блока */}
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {SERVICES_ROW2.map((s, idx) => (
+              <ServiceCard key={s.title} s={s} idx={idx + 2} />
             ))}
           </div>
         </div>
