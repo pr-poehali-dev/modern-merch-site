@@ -605,7 +605,7 @@ export default function Index() {
                   <h3 className="font-heading text-2xl font-bold">{s.title}</h3>
                   <p className="mt-3 text-neutral-600">{s.desc}</p>
                 </div>
-                <div className="mt-auto flex h-64 items-center justify-center p-4">
+                <div className="mt-auto flex h-80 items-center justify-center p-4">
                   <img
                     src={s.img}
                     alt={s.title}
