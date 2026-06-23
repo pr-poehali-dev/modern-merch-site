@@ -578,7 +578,7 @@ export default function Index() {
               <div className="mb-4 inline-block rounded-full bg-brand-green/10 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/30">
                 Агентство мерчандайзинга №1
               </div>
-              <h1 className="font-heading text-4xl font-extrabold leading-tight text-neutral-900 md:text-6xl">
+              <h1 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-7xl">
                 MerchGroups — агентство мерчандайзинга
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-neutral-500">
