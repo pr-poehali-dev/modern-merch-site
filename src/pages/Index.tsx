@@ -509,7 +509,7 @@ export default function Index() {
         <img
           src="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/8dbb4cd0-0617-4cce-9507-026cb302588f.png"
           alt=""
-          className="pointer-events-none absolute -left-20 top-1/2 h-[600px] w-[600px] -translate-y-1/2 object-contain opacity-[0.04] select-none"
+          className="pointer-events-none absolute left-4 top-4 bottom-4 h-[calc(100%-2rem)] w-auto max-h-[420px] object-contain opacity-[0.04] select-none"
         />
         <div className="container relative grid items-center gap-16 lg:grid-cols-2">
           {/* Левая часть */}
