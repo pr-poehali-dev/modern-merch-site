@@ -804,22 +804,22 @@ export default function Index() {
       </section>
 
       {/* CTA-блок */}
-      <section className="bg-brand-green py-14">
-        <div className="container flex flex-col items-center justify-between gap-6 md:flex-row">
-          <div>
-            <h2 className="font-heading text-2xl font-black text-white md:text-3xl">Готовы начать сотрудничество?</h2>
-            <p className="mt-2 max-w-lg text-white/80">
+      <div className="relative z-10 -mb-16 px-4">
+        <div className="container">
+          <div className="rounded-3xl bg-brand-green px-8 py-14 text-center shadow-2xl">
+            <h2 className="font-heading text-3xl font-black text-white md:text-4xl">Готовы начать сотрудничество?</h2>
+            <p className="mt-3 text-lg text-white/80">
               Свяжитесь с нами для бесплатной консультации и расчёта стоимости проекта под ваши задачи.
             </p>
+            <Button className="mt-8 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
+              Связаться с нами
+            </Button>
           </div>
-          <Button className="shrink-0 rounded-full bg-white px-8 py-3 font-bold text-brand-green hover:bg-white/90">
-            Связаться с нами
-          </Button>
         </div>
-      </section>
+      </div>
 
       {/* Подвал */}
-      <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
+      <footer className="border-t border-white/10 bg-neutral-950 pt-28 pb-8 text-white">
         <div className="container">
           {/* Верхняя часть: на мобильном — центр, на десктопе — 3 колонки */}
           <div className="flex flex-col items-center text-center gap-8 md:grid md:grid-cols-[1fr_1fr_1fr_1fr] md:items-start md:text-left">
@@ -828,9 +828,6 @@ export default function Index() {
             <div className="flex flex-col items-center md:items-start">
               <img src={LOGO2} alt="MerchGroups" className="h-14" />
               <p className="mt-3 text-sm text-white/50">Агентство мерчандайзинга</p>
-              <Button className="mt-5 rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
-                Связаться с нами
-              </Button>
             </div>
 
             {/* Колонка 2: Меню сайта */}
