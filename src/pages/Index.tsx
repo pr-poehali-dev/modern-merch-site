@@ -665,6 +665,21 @@ export default function Index() {
         </div>
       </section>
 
+      {/* CTA-блок */}
+      <section className="bg-brand-green py-14">
+        <div className="container flex flex-col items-center justify-between gap-6 md:flex-row">
+          <div>
+            <h2 className="font-heading text-2xl font-black text-white md:text-3xl">Готовы начать сотрудничество?</h2>
+            <p className="mt-2 max-w-lg text-white/80">
+              Свяжитесь с нами для бесплатной консультации и расчёта стоимости проекта под ваши задачи.
+            </p>
+          </div>
+          <Button className="shrink-0 rounded-full bg-white px-8 py-3 font-bold text-brand-green hover:bg-white/90">
+            Связаться с нами
+          </Button>
+        </div>
+      </section>
+
       {/* Подвал */}
       <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
         <div className="container">
