@@ -211,7 +211,7 @@ export function ServiceCard({ s, idx }: { s: { title: string; icon: string; colo
         <Icon name={s.icon} size={22} className={`md:hidden ${s.dark ? 'text-black' : 'text-white'}`} />
         <Icon name={s.icon} size={32} className={`hidden md:block ${s.dark ? 'text-black' : 'text-white'}`} />
       </div>
-      <h3 className={`relative font-heading text-xl font-bold mb-3 md:text-3xl md:mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
+      <h3 className={`relative font-heading text-2xl font-bold mb-3 md:text-3xl md:mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
       <p className={`relative text-base leading-relaxed transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
         {s.desc}
       </p>
