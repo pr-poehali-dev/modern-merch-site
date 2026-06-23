@@ -822,7 +822,7 @@ export default function Index() {
       <footer className="border-t border-white/10 bg-neutral-950 pt-14 pb-8 text-white">
         <div className="container">
           {/* Верхняя часть: на мобильном — центр, на десктопе — 3 колонки */}
-          <div className="flex flex-col items-center text-center gap-8 md:grid md:grid-cols-[1fr_1fr_1fr] md:items-start md:text-left">
+          <div className="flex flex-col items-center text-center gap-8 md:grid md:grid-cols-[1fr_1fr_1fr_1fr] md:items-start md:text-left">
 
             {/* Колонка 1: Лого + аннотация + кнопка */}
             <div className="flex flex-col items-center md:items-start">
@@ -833,8 +833,9 @@ export default function Index() {
               </Button>
             </div>
 
-            {/* Колонка 2: Меню — только на десктопе */}
-            <nav className="hidden md:grid grid-cols-2 gap-x-10 gap-y-2 content-start justify-self-center">
+            {/* Колонка 2: Меню сайта */}
+            <nav className="hidden md:flex flex-col gap-2 content-start">
+              <span className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Меню сайта</span>
               {NAV.map((n, i) => (
                 <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
                   {n}
@@ -842,7 +843,17 @@ export default function Index() {
               ))}
             </nav>
 
-            {/* Колонка 3: Телефоны + email */}
+            {/* Колонка 3: Услуги */}
+            <nav className="hidden md:flex flex-col gap-2 content-start">
+              <span className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Услуги</span>
+              {[...SERVICES_ROW1, ...SERVICES_ROW2].map((s) => (
+                <a key={s.title} href="#" className="text-sm text-white/60 transition-colors hover:text-brand-green">
+                  {s.title}
+                </a>
+              ))}
+            </nav>
+
+            {/* Колонка 4: Телефоны + email */}
             <div className="flex flex-col items-center gap-5 md:items-end md:justify-self-end">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3">
