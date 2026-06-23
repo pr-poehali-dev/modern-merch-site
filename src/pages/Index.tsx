@@ -504,28 +504,40 @@ export default function Index() {
       </section>
 
       {/* БЛОК 7: Преимущества */}
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div>
-              <h2 className="font-heading text-5xl font-black">MerchGroups</h2>
-              <p className="mt-4 max-w-md text-lg text-neutral-600">
-                Мы не просто красиво выкладываем товар на полки, мы делаем это из расчета особенностей вашей целевой аудитории.
-              </p>
-            </div>
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-green via-brand-blue to-brand-orange p-12">
-              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/20 blur-2xl" />
-              <img src={LOGO2} alt="MerchGroups" className="relative mx-auto h-24" />
+      <section className="relative overflow-hidden py-20 md:py-28">
+        {/* Фоновый логотип */}
+        <img
+          src="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/8dbb4cd0-0617-4cce-9507-026cb302588f.png"
+          alt=""
+          className="pointer-events-none absolute -left-20 top-1/2 h-[600px] w-[600px] -translate-y-1/2 object-contain opacity-[0.04] select-none"
+        />
+        <div className="container relative grid items-center gap-16 lg:grid-cols-2">
+          {/* Левая часть */}
+          <div>
+            <h2 className="font-heading text-6xl font-black leading-none text-neutral-900 md:text-7xl">Merch<br />Groups</h2>
+            <div className="mt-8 space-y-5">
+              <div className="border-l-4 border-brand-green pl-5">
+                <p className="text-xl font-semibold text-neutral-800 leading-snug">
+                  Мы не просто красиво выкладываем товар на полки
+                </p>
+              </div>
+              <div className="border-l-4 border-neutral-200 pl-5">
+                <p className="text-lg text-neutral-500 leading-relaxed">
+                  Мы делаем это из расчёта особенностей{' '}
+                  <span className="font-heading font-bold italic text-brand-green">вашей целевой аудитории</span>
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          {/* Правая часть — 4 преимущества */}
+          <div className="grid gap-5 sm:grid-cols-2">
             {ADVANTAGES.map((a, i) => (
-              <div key={a} className="flex gap-5 rounded-3xl border border-neutral-100 p-7 transition-shadow hover:shadow-lg">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-green/10 font-heading text-xl font-black text-brand-green">
-                  {i + 1}
+              <div key={a} className="group rounded-2xl bg-neutral-50 p-6 transition-all hover:bg-brand-green/5 hover:shadow-md">
+                <div className="mb-3 font-heading text-4xl font-black text-brand-green/20 leading-none">
+                  {String(i + 1).padStart(2, '0')}
                 </div>
-                <p className="text-neutral-700">{a}</p>
+                <p className="text-sm leading-relaxed text-neutral-700">{a}</p>
               </div>
             ))}
           </div>
