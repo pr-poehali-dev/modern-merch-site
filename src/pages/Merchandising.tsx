@@ -178,7 +178,7 @@ function Calculator() {
               <Button
                 onClick={calculate}
                 disabled={!sku || !points || !visits}
-                className="rounded-full bg-brand-green px-16 py-5 text-xl font-bold text-white hover:bg-brand-green/90 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full rounded-full bg-brand-green px-8 py-4 text-base font-bold text-white hover:bg-brand-green/90 disabled:opacity-40 disabled:cursor-not-allowed sm:w-auto sm:px-16 sm:py-5 sm:text-xl"
               >
                 Рассчитать стоимость
               </Button>
@@ -213,13 +213,14 @@ function MerchTypeCard({ t, idx }: { t: typeof MERCH_TYPES[0]; idx: number }) {
           className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-300"
           style={{ left: trail.x, top: trail.y, width: 300, height: 300, background: 'radial-gradient(circle, rgba(0,175,80,0.07) 0%, transparent 70%)', opacity: trail.show ? 1 : 0 }}
         />
-        <div className="relative p-8">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-green/10">
-                <Icon name={t.icon} size={28} className="text-brand-green" />
+        <div className="relative p-5 sm:p-8">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-green/10 sm:h-14 sm:w-14 sm:rounded-2xl">
+                <Icon name={t.icon} size={20} className="text-brand-green sm:hidden" />
+                <Icon name={t.icon} size={28} className="text-brand-green hidden sm:block" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-neutral-900">{t.title}</h3>
+              <h3 className="font-heading text-lg font-bold text-neutral-900 sm:text-2xl">{t.title}</h3>
             </div>
             <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${open ? 'rotate-180 bg-brand-green' : 'bg-neutral-100 group-hover:bg-brand-green group-hover:text-white'}`}>
               <Icon name="ChevronDown" size={18} className={open ? 'text-white' : 'text-neutral-500 group-hover:text-white'} />
@@ -252,6 +253,8 @@ function MerchTypeCard({ t, idx }: { t: typeof MERCH_TYPES[0]; idx: number }) {
 
 export default function Merchandising() {
   const [clientsExpanded, setClientsExpanded] = useState(false);
+  const [citiesExpanded, setCitiesExpanded] = useState(false);
+  const [networksExpanded, setNetworksExpanded] = useState(false);
 
   return (
     <div className="min-h-screen bg-white font-sans text-neutral-900">
@@ -276,8 +279,8 @@ export default function Merchandising() {
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
             <FadeIn>
               <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white mb-6">Услуга</span>
-              <h1 className="font-heading text-4xl font-black text-white sm:text-5xl md:text-7xl leading-tight">Мерчандайзинг</h1>
-              <p className="mt-6 max-w-2xl text-xl text-white/85 leading-relaxed">
+              <h1 className="font-heading text-3xl font-black text-white sm:text-5xl md:text-7xl leading-tight">Мерчандайзинг</h1>
+              <p className="mt-4 max-w-2xl text-base text-white/85 leading-relaxed sm:mt-6 sm:text-xl">
                 Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.
               </p>
               <Button className="mt-10 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
@@ -442,7 +445,7 @@ export default function Merchandising() {
           </FadeIn>
           <div className="mt-12 flex flex-wrap gap-3">
             {CITIES.map((city, i) => (
-              <FadeIn key={city} delay={Math.floor(i / 6) * 60}>
+              <FadeIn key={city} delay={Math.floor(i / 6) * 60} className={i >= 14 && !citiesExpanded ? 'hidden sm:block' : ''}>
                 <a
                   href={`/merchandising/${city.toLowerCase().replace(/\s+/g, '-').replace(/ё/g, 'e')}`}
                   className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-all hover:border-brand-green hover:bg-brand-green/5 hover:text-brand-green shadow-sm"
@@ -452,6 +455,15 @@ export default function Merchandising() {
                 </a>
               </FadeIn>
             ))}
+          </div>
+          <div className="mt-6 flex justify-center sm:hidden">
+            <button
+              onClick={() => setCitiesExpanded(!citiesExpanded)}
+              className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-6 py-2.5 text-sm font-semibold text-neutral-700 shadow-sm transition-all hover:border-brand-green hover:text-brand-green"
+            >
+              {citiesExpanded ? 'Свернуть' : 'Показать все'}
+              <Icon name={citiesExpanded ? 'ChevronUp' : 'ChevronDown'} size={16} />
+            </button>
           </div>
         </div>
       </section>
@@ -465,7 +477,7 @@ export default function Merchandising() {
           </FadeIn>
           <div className="mt-12 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {NETWORKS.map((net, i) => (
-              <FadeIn key={net.name} delay={i * 50}>
+              <FadeIn key={net.name} delay={i * 50} className={i >= 8 && !networksExpanded ? 'hidden sm:block' : ''}>
                 <a
                   href={`/merchandising/network/${net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
                   className="group flex h-24 flex-col items-center justify-center gap-2 rounded-2xl border border-neutral-100 bg-white p-4 shadow-sm transition-all hover:shadow-md hover:border-neutral-200"
@@ -480,6 +492,15 @@ export default function Merchandising() {
                 </a>
               </FadeIn>
             ))}
+          </div>
+          <div className="mt-6 flex justify-center sm:hidden">
+            <button
+              onClick={() => setNetworksExpanded(!networksExpanded)}
+              className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-6 py-2.5 text-sm font-semibold text-neutral-700 shadow-sm transition-all hover:border-brand-green hover:text-brand-green"
+            >
+              {networksExpanded ? 'Свернуть' : 'Показать все'}
+              <Icon name={networksExpanded ? 'ChevronUp' : 'ChevronDown'} size={16} />
+            </button>
           </div>
         </div>
       </section>
