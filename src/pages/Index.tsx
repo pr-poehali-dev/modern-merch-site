@@ -316,13 +316,14 @@ export default function Index() {
                 if (n === 'Услуги') {
                   return (
                     <div key={n} className="border-b border-neutral-100">
-                      <button
-                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                        className="flex w-full items-center justify-between py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600"
-                      >
-                        {n}
-                        <Icon name="ChevronDown" size={16} className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
-                      </button>
+                      <div className="flex items-center justify-between py-4">
+                        <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-brand-green transition-colors">
+                          {n}
+                        </a>
+                        <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-100">
+                          <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
                       {mobileServicesOpen && (
                         <div className="mb-3 space-y-2">
                           {TABS.map((service) => (
