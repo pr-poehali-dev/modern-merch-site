@@ -206,7 +206,7 @@ export default function Index() {
             <img src={LOGO} alt="MerchGroups" className="h-20" />
 
             {/* Правая часть: контакты + кнопка */}
-            <div className="hidden items-center gap-6 lg:flex">
+            <div className="hidden items-center gap-10 lg:flex">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3 text-neutral-800">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
