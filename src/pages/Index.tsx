@@ -503,52 +503,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* БЛОК 6: Вкладки услуг */}
-      <section className="bg-neutral-950 py-20 text-white md:py-28">
-        <div className="container">
-          <h2 className="font-heading text-3xl font-bold md:text-4xl">Подробно об услугах</h2>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {TABS.map((t, i) => (
-              <button
-                key={t.name}
-                onClick={() => { setTab(i); setSubTab(0); }}
-                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${tab === i ? 'bg-brand-green text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
-              >
-                {t.name}
-              </button>
-            ))}
-          </div>
-
-          {TABS[tab].sub.length > 1 && (
-            <div className="mt-6 flex flex-wrap gap-2">
-              {TABS[tab].sub.map((st, i) => (
-                <button
-                  key={st.name}
-                  onClick={() => setSubTab(i)}
-                  className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${subTab === i ? 'bg-brand-blue text-white' : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
-                >
-                  {st.name}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <div key={`${tab}-${subTab}`} className="mt-8 animate-fade-in rounded-3xl bg-white/5 p-8 ring-1 ring-white/10 md:p-10">
-            <ul className="space-y-4">
-              {TABS[tab].sub[subTab].points.map((p) => (
-                <li key={p} className="flex gap-3">
-                  <Icon name="Check" size={22} className="mt-0.5 shrink-0 text-brand-green" />
-                  <span className="text-white/80">{p}</span>
-                </li>
-              ))}
-            </ul>
-            <Button className="mt-8 rounded-full bg-brand-green font-bold text-white hover:bg-brand-green/90">
-              Получить расчет стоимости
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* БЛОК 7: Преимущества */}
       <section className="py-20 md:py-28">
         <div className="container">
