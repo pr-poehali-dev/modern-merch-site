@@ -4,12 +4,12 @@ export default function SiteCTA() {
   return (
     <div className="relative z-10 translate-y-1/2 px-4">
       <div className="container">
-        <div className="rounded-3xl bg-brand-green px-8 py-14 text-center shadow-2xl">
-          <h2 className="font-heading text-3xl font-black text-white md:text-4xl">Готовы начать сотрудничество?</h2>
-          <p className="mt-3 text-lg text-white/80">
+        <div className="rounded-3xl bg-brand-green px-5 py-10 text-center shadow-2xl md:px-8 md:py-14">
+          <h2 className="font-heading text-2xl font-black text-white sm:text-3xl md:text-4xl">Готовы начать сотрудничество?</h2>
+          <p className="mt-3 text-base text-white/80 md:text-lg">
             Свяжитесь с нами для бесплатной консультации и расчёта стоимости проекта под ваши задачи.
           </p>
-          <Button className="mt-8 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
+          <Button className="mt-6 rounded-full bg-white px-8 py-3 text-sm font-bold text-brand-green hover:bg-white/90 md:mt-8 md:px-10 md:py-4 md:text-base">
             Связаться с нами
           </Button>
         </div>

@@ -136,7 +136,7 @@ export default function SiteHeader() {
         {/* Строка 1: контакты */}
         <div className="border-b border-neutral-100">
           <div className="container flex items-center justify-between gap-4 py-4">
-            <Link to="/"><img src={LOGO} alt="MerchGroups" className="h-20" /></Link>
+            <Link to="/"><img src={LOGO} alt="MerchGroups" className="h-12 w-auto sm:h-16 lg:h-20" /></Link>
 
             {/* Desktop */}
             <div className="hidden items-center gap-10 lg:flex">
