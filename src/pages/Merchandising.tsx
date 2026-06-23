@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
 
-const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
 
 const CLIENTS = [
   'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fde397df-26e6-4375-a03e-4fd9bea6373c.png',
@@ -391,16 +391,7 @@ export default function Merchandising() {
         </div>
       </div>
 
-      {/* Футер */}
-      <footer className="border-t border-white/10 bg-neutral-950 pb-8 pt-56 text-white">
-        <div className="container">
-          <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
-            <img src={LOGO2} alt="MerchGroups" className="h-10" />
-            <p className="text-sm text-white/40">© 2025 MerchGroups. Все права защищены.</p>
-            <Link to="/" className="text-sm text-white/50 hover:text-white transition-colors">На главную</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
     </div>
   );

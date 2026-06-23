@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
+import SiteFooter from '@/components/SiteFooter';
 
 const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
 const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
@@ -840,68 +841,7 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Подвал */}
-      <footer className="border-t border-white/10 bg-neutral-950 pb-8 pt-56 text-white">
-        <div className="container">
-          {/* Верхняя часть: на мобильном — центр, на десктопе — 3 колонки */}
-          <div className="flex flex-col items-center text-center gap-8 md:grid md:grid-cols-[1fr_1fr_1fr_1fr] md:items-start md:text-left">
-
-            {/* Колонка 1: Лого + аннотация + кнопка */}
-            <div className="flex flex-col items-center md:items-start">
-              <img src={LOGO2} alt="MerchGroups" className="h-14" />
-              <p className="mt-3 text-sm text-white/50">Агентство мерчандайзинга</p>
-            </div>
-
-            {/* Колонка 2: Меню сайта */}
-            <nav className="hidden md:flex flex-col gap-2 content-start">
-              <span className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Меню сайта</span>
-              {NAV.map((n, i) => (
-                <a key={n} href="#" className={`text-sm transition-colors hover:text-brand-green ${i === 0 ? 'text-brand-green' : 'text-white/60'}`}>
-                  {n}
-                </a>
-              ))}
-            </nav>
-
-            {/* Колонка 3: Услуги */}
-            <nav className="hidden md:flex flex-col gap-2 content-start">
-              <span className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Услуги</span>
-              {[...SERVICES_ROW1, ...SERVICES_ROW2].map((s) => (
-                <a key={s.title} href="#" className="text-sm text-white/60 transition-colors hover:text-brand-green">
-                  {s.title}
-                </a>
-              ))}
-            </nav>
-
-            {/* Колонка 4: Телефоны + email */}
-            <div className="flex flex-col items-center gap-5 md:items-end md:justify-self-end">
-              {PHONES.map((p) => (
-                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-brand-green/30">
-                    <Icon name="Phone" size={16} className="text-brand-green" />
-                  </div>
-                  <div className="leading-snug text-left">
-                    <div className="text-base font-bold transition-colors group-hover:text-brand-green">{p.num}</div>
-                    <div className="text-[12px] font-bold text-white/70">{p.name}</div>
-                    <div className="text-[11px] text-white/40">{p.role}</div>
-                  </div>
-                </a>
-              ))}
-              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-white/50 hover:text-white">
-                <Icon name="Mail" size={14} /> info@merch-groups.ru
-              </a>
-            </div>
-          </div>
-
-          {/* Нижняя строка */}
-          <div className="mt-10 border-t border-white/10 pt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-white/30 md:justify-between">
-            <span>© 2026 MerchGroups — агентство мерчандайзинга</span>
-            <div className="flex gap-5">
-              <a href="#" className="hover:text-white/60 transition-colors">Политика конфиденциальности</a>
-              <a href="#" className="hover:text-white/60 transition-colors">Пользовательское соглашение</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
