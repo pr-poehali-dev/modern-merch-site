@@ -276,7 +276,7 @@ export default function Merchandising() {
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
             <FadeIn>
               <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white mb-6">Услуга</span>
-              <h1 className="font-heading text-5xl font-black text-white md:text-7xl leading-none">Мерчандайзинг</h1>
+              <h1 className="font-heading text-4xl font-black text-white sm:text-5xl md:text-7xl leading-tight">Мерчандайзинг</h1>
               <p className="mt-6 max-w-2xl text-xl text-white/85 leading-relaxed">
                 Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.
               </p>

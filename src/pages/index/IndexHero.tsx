@@ -15,7 +15,7 @@ export default function IndexHero() {
             <div className="mb-4 inline-block rounded-full bg-brand-green/10 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/30">
               Агентство мерчандайзинга №1
             </div>
-            <h1 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-7xl">
+            <h1 className="font-heading text-3xl font-black leading-tight text-neutral-900 sm:text-4xl md:text-7xl">
               MerchGroups — агентство мерчандайзинга
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-neutral-500">
