@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import SiteHeader from '@/components/SiteHeader';
 
-const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
 const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
 
 const CLIENTS = [
@@ -172,20 +172,7 @@ export default function Merchandising() {
   return (
     <div className="min-h-screen bg-white font-sans text-neutral-900">
 
-      {/* Шапка */}
-      <header className="sticky top-0 z-50 border-b border-neutral-100 bg-white/95 backdrop-blur-sm">
-        <div className="container flex h-16 items-center justify-between">
-          <Link to="/">
-            <img src={LOGO} alt="MerchGroups" className="h-8" />
-          </Link>
-          <Link to="/">
-            <Button variant="ghost" className="flex items-center gap-2 text-neutral-600 hover:text-brand-green">
-              <Icon name="ArrowLeft" size={16} />
-              На главную
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* 1. Заголовок + вступление */}
       <section className="relative overflow-hidden bg-brand-green py-24">
