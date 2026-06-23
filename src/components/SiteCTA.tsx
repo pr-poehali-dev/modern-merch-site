@@ -5,7 +5,7 @@ export default function SiteCTA() {
     <div className="relative z-10 translate-y-1/2 px-4">
       <div className="container">
         <div className="rounded-3xl bg-brand-green px-5 py-10 text-center shadow-2xl md:px-8 md:py-14">
-          <h2 className="font-heading text-2xl font-black text-white sm:text-3xl md:text-4xl">Готовы начать сотрудничество?</h2>
+          <h2 className="font-heading text-xl font-black text-white break-words sm:text-3xl md:text-4xl">Готовы начать сотрудничество?</h2>
           <p className="mt-3 text-base text-white/80 md:text-lg">
             Свяжитесь с нами для бесплатной консультации и расчёта стоимости проекта под ваши задачи.
           </p>
