@@ -182,7 +182,7 @@ export function ServiceCard({ s, idx }: { s: { title: string; icon: string; colo
     <div ref={ref} className="h-full">
     <Link
       to={s.slug}
-      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 cursor-pointer transition-all duration-700 block h-full"
+      className="group relative overflow-hidden rounded-3xl p-7 md:p-14 cursor-pointer transition-all duration-700 block h-full"
       style={{
         backgroundColor: s.color,
         opacity: visible ? 1 : 0,
@@ -204,13 +204,14 @@ export function ServiceCard({ s, idx }: { s: { title: string; icon: string; colo
         }}
       />
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-      <div className={`relative font-heading text-8xl font-black leading-none select-none mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
+      <div className={`relative font-heading text-5xl font-black leading-none select-none mb-4 md:text-8xl md:mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
         {String(idx + 1).padStart(2, '0')}
       </div>
-      <div className={`relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
-        <Icon name={s.icon} size={32} className={s.dark ? 'text-black' : 'text-white'} />
+      <div className={`relative mb-4 flex h-11 w-11 items-center justify-center rounded-xl md:mb-6 md:h-16 md:w-16 md:rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
+        <Icon name={s.icon} size={22} className={`md:hidden ${s.dark ? 'text-black' : 'text-white'}`} />
+        <Icon name={s.icon} size={32} className={`hidden md:block ${s.dark ? 'text-black' : 'text-white'}`} />
       </div>
-      <h3 className={`relative font-heading text-3xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
+      <h3 className={`relative font-heading text-xl font-bold mb-3 md:text-3xl md:mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
       <p className={`relative text-base leading-relaxed transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
         {s.desc}
       </p>
