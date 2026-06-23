@@ -122,6 +122,84 @@ function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode;
   );
 }
 
+function Calculator() {
+  const [sku, setSku] = useState('');
+  const [points, setPoints] = useState('');
+  const [visits, setVisits] = useState('');
+  const [result, setResult] = useState<number | null>(null);
+  const [calculated, setCalculated] = useState(false);
+
+  const calculate = () => {
+    const s = parseInt(sku) || 0;
+    const p = parseInt(points) || 0;
+    const v = parseInt(visits) || 0;
+    const basePerVisit = 350;
+    const skuCoeff = s <= 20 ? 1 : s <= 50 ? 1.3 : s <= 100 ? 1.6 : 2;
+    const weeksPerMonth = 4.3;
+    const total = Math.round(basePerVisit * skuCoeff * p * v * weeksPerMonth);
+    setResult(total);
+    setCalculated(true);
+  };
+
+  const formatPrice = (n: number) =>
+    n.toLocaleString('ru-RU') + ' ₽';
+
+  return (
+    <section className="bg-neutral-50 py-20 md:py-28">
+      <div className="container">
+        <FadeIn>
+          <h2 className="font-heading text-3xl font-bold md:text-4xl">Расчёт стоимости</h2>
+          <p className="mt-3 text-neutral-500">Укажите параметры вашего проекта — мы рассчитаем ориентировочную стоимость</p>
+        </FadeIn>
+        <FadeIn delay={100}>
+          <div className="mt-10 rounded-3xl bg-white border border-neutral-100 shadow-sm p-8 md:p-12">
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                { label: 'Количество SKU в торговой точке', value: sku, setter: setSku, placeholder: 'Например, 30', hint: 'SKU — уникальных позиций товара' },
+                { label: 'Количество торговых точек', value: points, setter: setPoints, placeholder: 'Например, 50', hint: 'Магазинов, супермаркетов и т.д.' },
+                { label: 'Количество посещений в неделю', value: visits, setter: setVisits, placeholder: 'Например, 2', hint: 'Визитов мерчандайзера в 1 точку' },
+              ].map((f) => (
+                <div key={f.label}>
+                  <label className="block text-sm font-semibold text-neutral-700 mb-2">{f.label}</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={f.value}
+                    onChange={(e) => { f.setter(e.target.value); setCalculated(false); }}
+                    placeholder={f.placeholder}
+                    className="w-full rounded-2xl border border-neutral-200 bg-neutral-50 px-5 py-4 text-lg font-semibold text-neutral-900 placeholder:text-neutral-400 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20 transition-all"
+                  />
+                  <p className="mt-2 text-xs text-neutral-400">{f.hint}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col items-start gap-6 md:flex-row md:items-center">
+              <Button
+                onClick={calculate}
+                disabled={!sku || !points || !visits}
+                className="rounded-full bg-brand-green px-10 py-4 text-base font-bold text-white hover:bg-brand-green/90 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Рассчитать стоимость
+              </Button>
+
+              {calculated && result !== null && (
+                <div className="flex flex-col gap-1 animate-fade-in">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-sm text-neutral-500 font-medium">Ориентировочная стоимость в месяц:</span>
+                    <span className="font-heading text-3xl font-black text-brand-green">от {formatPrice(result)}</span>
+                  </div>
+                  <p className="text-xs text-neutral-400 max-w-md">* Итоговая стоимость является ориентировочной и может отличаться. Не является публичной офертой.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 function MerchTypeCard({ t, idx }: { t: typeof MERCH_TYPES[0]; idx: number }) {
   const [open, setOpen] = useState(false);
   const [trail, setTrail] = useState({ x: -999, y: -999, show: false });
@@ -248,7 +326,10 @@ export default function Merchandising() {
         </div>
       </section>
 
-      {/* 3. Виды мерчандайзинга */}
+      {/* 3. Калькулятор стоимости */}
+      <Calculator />
+
+      {/* 4. Виды мерчандайзинга */}
       <section className="py-20 md:py-28">
         <div className="container">
           <FadeIn>
