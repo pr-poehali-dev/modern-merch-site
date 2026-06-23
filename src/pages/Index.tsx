@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
-const LOGO = 'https://cdn.poehali.dev/files/6a547e27-4b11-4695-94f5-7c447eebdf12.png';
+const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
 const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
 const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/28fac548-2488-4d76-8d83-7a1bd9f1c28f.jpg';
 const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d2809aca-e2f0-4e42-993f-19153ade8fd1.jpg';
@@ -197,10 +197,10 @@ export default function Index() {
         {/* Строка 1: контакты */}
         <div className="border-b border-neutral-100">
           <div className="container flex items-center justify-between gap-4 py-4">
-            <img src={LOGO} alt="MerchGroups" className="h-16" />
+            <img src={LOGO} alt="MerchGroups" className="h-20" />
 
-            {/* Desktop: телефоны + email */}
-            <div className="hidden flex-wrap items-center gap-8 lg:flex">
+            {/* Правая часть: контакты + кнопка */}
+            <div className="hidden items-center gap-6 lg:flex">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3 text-neutral-800">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
@@ -216,10 +216,13 @@ export default function Index() {
               <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-800">
                 <Icon name="Mail" size={16} /> info@merch-groups.ru
               </a>
+              <Button className="rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
+                Связаться с нами
+              </Button>
             </div>
 
-            {/* Правая часть */}
-            <div className="flex items-center gap-2">
+            {/* Mobile */}
+            <div className="flex items-center gap-2 lg:hidden">
               <button onClick={() => setPhonePopupOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green lg:hidden">
                 <Icon name="Phone" size={20} className="text-white" />
               </button>
@@ -239,7 +242,7 @@ export default function Index() {
         {/* Строка 2: меню + поиск (desktop) */}
         <div className="hidden border-b border-neutral-100 lg:block">
           <div className="container flex items-center justify-between gap-4 py-3">
-            <nav className="flex flex-wrap gap-x-10 gap-y-2">
+            <nav className="flex flex-wrap gap-x-14 gap-y-2">
               {NAV.map((n, i) => (
                 <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-brand-blue'}`}>
                   {n}
@@ -248,7 +251,7 @@ export default function Index() {
             </nav>
             <div className="flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2">
               <Icon name="Search" size={16} className="text-neutral-400" />
-              <input placeholder="Поиск по сайту" className="w-36 bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
+              <input placeholder="Поиск по сайту" className="w-56 bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
             </div>
           </div>
         </div>
