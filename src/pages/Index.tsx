@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
@@ -145,6 +145,41 @@ function PhilosophyBlock() {
           Мы уверены, что сила нашего успеха — это персонал. Именно поэтому в нашей компании работают самые внимательные, ответственные сотрудники, имеющие многолетний опыт работы в сфере рекламы.
         </p>
       </div>
+    </div>
+  );
+}
+
+function SlideIn({ children, direction = 'left', delay = 0, className = '', style: extStyle = {} }: {
+  children: React.ReactNode;
+  direction?: 'left' | 'right';
+  delay?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        ...extStyle,
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateX(0)' : `translateX(${direction === 'left' ? '-50px' : '50px'})`,
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+      }}
+    >
+      {children}
     </div>
   );
 }
@@ -610,7 +645,7 @@ export default function Index() {
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="container relative grid items-center gap-16 lg:grid-cols-2">
           {/* Левая часть */}
-          <div className="flex flex-col justify-center">
+          <SlideIn direction="left" className="flex flex-col justify-center">
             <h2 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-6xl">Merch<br />Groups</h2>
             <div className="mt-8 space-y-5">
               <div className="border-l-4 border-brand-green pl-5">
@@ -625,10 +660,10 @@ export default function Index() {
                 </p>
               </div>
             </div>
-          </div>
+          </SlideIn>
 
           {/* Правая часть — 4 преимущества */}
-          <div className="grid gap-5 sm:grid-cols-2">
+          <SlideIn direction="right" className="grid gap-5 sm:grid-cols-2">
             {ADVANTAGES.map((a, i) => (
               <div key={a} className="group rounded-2xl bg-neutral-50 p-6 transition-all hover:bg-brand-green/5 hover:shadow-md">
                 <div className="mb-3 font-heading text-4xl font-black text-brand-green/20 leading-none">
@@ -637,7 +672,7 @@ export default function Index() {
                 <p className="text-sm leading-relaxed text-neutral-700">{a}</p>
               </div>
             ))}
-          </div>
+          </SlideIn>
         </div>
       </section>
 
@@ -646,7 +681,7 @@ export default function Index() {
         <div className="container">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_2fr]">
             {/* Левая часть: заголовок + текст + статистика */}
-            <div>
+            <SlideIn direction="left">
               <h2 className="font-heading text-3xl font-bold md:text-4xl">География покрытия</h2>
               <p className="mt-3 text-neutral-500">
                 Наши мерчендайзеры присутствуют по всей России — в каждом городе под Ваш проект.
@@ -663,10 +698,10 @@ export default function Index() {
                   </div>
                 ))}
               </div>
-            </div>
+            </SlideIn>
 
             {/* Правая часть: карта */}
-            <div className="relative overflow-hidden rounded-3xl">
+            <SlideIn direction="right" className="relative overflow-hidden rounded-3xl">
               <img src={MAP_BG} alt="Карта покрытия MerchGroups" className="w-full" />
               {MAP_POINTS.map((p, i) => (
                 <img
@@ -688,7 +723,7 @@ export default function Index() {
                   <div className="text-xs font-medium text-neutral-600">сотрудника</div>
                 </div>
               </div>
-            </div>
+            </SlideIn>
           </div>
         </div>
       </section>
@@ -699,8 +734,8 @@ export default function Index() {
           <h2 className="text-center font-heading text-3xl font-bold md:text-4xl">Программное обеспечение</h2>
           <p className="mt-3 text-center text-neutral-500">Единая облачная система онлайн-отчётности Optimum</p>
           <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {SOFTWARE.map((s) => (
-              <div key={s.title} className="flex flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50" style={{ minHeight: '480px' }}>
+            {SOFTWARE.map((s, i) => (
+              <SlideIn key={s.title} direction={i === 0 ? 'left' : 'right'} delay={i * 150} className="flex flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50" style={{ minHeight: '480px' }}>
                 <div className="p-8">
                   <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/10">
                     <Icon name={s.mobile ? 'Smartphone' : 'Monitor'} size={24} className="text-brand-blue" />
@@ -715,7 +750,7 @@ export default function Index() {
                     className="h-full w-full object-contain"
                   />
                 </div>
-              </div>
+              </SlideIn>
             ))}
           </div>
         </div>
@@ -728,15 +763,15 @@ export default function Index() {
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-8">
 
             {/* Заголовок */}
-            <div className="flex flex-col justify-center">
+            <SlideIn direction="left" className="flex flex-col justify-center">
               <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">О контроле качества</span>
               <div className="mt-2 h-0.5 w-10 bg-brand-green" />
               <h2 className="mt-4 font-heading text-4xl font-black leading-tight md:text-5xl">Контроль качества</h2>
               <p className="mt-4 text-lg text-neutral-500">Каждый отчёт проходит строгую проверку перед передачей Вам</p>
-            </div>
+            </SlideIn>
 
             {/* Карточка 01 */}
-            <div className="relative overflow-hidden rounded-3xl bg-white p-8 shadow-sm">
+            <SlideIn direction="right" className="relative overflow-hidden rounded-3xl bg-white p-8 shadow-sm">
               <span className="absolute right-6 top-4 font-heading text-6xl font-black text-neutral-100 select-none">01</span>
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green/10">
                 <Icon name="ShieldCheck" size={32} className="text-brand-green" />
@@ -744,7 +779,7 @@ export default function Index() {
               <p className="relative text-neutral-700 leading-relaxed">
                 <span className="font-bold text-black">{QUALITY[0][0]}</span>{QUALITY[0][1]}
               </p>
-            </div>
+            </SlideIn>
           </div>
 
           {/* Нижние три карточки */}
@@ -753,7 +788,7 @@ export default function Index() {
               const icons = ['ShieldAlert', 'ClipboardCheck', 'BadgeCheck'];
               const accents = ['bg-brand-blue', 'bg-brand-orange', 'bg-brand-green'];
               return (
-                <div key={bold} className={`relative overflow-hidden rounded-3xl p-8 shadow-sm transition-shadow hover:shadow-lg ${i === 0 ? accents[0] + ' text-white' : 'bg-white'}`}>
+                <SlideIn key={bold} direction="left" delay={i * 120} className={`relative overflow-hidden rounded-3xl p-8 shadow-sm transition-shadow hover:shadow-lg ${i === 0 ? accents[0] + ' text-white' : 'bg-white'}`}>
                   <span className={`absolute right-6 top-4 font-heading text-6xl font-black select-none ${i === 0 ? 'text-white/20' : 'text-neutral-100'}`}>0{i + 2}</span>
                   <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${i === 0 ? 'bg-white/20' : accents[i] + '/10'}`}>
                     <Icon name={icons[i]} size={32} className={i === 0 ? 'text-white' : `text-${accents[i].replace('bg-', '')}`} />
@@ -761,7 +796,7 @@ export default function Index() {
                   <p className={`relative leading-relaxed ${i === 0 ? 'text-white/90' : 'text-neutral-700'}`}>
                     <span className={`font-bold ${i === 0 ? 'text-white' : 'text-black'}`}>{bold}</span>{rest}
                   </p>
-                </div>
+                </SlideIn>
               );
             })}
           </div>
