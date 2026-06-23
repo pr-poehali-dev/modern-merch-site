@@ -506,31 +506,27 @@ export default function Index() {
       {/* БЛОК 7: Преимущества */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="container relative grid items-center gap-16 lg:grid-cols-2">
-          {/* Левая часть — фото с текстом поверх */}
-          <div className="relative overflow-hidden rounded-3xl min-h-[420px]">
-            {/* Фото */}
-            <img
-              src="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/4c94f355-73b2-4154-b6d0-aab9f906b21a.jpg"
-              alt="Мерчандайзеры в магазине"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            {/* Градиент снизу */}
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/20" />
-            {/* Текст */}
-            <div className="relative flex h-full flex-col justify-end p-10 md:p-12">
+          {/* Левая часть */}
+          <div className="flex flex-col justify-center">
+            <div className="flex items-center gap-5">
               <h2 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-6xl">Merch<br />Groups</h2>
-              <div className="mt-8 space-y-5">
-                <div className="border-l-4 border-brand-green pl-5">
-                  <p className="text-xl font-semibold text-neutral-800 leading-snug">
-                    Мы не просто красиво выкладываем товар на полки
-                  </p>
-                </div>
-                <div className="border-l-4 border-neutral-400 pl-5">
-                  <p className="text-lg text-neutral-600 leading-relaxed">
-                    Мы делаем это из расчёта особенностей{' '}
-                    <span className="font-heading font-bold italic text-brand-green">вашей целевой аудитории</span>
-                  </p>
-                </div>
+              <img
+                src="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/e1657208-830a-46a8-9a3a-57cc23d42c4b.png"
+                alt="MerchGroups logo"
+                className="h-20 w-20 object-contain"
+              />
+            </div>
+            <div className="mt-8 space-y-5">
+              <div className="border-l-4 border-brand-green pl-5">
+                <p className="text-xl font-semibold text-neutral-800 leading-snug">
+                  Мы не просто красиво выкладываем товар на полки
+                </p>
+              </div>
+              <div className="border-l-4 border-neutral-200 pl-5">
+                <p className="text-lg text-neutral-500 leading-relaxed">
+                  Мы делаем это из расчёта особенностей{' '}
+                  <span className="font-heading font-bold italic text-brand-green">вашей целевой аудитории</span>
+                </p>
               </div>
             </div>
           </div>
