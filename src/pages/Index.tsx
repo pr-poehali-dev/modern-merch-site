@@ -804,7 +804,7 @@ export default function Index() {
       </section>
 
       {/* CTA-блок */}
-      <div className="relative z-10 -mb-[120px] bg-neutral-950 px-4">
+      <div className="relative z-10 translate-y-1/2 px-4">
         <div className="container">
           <div className="rounded-3xl bg-brand-green px-8 py-14 text-center shadow-2xl">
             <h2 className="font-heading text-3xl font-black text-white md:text-4xl">Готовы начать сотрудничество?</h2>
@@ -819,7 +819,7 @@ export default function Index() {
       </div>
 
       {/* Подвал */}
-      <footer className="border-t border-white/10 bg-neutral-950 pt-40 pb-8 text-white">
+      <footer className="border-t border-white/10 bg-neutral-950 pb-8 pt-56 text-white">
         <div className="container">
           {/* Верхняя часть: на мобильном — центр, на десктопе — 3 колонки */}
           <div className="flex flex-col items-center text-center gap-8 md:grid md:grid-cols-[1fr_1fr_1fr_1fr] md:items-start md:text-left">
