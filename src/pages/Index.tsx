@@ -111,6 +111,65 @@ const ADVANTAGES = [
   'Мы имеем широкое покрытие городов России и сотрудничаем со всеми крупными сетями',
 ];
 
+function MissionBlock() {
+  const left = useSlideIn('left');
+  const right = useSlideIn('right');
+  return (
+    <div className="border-b border-neutral-100 pb-16 md:flex md:items-start md:gap-20">
+      <div ref={left.ref} style={left.style} className="shrink-0">
+        <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">01</span>
+        <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>миссия</h2>
+      </div>
+      <div ref={right.ref} style={right.style} className="mt-8 md:mt-3 md:pt-1">
+        <div className="h-0.5 w-16 bg-brand-green mb-8" />
+        <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
+          Оказывать качественные услуги в сфере рекламы и маркетинга, способствующие развитию клиентского бизнеса и укрепления его на рынке.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function PhilosophyBlock() {
+  const right = useSlideIn('right');
+  const left = useSlideIn('left');
+  return (
+    <div className="pt-16 md:flex md:items-start md:gap-20 md:flex-row-reverse">
+      <div ref={right.ref} style={right.style} className="shrink-0 md:text-right">
+        <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">02</span>
+        <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>философия</h2>
+      </div>
+      <div ref={left.ref} style={left.style} className="mt-8 md:mt-3 md:pt-1 md:flex-1">
+        <div className="h-0.5 w-16 bg-brand-blue mb-8" />
+        <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
+          Мы уверены, что сила нашего успеха — это персонал. Именно поэтому в нашей компании работают самые внимательные, ответственные сотрудники, имеющие многолетний опыт работы в сфере рекламы.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function useSlideIn(direction: 'left' | 'right' = 'left') {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  const style: React.CSSProperties = {
+    opacity: visible ? 1 : 0,
+    transform: visible ? 'translateX(0)' : `translateX(${direction === 'left' ? '-60px' : '60px'})`,
+    transition: 'opacity 0.7s ease, transform 0.7s ease',
+  };
+  return { ref, style };
+}
+
 function CountUp({ value, className }: { value: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [display, setDisplay] = useState('0');
@@ -492,32 +551,10 @@ export default function Index() {
       <section className="py-20 md:py-28">
         <div className="container">
           {/* Миссия */}
-          <div className="border-b border-neutral-100 pb-16 md:flex md:items-start md:gap-20">
-            <div className="shrink-0">
-              <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">01</span>
-              <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>миссия</h2>
-            </div>
-            <div className="mt-8 md:mt-3 md:pt-1">
-              <div className="h-0.5 w-16 bg-brand-green mb-8" />
-              <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
-                Оказывать качественные услуги в сфере рекламы и маркетинга, способствующие развитию клиентского бизнеса и укрепления его на рынке.
-              </p>
-            </div>
-          </div>
+          <MissionBlock />
 
           {/* Философия */}
-          <div className="pt-16 md:flex md:items-start md:gap-20 md:flex-row-reverse">
-            <div className="shrink-0 md:text-right">
-              <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">02</span>
-              <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>философия</h2>
-            </div>
-            <div className="mt-8 md:mt-3 md:pt-1 md:flex-1">
-              <div className="h-0.5 w-16 bg-brand-blue mb-8" />
-              <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
-                Мы уверены, что сила нашего успеха — это персонал. Именно поэтому в нашей компании работают самые внимательные, ответственные сотрудники, имеющие многолетний опыт работы в сфере рекламы.
-              </p>
-            </div>
-          </div>
+          <PhilosophyBlock />
         </div>
 
       </section>
