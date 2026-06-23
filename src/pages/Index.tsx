@@ -514,10 +514,10 @@ export default function Index() {
               alt="Мерчандайзеры в магазине"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            {/* Засветление */}
-            <div className="absolute inset-0 bg-white/60" />
+            {/* Градиент снизу */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/20" />
             {/* Текст */}
-            <div className="relative p-10 md:p-12">
+            <div className="relative flex h-full flex-col justify-end p-10 md:p-12">
               <h2 className="font-heading text-5xl font-black leading-none text-neutral-900 md:text-6xl">Merch<br />Groups</h2>
               <div className="mt-8 space-y-5">
                 <div className="border-l-4 border-brand-green pl-5">
