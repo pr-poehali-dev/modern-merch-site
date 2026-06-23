@@ -111,6 +111,38 @@ const ADVANTAGES = [
   'Мы имеем широкое покрытие городов России и сотрудничаем со всеми крупными сетями',
 ];
 
+function CountUp({ value, className }: { value: string; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [display, setDisplay] = useState('0');
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      const raw = value.replace(/\s/g, '').replace('%', '').replace('+', '');
+      const target = parseInt(raw, 10);
+      if (isNaN(target)) { setDisplay(value); return; }
+      const suffix = value.includes('%') ? '%' : value.includes('+') ? '+' : '';
+      const duration = 1400;
+      const start = performance.now();
+      const step = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        setDisplay(current.toLocaleString('ru-RU') + suffix);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.4 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value]);
+
+  return <div ref={ref} className={className}>{display}</div>;
+}
+
 function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string }; idx: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -448,7 +480,7 @@ export default function Index() {
         <div className="container grid gap-6 md:grid-cols-3">
           {STATS.map((s) => (
             <div key={s.title} className="rounded-3xl border border-neutral-100 bg-neutral-50 p-8 transition-shadow hover:shadow-xl">
-              <div className={`font-heading text-5xl font-black ${s.color}`}>{s.num}</div>
+              <CountUp value={s.num} className={`font-heading text-5xl font-black ${s.color}`} />
               <div className="mt-3 font-heading text-lg font-bold">{s.title}</div>
               <p className="mt-2 text-sm text-neutral-500">{s.desc}</p>
             </div>
