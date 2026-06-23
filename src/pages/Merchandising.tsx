@@ -174,7 +174,7 @@ function Calculator() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col items-start gap-6">
+            <div className="mt-8 flex flex-col items-center gap-6">
               <Button
                 onClick={calculate}
                 disabled={!sku || !points || !visits}
@@ -184,10 +184,10 @@ function Calculator() {
               </Button>
 
               {calculated && result !== null && (
-                <div className="w-full rounded-2xl border border-brand-green/20 bg-brand-green/5 p-6 animate-fade-in">
+                <div className="max-w-sm w-full rounded-2xl border border-brand-green/20 bg-brand-green/5 p-6 animate-fade-in text-center">
                   <span className="text-sm text-neutral-500 font-medium">Ориентировочная стоимость в месяц:</span>
                   <span className="font-heading text-4xl font-black text-brand-green block mt-1">от {formatPrice(result)}</span>
-                  <p className="mt-2 text-xs text-neutral-400 max-w-md">* Итоговая стоимость является ориентировочной и может отличаться. Не является публичной офертой.</p>
+                  <p className="mt-2 text-xs text-neutral-400">* Итоговая стоимость является ориентировочной и может отличаться. Не является публичной офертой.</p>
                 </div>
               )}
             </div>
