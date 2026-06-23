@@ -20,10 +20,10 @@ const TABS = [
     icon: 'Store',
     dark: false,
     sub: [
-      { name: 'Стационарный' },
-      { name: 'Визитный' },
-      { name: 'Совмещенный' },
-      { name: 'Выделенный' },
+      { name: 'Стационарный', slug: '/merchandising#стационарный' },
+      { name: 'Визитный', slug: '/merchandising#визитный' },
+      { name: 'Совмещенный', slug: '/merchandising#совмещенный' },
+      { name: 'Выделенный', slug: '/merchandising#выделенный' },
     ],
   },
   {
@@ -33,10 +33,10 @@ const TABS = [
     icon: 'Wrench',
     dark: false,
     sub: [
-      { name: 'Логистика' },
-      { name: 'Утилизация' },
-      { name: 'Изготовление' },
-      { name: 'Замеры' },
+      { name: 'Логистика', slug: '/tech-merchandising#логистика' },
+      { name: 'Утилизация', slug: '/tech-merchandising#утилизация' },
+      { name: 'Изготовление', slug: '/tech-merchandising#изготовление' },
+      { name: 'Замеры', slug: '/tech-merchandising#замеры' },
     ],
   },
   {
@@ -45,7 +45,7 @@ const TABS = [
     color: '#ffff00',
     icon: 'UserSearch',
     dark: true,
-    sub: [{ name: 'Проверка инкогнито' }],
+    sub: [{ name: 'Проверка инкогнито', slug: '/mystery-shopper#проверка' }],
   },
   {
     name: 'Аудит торговых сетей',
@@ -53,7 +53,7 @@ const TABS = [
     color: '#ffc000',
     icon: 'ClipboardCheck',
     dark: true,
-    sub: [{ name: 'Независимый аудит' }],
+    sub: [{ name: 'Независимый аудит', slug: '/retail-audit#аудит' }],
   },
   {
     name: 'BTL услуги + Организация дегустаций',
@@ -61,7 +61,7 @@ const TABS = [
     color: '#ff6b35',
     icon: 'Users',
     dark: false,
-    sub: [{ name: 'Промоакции' }],
+    sub: [{ name: 'Промоакции', slug: '/btl#промоакции' }],
   },
 ];
 
@@ -200,10 +200,10 @@ export default function SiteHeader() {
                               <ul className="space-y-1">
                                 {service.sub.map((sub) => (
                                   <li key={sub.name}>
-                                    <span className="flex items-center gap-2 text-sm text-neutral-500 transition-colors">
+                                    <Link to={sub.slug} onClick={() => setServicesOpen(false)} className="flex items-center gap-2 text-sm text-neutral-500 hover:text-brand-green transition-colors">
                                       <span className="h-1 w-1 rounded-full bg-brand-green shrink-0" />
                                       {sub.name}
-                                    </span>
+                                    </Link>
                                   </li>
                                 ))}
                               </ul>
@@ -264,10 +264,10 @@ export default function SiteHeader() {
                               <ul className="space-y-2">
                                 {service.sub.map((sub) => (
                                   <li key={sub.name}>
-                                    <a href="#" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-green transition-colors">
+                                    <Link to={sub.slug} onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-green transition-colors">
                                       <span className="h-1.5 w-1.5 rounded-full bg-brand-green shrink-0" />
                                       {sub.name}
-                                    </a>
+                                    </Link>
                                   </li>
                                 ))}
                               </ul>
