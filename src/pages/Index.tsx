@@ -84,7 +84,7 @@ const TABS = [
 
 const MAP_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/35483c6f-8495-4325-8a3d-1459c76183a9.jpg';
 const MARKER = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/07a93ba5-f34c-40b0-9057-eb7c9b1235c1.png';
-const APP_MOBILE = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/694acc0f-6a0a-4895-92f6-3133b98de332.png';
+const APP_MOBILE = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/0a5f2ffe-b532-47d3-b2ef-a7d0f88e0f5d.png';
 const APP_DESKTOP = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/0873700f-551a-467c-ad56-8c748c568754.png';
 
 const MAP_POINTS = [
@@ -597,7 +597,7 @@ export default function Index() {
           <p className="mt-3 text-center text-neutral-500">Единая облачная система онлайн-отчётности Optimum</p>
           <div className="mt-12 grid gap-8 lg:grid-cols-2">
             {SOFTWARE.map((s) => (
-              <div key={s.title} className="flex flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50">
+              <div key={s.title} className="flex flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50" style={{ minHeight: '480px' }}>
                 <div className="p-8">
                   <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/10">
                     <Icon name={s.mobile ? 'Smartphone' : 'Monitor'} size={24} className="text-brand-blue" />
@@ -605,11 +605,11 @@ export default function Index() {
                   <h3 className="font-heading text-2xl font-bold">{s.title}</h3>
                   <p className="mt-3 text-neutral-600">{s.desc}</p>
                 </div>
-                <div className={`mt-auto flex items-center justify-center bg-neutral-100 p-8 ${s.mobile ? 'py-10' : ''}`}>
+                <div className="mt-auto flex flex-1 items-center justify-center bg-neutral-100 p-8">
                   <img
                     src={s.img}
                     alt={s.title}
-                    className={`rounded-2xl object-contain shadow-lg ${s.mobile ? 'h-72' : 'w-full'}`}
+                    className="max-h-56 rounded-2xl object-contain shadow-lg"
                   />
                 </div>
               </div>
