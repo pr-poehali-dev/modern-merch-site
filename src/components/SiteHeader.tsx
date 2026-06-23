@@ -190,22 +190,22 @@ export default function SiteHeader() {
                       <div className={`absolute left-0 top-full z-50 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
                         <div className="mt-2 w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
                           {TABS.map((service) => (
-                            <div key={service.name} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden">
+                            <Link key={service.name} to={service.slug} onClick={() => setServicesOpen(false)} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden block">
                               <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity" style={{ backgroundColor: service.color }}>
                                 <Icon name={service.icon} size={18} style={{ color: service.dark ? '#000' : '#fff' }} />
                               </div>
-                              <Link to={service.slug} onClick={() => setServicesOpen(false)} className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">{service.name}</Link>
+                              <span className="block text-sm font-bold text-neutral-900 group-hover:text-brand-green mb-2 pr-10 transition-colors">{service.name}</span>
                               <ul className="space-y-1">
                                 {service.sub.map((sub) => (
                                   <li key={sub.name}>
-                                    <a href="#" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-brand-green transition-colors">
+                                    <span className="flex items-center gap-2 text-sm text-neutral-500 group-hover:text-brand-green/70 transition-colors">
                                       <span className="h-1 w-1 rounded-full bg-brand-green shrink-0" />
                                       {sub.name}
-                                    </a>
+                                    </span>
                                   </li>
                                 ))}
                               </ul>
-                            </div>
+                            </Link>
                           ))}
                         </div>
                       </div>
