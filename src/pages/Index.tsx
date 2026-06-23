@@ -125,10 +125,10 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
         <Icon name={s.icon} size={32} className={s.dark ? 'text-black' : 'text-white'} />
       </div>
       <h3 className={`relative font-heading text-3xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
-      <p className={`relative text-base leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
+      <p className={`relative text-base leading-relaxed transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
         {s.desc}
       </p>
-      <div className={`relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-75 ${s.dark ? 'text-black' : 'text-white'}`}>
+      <div className={`relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 delay-75 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 ${s.dark ? 'text-black' : 'text-white'}`}>
         Подробнее
         <Icon name="ArrowRight" size={16} />
       </div>
