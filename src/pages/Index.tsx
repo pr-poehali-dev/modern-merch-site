@@ -541,21 +541,51 @@ export default function Index() {
       {/* БЛОК 8: География покрытия */}
       <section className="bg-neutral-50 py-20 md:py-28">
         <div className="container">
-          <h2 className="font-heading text-3xl font-bold md:text-5xl">География покрытия</h2>
-          <p className="mt-3 max-w-xl text-neutral-500">
-            Наши мерчендайзеры присутствуют в 87 регионах России — в каждом городе под Ваш проект.
-          </p>
-          <div className="relative mt-10 overflow-hidden rounded-3xl">
-            <img src={MAP_BG} alt="Карта покрытия MerchGroups" className="w-full" />
-            {MAP_POINTS.map((p, i) => (
-              <img
-                key={i}
-                src={MARKER}
-                alt=""
-                className="absolute h-8 w-8 -translate-x-1/2 -translate-y-1/2 animate-scale-in drop-shadow-lg md:h-10 md:w-10"
-                style={{ top: p.top, left: p.left, animationDelay: `${i * 0.1}s` }}
-              />
-            ))}
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_2fr]">
+            {/* Левая часть: заголовок + текст + статистика */}
+            <div>
+              <h2 className="font-heading text-3xl font-bold md:text-4xl">География покрытия</h2>
+              <p className="mt-3 text-neutral-500">
+                Наши мерчендайзеры присутствуют по всей России — в каждом городе под Ваш проект.
+              </p>
+              <div className="mt-8 space-y-3">
+                {[
+                  { num: '8', label: 'Федеральных округов' },
+                  { num: '87+', label: 'Городов присутствия' },
+                  { num: '5 000+', label: 'Ежедневных визитов' },
+                ].map((s) => (
+                  <div key={s.label} className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm">
+                    <span className="font-heading text-3xl font-black text-brand-green">{s.num}</span>
+                    <span className="text-sm font-medium text-neutral-600">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Правая часть: карта */}
+            <div className="relative overflow-hidden rounded-3xl">
+              <img src={MAP_BG} alt="Карта покрытия MerchGroups" className="w-full" />
+              {MAP_POINTS.map((p, i) => (
+                <img
+                  key={i}
+                  src={MARKER}
+                  alt=""
+                  className="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 animate-scale-in drop-shadow-lg md:h-8 md:w-8"
+                  style={{ top: p.top, left: p.left, animationDelay: `${i * 0.1}s` }}
+                />
+              ))}
+              {/* Блоки статистики на карте */}
+              <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+                <div className="rounded-xl bg-white/90 backdrop-blur-sm px-4 py-3 shadow-lg text-center">
+                  <div className="font-heading text-2xl font-black text-brand-green">87</div>
+                  <div className="text-xs font-medium text-neutral-600">регионов</div>
+                </div>
+                <div className="rounded-xl bg-white/90 backdrop-blur-sm px-4 py-3 shadow-lg text-center">
+                  <div className="font-heading text-2xl font-black text-brand-blue">2 244</div>
+                  <div className="text-xs font-medium text-neutral-600">сотрудника</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
