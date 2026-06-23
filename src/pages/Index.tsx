@@ -473,11 +473,11 @@ export default function Index() {
         <div className="container">
           <h2 className="text-center font-heading text-3xl font-bold md:text-4xl">Основные услуги</h2>
           <p className="mt-3 text-center text-neutral-500">Полный спектр услуг для роста ваших продаж</p>
-          <div className="mt-12 grid gap-0 md:grid-cols-2">
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
             {SERVICES.map((s, idx) => (
               <div
                 key={s.title}
-                className="group relative overflow-hidden p-10 md:p-14 transition-all duration-300 cursor-pointer"
+                className="group relative overflow-hidden rounded-3xl p-10 md:p-14 transition-all duration-300 cursor-pointer"
                 style={{ backgroundColor: s.color }}
               >
                 {/* Затемнение при наведении */}
@@ -494,7 +494,7 @@ export default function Index() {
                 </div>
 
                 {/* Название */}
-                <h3 className={`relative font-heading text-3xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
+                <h3 className={`relative font-heading text-4xl font-bold mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
 
                 {/* Описание — появляется при наведении */}
                 <p className={`relative text-base leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
