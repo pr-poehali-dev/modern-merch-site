@@ -192,49 +192,43 @@ export default function Index() {
       </div>
 
       {/* БЛОК 1 + 2: Шапка поверх hero */}
-      <header className="relative">
-        <div className="absolute inset-0 z-0">
-          <img src={HERO_BG} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
-        </div>
+      <header className="bg-white">
 
         {/* Строка 1: контакты */}
-        <div className="relative z-10 border-b border-white/15">
+        <div className="border-b border-neutral-100">
           <div className="container flex items-center justify-between gap-4 py-4">
-            <img src={LOGO2} alt="MerchGroups" className="h-16" />
+            <img src={LOGO} alt="MerchGroups" className="h-16" />
 
             {/* Desktop: телефоны + email */}
             <div className="hidden flex-wrap items-center gap-8 lg:flex">
               {PHONES.map((p) => (
-                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3 text-white">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-brand-green/30">
+                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-3 text-neutral-800">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
                     <Icon name="Phone" size={18} className="text-brand-green" />
                   </div>
                   <div className="leading-snug">
                     <div className="text-base font-bold tracking-wide transition-colors group-hover:text-brand-green">{p.num}</div>
-                    <div className="text-[12px] font-bold text-white/80">{p.name}</div>
-                    <div className="text-[11px] text-white/50">{p.role}</div>
+                    <div className="text-[12px] font-bold text-neutral-500">{p.name}</div>
+                    <div className="text-[11px] text-neutral-400">{p.role}</div>
                   </div>
                 </a>
               ))}
-              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-white/70 hover:text-white">
+              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-800">
                 <Icon name="Mail" size={16} /> info@merch-groups.ru
               </a>
             </div>
 
             {/* Правая часть */}
             <div className="flex items-center gap-2">
-              {/* Mobile: иконка телефона → попап */}
               <button onClick={() => setPhonePopupOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green lg:hidden">
                 <Icon name="Phone" size={20} className="text-white" />
               </button>
               <Button className="hidden rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90 sm:flex">
                 Связаться с нами
               </Button>
-              {/* Mobile: кнопка меню */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white lg:hidden"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 text-neutral-700 lg:hidden"
               >
                 <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={22} />
               </button>
@@ -243,67 +237,62 @@ export default function Index() {
         </div>
 
         {/* Строка 2: меню + поиск (desktop) */}
-        <div className="relative z-10 hidden border-b border-white/10 lg:block">
+        <div className="hidden border-b border-neutral-100 lg:block">
           <div className="container flex items-center justify-between gap-4 py-3">
             <nav className="flex flex-wrap gap-x-10 gap-y-2">
               {NAV.map((n, i) => (
-                <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/90 hover:text-brand-blue'}`}>
+                <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-brand-blue'}`}>
                   {n}
                 </a>
               ))}
             </nav>
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-              <Icon name="Search" size={16} className="text-white/60" />
-              <input placeholder="Поиск по сайту" className="w-36 bg-transparent text-sm text-white placeholder:text-white/50 focus:outline-none" />
+            <div className="flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2">
+              <Icon name="Search" size={16} className="text-neutral-400" />
+              <input placeholder="Поиск по сайту" className="w-36 bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
             </div>
           </div>
         </div>
 
-        {/* Mobile: попап-меню (полноэкранное) */}
+        {/* Mobile: попап-меню */}
         <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          {/* Затемнение */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          {/* Панель */}
-          <div className={`absolute right-0 top-0 bottom-0 w-72 bg-neutral-950 shadow-2xl flex flex-col transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-            {/* Шапка попапа */}
-            <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
-              <img src={LOGO2} alt="MerchGroups" className="h-8" />
-              <button onClick={() => setMobileMenuOpen(false)} className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
+          <div className={`absolute right-0 top-0 bottom-0 w-72 bg-white shadow-2xl flex flex-col transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-5">
+              <img src={LOGO} alt="MerchGroups" className="h-8" />
+              <button onClick={() => setMobileMenuOpen(false)} className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-700">
                 <Icon name="X" size={20} />
               </button>
             </div>
-            {/* Навигация */}
             <nav className="flex flex-col px-6 pt-6 flex-1">
               {NAV.map((n, i) => (
                 <a
                   key={n}
                   href="#"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`border-b border-white/10 py-4 text-sm font-semibold uppercase tracking-wider transition-colors ${i === 0 ? 'text-brand-green' : 'text-white/70 hover:text-white'}`}
+                  className={`border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-neutral-900'}`}
                 >
                   {n}
                 </a>
               ))}
-              <div className="mt-6 flex items-center gap-2 rounded-full bg-white/10 px-4 py-3">
-                <Icon name="Search" size={16} className="text-white/50" />
-                <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none" />
+              <div className="mt-6 flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-3">
+                <Icon name="Search" size={16} className="text-neutral-400" />
+                <input placeholder="Поиск по сайту" className="w-full bg-transparent text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
               </div>
             </nav>
-            {/* Контакты внизу */}
-            <div className="border-t border-white/10 px-6 py-6 space-y-4">
+            <div className="border-t border-neutral-100 px-6 py-6 space-y-4">
               {PHONES.map((p) => (
                 <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-3 group">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-green/20">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-green/10">
                     <Icon name="Phone" size={15} className="text-brand-green" />
                   </div>
                   <div className="leading-snug">
-                    <div className="text-sm font-bold text-white/80 group-hover:text-brand-green transition-colors">{p.num}</div>
-                    <div className="text-[12px] font-semibold text-white/50">{p.name}</div>
-                    <div className="text-[11px] text-white/30">{p.role}</div>
+                    <div className="text-sm font-bold text-neutral-800 group-hover:text-brand-green transition-colors">{p.num}</div>
+                    <div className="text-[12px] font-semibold text-neutral-500">{p.name}</div>
+                    <div className="text-[11px] text-neutral-400">{p.role}</div>
                   </div>
                 </a>
               ))}
-              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-3 text-white/60 hover:text-white">
+              <a href="mailto:info@merch-groups.ru" className="flex items-center gap-3 text-neutral-500 hover:text-neutral-800">
                 <Icon name="Mail" size={15} className="text-brand-blue" />
                 <span className="text-sm">info@merch-groups.ru</span>
               </a>
@@ -312,16 +301,16 @@ export default function Index() {
         </div>
 
         {/* Hero контент */}
-        <div className="relative z-10">
-          <div className="container py-28 md:py-40">
+        <div className="bg-neutral-50">
+          <div className="container py-24 md:py-36">
             <div className="max-w-2xl animate-fade-in">
-              <div className="mb-4 inline-block rounded-full bg-brand-green/20 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/40">
+              <div className="mb-4 inline-block rounded-full bg-brand-green/10 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/30">
                 Агентство мерчандайзинга №1
               </div>
-              <h1 className="font-heading text-4xl font-extrabold leading-tight text-white md:text-6xl">
+              <h1 className="font-heading text-4xl font-extrabold leading-tight text-neutral-900 md:text-6xl">
                 MerchGroups — агентство мерчандайзинга
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-white/80">
+              <p className="mt-6 text-lg leading-relaxed text-neutral-500">
                 Специализированное агентство, предоставляющее услуги по мерчандайзингу, проведению независимого аудита, техническому мерчандайзингу и организации промоакций и праздничных мероприятий.
               </p>
               <Button size="lg" className="mt-8 rounded-full bg-brand-green px-8 text-base font-bold text-white hover:bg-brand-green/90">
