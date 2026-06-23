@@ -185,18 +185,9 @@ function Calculator() {
 
               {calculated && result !== null && (
                 <div className="w-full rounded-2xl border border-brand-green/20 bg-brand-green/5 p-6 animate-fade-in">
-                  <div className="flex flex-col gap-1 mb-5">
-                    <span className="text-sm text-neutral-500 font-medium">Ориентировочная стоимость в месяц:</span>
-                    <span className="font-heading text-4xl font-black text-brand-green">от {formatPrice(result)}</span>
-                    <p className="mt-2 text-xs text-neutral-400 max-w-md">* Итоговая стоимость является ориентировочной и может отличаться. Не является публичной офертой.</p>
-                  </div>
-                  <Button
-                    onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="rounded-full border border-brand-green bg-white px-8 py-3 text-sm font-bold text-brand-green hover:bg-brand-green hover:text-white transition-all"
-                  >
-                    Получить точный расчёт
-                    <Icon name="ArrowRight" size={15} className="ml-2" />
-                  </Button>
+                  <span className="text-sm text-neutral-500 font-medium">Ориентировочная стоимость в месяц:</span>
+                  <span className="font-heading text-4xl font-black text-brand-green block mt-1">от {formatPrice(result)}</span>
+                  <p className="mt-2 text-xs text-neutral-400 max-w-md">* Итоговая стоимость является ориентировочной и может отличаться. Не является публичной офертой.</p>
                 </div>
               )}
             </div>
@@ -490,39 +481,6 @@ export default function Merchandising() {
               </FadeIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Форма обратной связи */}
-      <section id="contact-form" className="py-20 md:py-28 bg-white">
-        <div className="container">
-          <FadeIn>
-            <h2 className="font-heading text-3xl font-bold md:text-4xl">Получить точный расчёт</h2>
-            <p className="mt-3 text-neutral-500">Оставьте заявку — наш менеджер свяжется с вами в течение 30 минут</p>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <div className="mt-10 max-w-2xl rounded-3xl border border-neutral-100 bg-neutral-50 p-8 md:p-12">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Ваше имя</label>
-                  <input placeholder="Иван Иванов" className="w-full rounded-2xl border border-neutral-200 bg-white px-5 py-3.5 text-neutral-900 placeholder:text-neutral-400 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20 transition-all" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Телефон</label>
-                  <input placeholder="+7 (___) ___-__-__" className="w-full rounded-2xl border border-neutral-200 bg-white px-5 py-3.5 text-neutral-900 placeholder:text-neutral-400 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20 transition-all" />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-neutral-700 mb-2">Компания и комментарий</label>
-                  <textarea rows={3} placeholder="Название компании, описание задачи..." className="w-full rounded-2xl border border-neutral-200 bg-white px-5 py-3.5 text-neutral-900 placeholder:text-neutral-400 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20 transition-all resize-none" />
-                </div>
-              </div>
-              <Button className="mt-6 rounded-full bg-brand-green px-10 py-4 text-base font-bold text-white hover:bg-brand-green/90">
-                Отправить заявку
-                <Icon name="Send" size={16} className="ml-2" />
-              </Button>
-              <p className="mt-4 text-xs text-neutral-400">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
