@@ -260,21 +260,28 @@ export default function Index() {
                       {/* Дропдаун */}
                       <div className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
                         <div className="w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
-                          {TABS.map((service) => (
-                            <div key={service.name} className="rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors">
-                              <div className="text-sm font-bold text-neutral-900 mb-2">{service.name}</div>
-                              <ul className="space-y-1">
-                                {service.sub.map((sub) => (
-                                  <li key={sub.name}>
-                                    <a href="#" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-brand-green transition-colors">
-                                      <span className="h-1 w-1 rounded-full bg-brand-green shrink-0" />
-                                      {sub.name}
-                                    </a>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
+                          {TABS.map((service) => {
+                            const svc = SERVICES.find((s) => s.title === service.name);
+                            return (
+                              <div key={service.name} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden">
+                                {/* Иконка в углу */}
+                                <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity" style={{ backgroundColor: svc?.color }}>
+                                  <Icon name={svc?.icon ?? 'Star'} size={18} className="text-white" style={{ color: svc?.dark ? '#000' : '#fff' }} />
+                                </div>
+                                <a href="#" className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">{service.name}</a>
+                                <ul className="space-y-1">
+                                  {service.sub.map((sub) => (
+                                    <li key={sub.name}>
+                                      <a href="#" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-brand-green transition-colors">
+                                        <span className="h-1 w-1 rounded-full bg-brand-green shrink-0" />
+                                        {sub.name}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
