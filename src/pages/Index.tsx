@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
@@ -112,10 +112,30 @@ const ADVANTAGES = [
 ];
 
 function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string }; idx: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
-      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 transition-all duration-300 cursor-pointer"
-      style={{ backgroundColor: s.color }}
+      ref={ref}
+      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 cursor-pointer transition-all duration-700"
+      style={{
+        backgroundColor: s.color,
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(40px)',
+        transitionDelay: `${idx * 100}ms`,
+      }}
     >
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
       <div className={`relative font-heading text-8xl font-black leading-none select-none mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
