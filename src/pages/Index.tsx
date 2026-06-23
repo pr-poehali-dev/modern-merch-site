@@ -7,7 +7,7 @@ const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a2631507
 const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/28fac548-2488-4d76-8d83-7a1bd9f1c28f.jpg';
 const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d2809aca-e2f0-4e42-993f-19153ade8fd1.jpg';
 
-const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Блог', 'Контакты'];
+const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Новости', 'Контакты'];
 
 const PHONES = [
   { num: '+7 931 342 23 37', name: 'Лилия', role: 'Руководитель проектов', tel: '+79313422337' },
