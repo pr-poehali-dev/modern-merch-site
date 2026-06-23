@@ -194,7 +194,7 @@ export default function SiteHeader() {
                               <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity" style={{ backgroundColor: service.color }}>
                                 <Icon name={service.icon} size={18} style={{ color: service.dark ? '#000' : '#fff' }} />
                               </div>
-                              <Link to={service.slug} className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">{service.name}</Link>
+                              <Link to={service.slug} onClick={() => setServicesOpen(false)} className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">{service.name}</Link>
                               <ul className="space-y-1">
                                 {service.sub.map((sub) => (
                                   <li key={sub.name}>

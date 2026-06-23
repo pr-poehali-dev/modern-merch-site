@@ -145,12 +145,12 @@ function MerchTypeCard({ t, idx }: { t: typeof MERCH_TYPES[0]; idx: number }) {
               </div>
               <h3 className="font-heading text-2xl font-bold text-neutral-900">{t.title}</h3>
             </div>
-            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}>
-              <Icon name="ChevronDown" size={18} className="text-neutral-500" />
+            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${open ? 'rotate-180 bg-brand-green' : 'bg-neutral-100 group-hover:bg-brand-green group-hover:text-white'}`}>
+              <Icon name="ChevronDown" size={18} className={open ? 'text-white' : 'text-neutral-500 group-hover:text-white'} />
             </div>
           </div>
           <p className="mt-4 text-neutral-600 leading-relaxed">{t.desc}</p>
-          <div className={`overflow-hidden transition-all duration-400 ${open ? 'max-h-[500px] mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className={`overflow-hidden transition-all duration-400 ${open ? 'max-h-[600px] mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
             <ul className="space-y-3 mb-4">
               {t.points.map((p) => (
                 <li key={p} className="flex items-start gap-3">
@@ -159,7 +159,14 @@ function MerchTypeCard({ t, idx }: { t: typeof MERCH_TYPES[0]; idx: number }) {
                 </li>
               ))}
             </ul>
-            <p className="text-sm text-neutral-500 italic border-l-2 border-brand-green/30 pl-4">{t.footer}</p>
+            <p className="text-sm text-neutral-500 italic border-l-2 border-brand-green/30 pl-4 mb-6">{t.footer}</p>
+            <Button
+              className="rounded-full bg-brand-green px-6 py-2 text-sm font-semibold text-white hover:bg-brand-green/90"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Подробнее об услуге
+              <Icon name="ArrowRight" size={15} className="ml-2" />
+            </Button>
           </div>
         </div>
       </div>
@@ -175,20 +182,41 @@ export default function Merchandising() {
 
       <SiteHeader />
 
+      {/* Хлебные крошки */}
+      <div className="border-b border-neutral-100 bg-white">
+        <div className="container flex items-center gap-2 py-3 text-sm text-neutral-500">
+          <Link to="/" className="hover:text-brand-green transition-colors">Главная</Link>
+          <Icon name="ChevronRight" size={14} className="text-neutral-300" />
+          <span className="hover:text-brand-green transition-colors cursor-pointer">Услуги</span>
+          <Icon name="ChevronRight" size={14} className="text-neutral-300" />
+          <span className="font-medium text-neutral-800">Мерчандайзинг</span>
+        </div>
+      </div>
+
       {/* 1. Заголовок + вступление */}
       <section className="relative overflow-hidden bg-brand-green py-24">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, white 0%, transparent 60%)' }} />
         <div className="container relative">
-          <FadeIn>
-            <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white mb-6">Услуга</span>
-            <h1 className="font-heading text-5xl font-black text-white md:text-7xl leading-none">Мерчандайзинг</h1>
-            <p className="mt-6 max-w-2xl text-xl text-white/85 leading-relaxed">
-              Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.
-            </p>
-            <Button className="mt-10 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
-              Получить консультацию
-            </Button>
-          </FadeIn>
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
+            <FadeIn>
+              <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white mb-6">Услуга</span>
+              <h1 className="font-heading text-5xl font-black text-white md:text-7xl leading-none">Мерчандайзинг</h1>
+              <p className="mt-6 max-w-2xl text-xl text-white/85 leading-relaxed">
+                Профессиональное размещение товаров, управление полочным пространством и выкладкой продукции в торговых точках.
+              </p>
+              <Button className="mt-10 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
+                Получить консультацию
+              </Button>
+            </FadeIn>
+            <FadeIn delay={150} className="hidden lg:block">
+              <img
+                src="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/24f3eaea-b198-4f26-9a6a-1bf6e0d20721.jpg"
+                alt="Мерчандайзинг"
+                className="w-full rounded-3xl object-cover shadow-2xl"
+                style={{ maxHeight: 380 }}
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -220,35 +248,7 @@ export default function Merchandising() {
         </div>
       </section>
 
-      {/* 3. Наши мерчандайзеры обеспечат */}
-      <section className="bg-neutral-950 py-20 md:py-28">
-        <div className="container">
-          <FadeIn>
-            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">Наши мерчандайзеры обеспечат:</h2>
-          </FadeIn>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { text: 'Привлекательную и эффективную выкладку товара в магазинах', icon: 'LayoutGrid' },
-              { text: 'Актуальные ценники и маркировки — без ошибок и неточностей', icon: 'Tag' },
-              { text: 'Своевременное пополнение запасов, чтобы товар всегда был в наличии', icon: 'RefreshCw' },
-              { text: 'Рост лояльности покупателей к вашему бренду', icon: 'Heart' },
-              { text: 'Безупречный порядок и презентабельный вид продукции на полках', icon: 'Sparkles' },
-              { text: 'Профессиональные консультации для покупателей, чтобы подчеркнуть сильные стороны вашего товара', icon: 'MessageSquare' },
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div className="flex gap-5 rounded-3xl border border-white/10 bg-white/5 p-7 hover:bg-white/10 transition-colors">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-green/20">
-                    <Icon name={item.icon} size={24} className="text-brand-green" />
-                  </div>
-                  <p className="text-white/85 leading-relaxed">{item.text}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Виды мерчандайзинга */}
+      {/* 3. Виды мерчандайзинга */}
       <section className="py-20 md:py-28">
         <div className="container">
           <FadeIn>
@@ -258,6 +258,34 @@ export default function Merchandising() {
           <div className="mt-12 grid gap-5 lg:grid-cols-2">
             {MERCH_TYPES.map((t, idx) => (
               <MerchTypeCard key={t.title} t={t} idx={idx} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Наши мерчандайзеры обеспечат */}
+      <section className="bg-neutral-950 py-20 md:py-28">
+        <div className="container">
+          <FadeIn>
+            <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">Наши мерчандайзеры обеспечат:</h2>
+          </FadeIn>
+          <div className="mt-12 grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { text: 'Привлекательную и эффективную выкладку товара в магазинах', icon: 'LayoutGrid' },
+              { text: 'Актуальные ценники и маркировки — без ошибок и неточностей', icon: 'Tag' },
+              { text: 'Своевременное пополнение запасов, чтобы товар всегда был в наличии', icon: 'RefreshCw' },
+              { text: 'Рост лояльности покупателей к вашему бренду', icon: 'Heart' },
+              { text: 'Безупречный порядок и презентабельный вид продукции на полках', icon: 'Sparkles' },
+              { text: 'Профессиональные консультации для покупателей, чтобы подчеркнуть сильные стороны вашего товара', icon: 'MessageSquare' },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 80} className="h-full">
+                <div className="flex h-full gap-5 rounded-3xl border border-white/10 bg-white/5 p-7 hover:bg-white/10 transition-colors">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-green/20">
+                    <Icon name={item.icon} size={24} className="text-brand-green" />
+                  </div>
+                  <p className="text-white/85 leading-relaxed">{item.text}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>

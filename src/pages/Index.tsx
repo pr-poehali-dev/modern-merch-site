@@ -262,10 +262,10 @@ function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: stri
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="h-full">
     <Link
       to={s.slug}
-      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 cursor-pointer transition-all duration-700 block"
+      className="group relative overflow-hidden rounded-3xl p-10 md:p-14 cursor-pointer transition-all duration-700 block h-full"
       style={{
         backgroundColor: s.color,
         opacity: visible ? 1 : 0,
@@ -657,7 +657,7 @@ export default function Index() {
             ))}
           </div>
           {/* Ряд 2: 3 блока */}
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="mt-4 grid gap-4 md:grid-cols-3 md:grid-rows-1 md:[&>*]:h-full">
             {SERVICES_ROW2.map((s, idx) => (
               <ServiceCard key={s.title} s={s} idx={idx + 2} />
             ))}
