@@ -178,7 +178,7 @@ function Calculator() {
               <Button
                 onClick={calculate}
                 disabled={!sku || !points || !visits}
-                className="rounded-full bg-brand-green px-10 py-4 text-base font-bold text-white hover:bg-brand-green/90 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="rounded-full bg-brand-green px-16 py-5 text-xl font-bold text-white hover:bg-brand-green/90 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Рассчитать стоимость
               </Button>
