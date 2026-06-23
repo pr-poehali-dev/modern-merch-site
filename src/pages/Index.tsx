@@ -301,8 +301,10 @@ export default function Index() {
         </div>
 
         {/* Hero контент */}
-        <div className="bg-neutral-50">
-          <div className="container py-24 md:py-36">
+        <div className="relative overflow-hidden bg-neutral-50">
+          <img src={HERO_BG} alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-white/80" />
+          <div className="relative z-10 container py-24 md:py-36">
             <div className="max-w-2xl animate-fade-in">
               <div className="mb-4 inline-block rounded-full bg-brand-green/10 px-4 py-1 text-sm font-semibold text-brand-green ring-1 ring-brand-green/30">
                 Агентство мерчандайзинга №1
