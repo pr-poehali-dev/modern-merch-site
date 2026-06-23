@@ -230,7 +230,7 @@ export function MissionBlock() {
     <div className="border-b border-neutral-100 pb-16 md:flex md:items-start md:gap-20">
       <div ref={left.ref} style={left.style} className="shrink-0">
         <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">01</span>
-        <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>миссия</h2>
+        <h2 className="mt-2 font-heading text-4xl font-black leading-none sm:text-5xl md:text-7xl">Наша<br/>миссия</h2>
       </div>
       <div ref={right.ref} style={right.style} className="mt-8 md:mt-3 md:pt-1">
         <div className="h-0.5 w-16 bg-brand-green mb-8" />
@@ -249,7 +249,7 @@ export function PhilosophyBlock() {
     <div className="pt-16 md:flex md:items-start md:gap-20 md:flex-row-reverse">
       <div ref={right.ref} style={right.style} className="shrink-0 md:text-right">
         <span className="font-heading text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">02</span>
-        <h2 className="mt-2 font-heading text-5xl font-black leading-none md:text-7xl">Наша<br/>философия</h2>
+        <h2 className="mt-2 font-heading text-4xl font-black leading-none sm:text-5xl md:text-7xl">Наша<br/>философия</h2>
       </div>
       <div ref={left.ref} style={left.style} className="mt-8 md:mt-3 md:pt-1 md:flex-1">
         <div className="h-0.5 w-16 bg-brand-blue mb-8" />
