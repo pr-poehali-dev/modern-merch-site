@@ -197,9 +197,9 @@ export function ServiceCard({ s, idx }: { s: { title: string; icon: string; colo
         style={{
           left: trail.x,
           top: trail.y,
-          width: 280,
-          height: 280,
-          background: s.dark ? 'radial-gradient(circle, rgba(0,0,0,0.12) 0%, transparent 70%)' : 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%)',
+          width: 420,
+          height: 420,
+          background: s.dark ? 'radial-gradient(circle, rgba(0,0,0,0.22) 0%, transparent 65%)' : 'radial-gradient(circle, rgba(255,255,255,0.32) 0%, transparent 65%)',
           opacity: trail.show ? 1 : 0,
         }}
       />
