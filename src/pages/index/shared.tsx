@@ -159,13 +159,8 @@ export function CountUp({ value, className }: { value: string; className?: strin
 
 export function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string; slug: string }; idx: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLAnchorElement>(null);
   const [visible, setVisible] = useState(false);
   const [trail, setTrail] = useState({ x: -999, y: -999, show: false });
-  const [blobStyle, setBlobStyle] = useState<React.CSSProperties>({});
-  const animRef = useRef<number | null>(null);
-  const mousePos = useRef({ x: 0.5, y: 0.5 });
-  const currentBlob = useRef({ tl: 24, tr: 24, br: 24, bl: 24 });
 
   useEffect(() => {
     const el = ref.current;
@@ -178,63 +173,24 @@ export function ServiceCard({ s, idx }: { s: { title: string; icon: string; colo
     return () => observer.disconnect();
   }, []);
 
-  const BASE = 24;
-  const PULL = 18;
-
-  const animateBlob = (targetTl: number, targetTr: number, targetBr: number, targetBl: number) => {
-    if (animRef.current) cancelAnimationFrame(animRef.current);
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    const step = () => {
-      currentBlob.current = {
-        tl: lerp(currentBlob.current.tl, targetTl, 0.1),
-        tr: lerp(currentBlob.current.tr, targetTr, 0.1),
-        br: lerp(currentBlob.current.br, targetBr, 0.1),
-        bl: lerp(currentBlob.current.bl, targetBl, 0.1),
-      };
-      const { tl, tr, br, bl } = currentBlob.current;
-      setBlobStyle({ borderRadius: `${tl}px ${tr}px ${br}px ${bl}px` });
-      const maxDiff = Math.max(Math.abs(tl - targetTl), Math.abs(tr - targetTr), Math.abs(br - targetBr), Math.abs(bl - targetBl));
-      if (maxDiff > 0.4) animRef.current = requestAnimationFrame(step);
-    };
-    animRef.current = requestAnimationFrame(step);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    mousePos.current = { x, y };
     setTrail({ x: e.clientX - rect.left, y: e.clientY - rect.top, show: true });
-    animateBlob(
-      BASE + (1 - x) * PULL * (1 - y) * 3,
-      BASE + x * PULL * (1 - y) * 3,
-      BASE + x * PULL * y * 3,
-      BASE + (1 - x) * PULL * y * 3,
-    );
-  };
-
-  const handleMouseLeave = () => {
-    setTrail(t => ({ ...t, show: false }));
-    animateBlob(BASE, BASE, BASE, BASE);
   };
 
   return (
     <div ref={ref} className="h-full">
     <Link
-      ref={cardRef}
       to={s.slug}
-      className="group relative p-7 md:p-14 cursor-pointer transition-all duration-700 block h-full"
+      className="group relative overflow-hidden rounded-3xl p-7 md:p-14 cursor-pointer transition-all duration-700 block h-full"
       style={{
         backgroundColor: s.color,
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(40px)',
         transitionDelay: `${idx * 100}ms`,
-        borderRadius: '24px',
-        overflow: 'hidden',
-        ...blobStyle,
       }}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave={() => setTrail(t => ({ ...t, show: false }))}
     >
       <div
         className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-300"
