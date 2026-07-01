@@ -115,12 +115,12 @@ export default function IndexCoverage() {
           <div className="mt-6 grid gap-6 sm:grid-cols-3">
             {QUALITY.slice(1).map(([bold, rest], i) => {
               const icons = ['ShieldAlert', 'ClipboardCheck', 'BadgeCheck'];
-              const accents = ['bg-brand-blue', 'bg-[#ea580c]', 'bg-brand-green'];
+              const accents = ['bg-brand-blue', 'bg-brand-orange', 'bg-brand-green'];
               return (
                 <SlideIn key={bold} direction="left" delay={i * 120} className={`relative overflow-hidden rounded-3xl p-8 shadow-sm transition-shadow hover:shadow-lg ${i === 0 ? accents[0] + ' text-white' : 'bg-white'}`}>
                   <span className={`absolute right-6 top-4 font-heading text-6xl font-black select-none ${i === 0 ? 'text-white/20' : 'text-neutral-100'}`}>0{i + 2}</span>
-                  <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${i === 0 ? 'bg-white/20' : i === 2 ? 'bg-brand-green/10' : ''}`} style={i === 1 ? { backgroundColor: 'rgba(234,88,12,0.1)' } : undefined}>
-                    <Icon name={icons[i]} size={32} className={i === 0 ? 'text-white' : i === 2 ? 'text-brand-green' : ''} style={i === 1 ? { color: '#ea580c' } : undefined} />
+                  <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${i === 0 ? 'bg-white/20' : accents[i] + '/10'}`}>
+                    <Icon name={icons[i]} size={32} className={i === 0 ? 'text-white' : `text-${accents[i].replace('bg-', '')}`} />
                   </div>
                   <p className={`relative leading-relaxed ${i === 0 ? 'text-white/90' : 'text-neutral-700'}`}>
                     <span className={`font-bold ${i === 0 ? 'text-white' : 'text-black'}`}>{bold}</span>{rest}

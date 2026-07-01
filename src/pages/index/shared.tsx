@@ -8,7 +8,7 @@ export const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-
 export const STATS = [
   { num: '87', title: 'регионов покрытия', desc: 'В каждом городе у нас есть мерчендайзер под Ваш проект', color: 'text-brand-green' },
   { num: '2 244', title: 'полевого персонала', desc: 'И с каждым проектом наша команда растет', color: 'text-brand-blue' },
-  { num: '100%', title: 'вовлеченность в Ваш проект', desc: 'Мы работаем на результат, заботясь о вашем товаре и имидже в каждой торговой точке.', color: '', style: { color: '#ea580c' } },
+  { num: '100%', title: 'вовлеченность в Ваш проект', desc: 'Мы работаем на результат, заботясь о вашем товаре и имидже в каждой торговой точке.', color: 'text-brand-orange' },
 ];
 
 export const CLIENTS = [
@@ -125,7 +125,7 @@ export function SlideIn({ children, direction = 'left', delay = 0, className = '
   );
 }
 
-export function CountUp({ value, className, style }: { value: string; className?: string; style?: React.CSSProperties }) {
+export function CountUp({ value, className }: { value: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [display, setDisplay] = useState('0');
 
@@ -154,7 +154,7 @@ export function CountUp({ value, className, style }: { value: string; className?
     return () => observer.disconnect();
   }, [value]);
 
-  return <div ref={ref} className={className} style={style}>{display}</div>;
+  return <div ref={ref} className={className}>{display}</div>;
 }
 
 export function ServiceCard({ s, idx }: { s: { title: string; icon: string; color: string; dark?: boolean; desc: string; slug: string }; idx: number }) {
