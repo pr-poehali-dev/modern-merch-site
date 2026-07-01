@@ -29,7 +29,7 @@ const TABS = [
   {
     name: 'Технический мерчандайзинг',
     slug: '/tech-merchandising',
-    color: '#00afef',
+    color: '#3b82f6',
     icon: 'Wrench',
     dark: false,
     sub: [
@@ -42,7 +42,7 @@ const TABS = [
   {
     name: 'Тайный покупатель',
     slug: '/mystery-shopper',
-    color: '#ffff00',
+    color: '#eab308',
     icon: 'UserSearch',
     dark: true,
     sub: [{ name: 'Проверка инкогнито', slug: '/mystery-shopper#проверка' }],
@@ -50,7 +50,7 @@ const TABS = [
   {
     name: 'Аудит торговых сетей',
     slug: '/retail-audit',
-    color: '#ffc000',
+    color: '#d97706',
     icon: 'ClipboardCheck',
     dark: true,
     sub: [{ name: 'Независимый аудит', slug: '/retail-audit#аудит' }],
@@ -58,7 +58,7 @@ const TABS = [
   {
     name: 'BTL услуги + Организация дегустаций',
     slug: '/btl',
-    color: '#ff6b35',
+    color: '#ea580c',
     icon: 'Users',
     dark: false,
     sub: [{ name: 'Промоакции', slug: '/btl#промоакции' }],

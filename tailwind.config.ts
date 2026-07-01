@@ -25,9 +25,9 @@ export default {
 			colors: {
 				brand: {
 					green: '#00af50',
-					blue: '#00afef',
-					yellow: '#ffff00',
-					orange: '#ffc000',
+					blue: '#3b82f6',
+					yellow: '#eab308',
+					orange: '#d97706',
 					brown: '#887365',
 				},
 				border: 'hsl(var(--border))',
@@ -69,7 +69,7 @@ export default {
 					primary: 'hsl(var(--sidebar-primary))',
 					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
 					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
