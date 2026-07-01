@@ -16,7 +16,7 @@ export default function IndexHero() {
               Агентство мерчандайзинга №1
             </div>
             <h1 className="font-heading text-3xl font-black leading-tight text-neutral-900 sm:text-4xl md:text-7xl">
-              MerchGroups — агентство мерчандайзинга
+              MGroups — агентство мерчандайзинга
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-neutral-500">
               Специализированное агентство, предоставляющее услуги по мерчандайзингу, проведению независимого аудита, техническому мерчандайзингу и организации промоакций и праздничных мероприятий.

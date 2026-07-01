@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
-const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/179b9058-9478-4d68-bf69-5c2480211128.png';
+const LOGO2 = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/d84efb8b-ede8-40c8-9dca-a5e1e856a51b.png';
 
 const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Новости', 'Контакты'];
 
@@ -26,7 +26,7 @@ export default function SiteFooter() {
 
           {/* Колонка 1: Лого + аннотация */}
           <div className="flex flex-col items-center md:items-start">
-            <Link to="/"><img src={LOGO2} alt="MerchGroups" className="h-14" /></Link>
+            <Link to="/"><img src={LOGO2} alt="MGroups" className="h-14" /></Link>
             <p className="mt-3 text-sm text-white/50">Агентство мерчандайзинга</p>
           </div>
 

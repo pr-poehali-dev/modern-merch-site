@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
-const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fb1e7412-b52f-4b70-b954-1cc8e4db09f0.png';
+const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/d84efb8b-ede8-40c8-9dca-a5e1e856a51b.png';
 
 const NAV = ['Главная', 'О компании', 'Услуги', 'Наши кейсы', 'Новости', 'Контакты'];
 
@@ -84,7 +84,7 @@ export default function SiteHeader() {
       <div className={`fixed top-0 left-0 right-0 z-30 lg:hidden transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
         <div className="backdrop-blur-md border-b border-black/5 bg-white/70 py-2 transition-all duration-300">
           <div className="container flex items-center justify-between gap-3">
-            <Link to="/"><img src={LOGO} alt="MerchGroups" className="h-8 transition-all duration-300" /></Link>
+            <Link to="/"><img src={LOGO} alt="MGroups" className="h-8 transition-all duration-300" /></Link>
             <div className="flex items-center gap-2">
               <button onClick={() => setPhonePopupOpen(true)} className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-green">
                 <Icon name="Phone" size={17} className="text-white" />
@@ -136,7 +136,7 @@ export default function SiteHeader() {
         {/* Строка 1: контакты */}
         <div className="border-b border-neutral-100">
           <div className="container flex items-center justify-between gap-4 py-4">
-            <Link to="/"><img src={LOGO} alt="MerchGroups" className="h-12 w-auto sm:h-16 lg:h-20" /></Link>
+            <Link to="/"><img src={LOGO} alt="MGroups" className="h-12 w-auto sm:h-16 lg:h-20" /></Link>
 
             {/* Desktop */}
             <div className="hidden items-center gap-10 lg:flex">
@@ -240,7 +240,7 @@ export default function SiteHeader() {
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <div className={`absolute right-0 top-0 bottom-0 w-72 bg-white shadow-2xl flex flex-col transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-5">
-              <Link to="/"><img src={LOGO} alt="MerchGroups" className="h-8" /></Link>
+              <Link to="/"><img src={LOGO} alt="MGroups" className="h-8" /></Link>
               <button onClick={() => setMobileMenuOpen(false)} className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-700">
                 <Icon name="X" size={20} />
               </button>

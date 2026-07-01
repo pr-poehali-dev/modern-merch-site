@@ -31,7 +31,7 @@ export default function IndexCoverage() {
 
             {/* Правая часть: карта */}
             <SlideIn direction="right" className="relative overflow-hidden rounded-3xl">
-              <img src={MAP_BG} alt="Карта покрытия MerchGroups" className="w-full" />
+              <img src={MAP_BG} alt="Карта покрытия MGroups" className="w-full" />
               {MAP_POINTS.map((p, i) => (
                 <img
                   key={i}
