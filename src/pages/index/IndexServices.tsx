@@ -29,7 +29,7 @@ export default function IndexServices() {
         <div className="container relative grid items-center gap-16 lg:grid-cols-2">
           {/* Левая часть */}
           <SlideIn direction="left" className="flex flex-col justify-center">
-            <h2 className="font-heading text-4xl font-black leading-none text-neutral-900 sm:text-5xl md:text-6xl">Merch<br />Groups</h2>
+            <h2 className="font-heading text-4xl font-black leading-none text-neutral-900 sm:text-5xl md:text-6xl">MGroups</h2>
             <div className="mt-8 space-y-5">
               <div className="border-l-4 border-brand-green pl-5">
                 <p className="text-xl font-semibold text-neutral-800 leading-snug">
