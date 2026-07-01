@@ -192,7 +192,7 @@ export default function SiteHeader() {
                           {TABS.map((service) => (
                             <div key={service.name} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden">
                               <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity" style={{ backgroundColor: service.color }}>
-                                <Icon name={service.icon} size={18} style={{ color: service.dark ? '#000' : '#fff' }} />
+                                <Icon name={service.icon} size={18} className="text-white" />
                               </div>
                               <Link to={service.slug} onClick={() => setServicesOpen(false)} className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">
                                 {service.name}
