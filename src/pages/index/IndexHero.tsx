@@ -34,7 +34,7 @@ export default function IndexHero() {
         <div className="container grid gap-6 md:grid-cols-3">
           {STATS.map((s) => (
             <div key={s.title} className="rounded-3xl border border-neutral-100 bg-neutral-50 p-8 transition-shadow hover:shadow-xl">
-              <CountUp value={s.num} className={`font-heading text-5xl font-black ${s.color}`} />
+              <CountUp value={s.num} className={`font-heading text-5xl font-black ${s.color}`} style={'style' in s ? (s as { style: React.CSSProperties }).style : undefined} />
               <div className="mt-3 font-heading text-lg font-bold">{s.title}</div>
               <p className="mt-2 text-sm text-neutral-500">{s.desc}</p>
             </div>
