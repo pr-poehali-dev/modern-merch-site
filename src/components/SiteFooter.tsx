@@ -72,7 +72,7 @@ export default function SiteFooter() {
 
         {/* Нижняя строка */}
         <div className="mt-10 border-t border-white/10 pt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-white/30 md:justify-between">
-          <span>© 2026 MerchGroups — агентство мерчандайзинга</span>
+          <span>© 2026 MGroups — агентство мерчандайзинга</span>
           <div className="flex gap-5">
             <a href="#" className="hover:text-white/60 transition-colors">Политика конфиденциальности</a>
             <a href="#" className="hover:text-white/60 transition-colors">Пользовательское соглашение</a>
