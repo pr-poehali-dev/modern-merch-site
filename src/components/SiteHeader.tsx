@@ -50,7 +50,7 @@ const TABS = [
   {
     name: 'Аудит торговых сетей',
     slug: '/retail-audit',
-    color: '#d97706',
+    color: '#b85c7b',
     icon: 'ClipboardCheck',
     dark: true,
     sub: [{ name: 'Независимый аудит', slug: '/retail-audit#аудит' }],

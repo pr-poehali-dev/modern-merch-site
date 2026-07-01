@@ -36,7 +36,7 @@ export const SERVICES_ROW1 = [
 
 export const SERVICES_ROW2 = [
   { title: 'Тайный покупатель', icon: 'UserSearch', color: '#eab308', dark: true, desc: 'Независимая проверка качества обслуживания и соблюдения стандартов через визиты инкогнито-аудиторов.', slug: '/mystery-shopper' },
-  { title: 'Аудит торговых сетей', icon: 'ClipboardCheck', color: '#d97706', dark: true, desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.', slug: '/retail-audit' },
+  { title: 'Аудит торговых сетей', icon: 'ClipboardCheck', color: '#b85c7b', desc: 'Независимая оценка представленности товара, контроль цен и соблюдения планограмм с фотоотчётами.', slug: '/retail-audit' },
   { title: 'BTL услуги + Организация дегустаций', icon: 'Users', color: '#ea580c', desc: 'Промоакции, дегустации и праздничные мероприятия с подбором и обучением персонала.', slug: '/btl' },
 ];
 
@@ -199,23 +199,23 @@ export function ServiceCard({ s, idx }: { s: { title: string; icon: string; colo
           top: trail.y,
           width: 420,
           height: 420,
-          background: s.dark ? 'radial-gradient(circle, rgba(0,0,0,0.22) 0%, transparent 65%)' : 'radial-gradient(circle, rgba(255,255,255,0.32) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.32) 0%, transparent 65%)',
           opacity: trail.show ? 1 : 0,
         }}
       />
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-      <div className={`relative font-heading text-5xl font-black leading-none select-none mb-4 md:text-8xl md:mb-6 ${s.dark ? 'text-black/15' : 'text-white/20'}`}>
+      <div className="relative font-heading text-5xl font-black leading-none select-none mb-4 md:text-8xl md:mb-6 text-white/20">
         {String(idx + 1).padStart(2, '0')}
       </div>
-      <div className={`relative mb-4 flex h-11 w-11 items-center justify-center rounded-xl md:mb-6 md:h-16 md:w-16 md:rounded-2xl ${s.dark ? 'bg-black/10' : 'bg-white/20'}`}>
-        <Icon name={s.icon} size={22} className={`md:hidden ${s.dark ? 'text-black' : 'text-white'}`} />
-        <Icon name={s.icon} size={32} className={`hidden md:block ${s.dark ? 'text-black' : 'text-white'}`} />
+      <div className="relative mb-4 flex h-11 w-11 items-center justify-center rounded-xl md:mb-6 md:h-16 md:w-16 md:rounded-2xl bg-white/20">
+        <Icon name={s.icon} size={22} className="md:hidden text-white" />
+        <Icon name={s.icon} size={32} className="hidden md:block text-white" />
       </div>
-      <h3 className={`relative font-heading text-2xl font-bold mb-3 md:text-3xl md:mb-4 ${s.dark ? 'text-black' : 'text-white'}`}>{s.title}</h3>
-      <p className={`relative text-base leading-relaxed transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 ${s.dark ? 'text-black/80' : 'text-white/90'}`}>
+      <h3 className="relative font-heading text-2xl font-bold mb-3 md:text-3xl md:mb-4 text-white">{s.title}</h3>
+      <p className="relative text-base leading-relaxed transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 text-white/90">
         {s.desc}
       </p>
-      <div className={`relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 delay-75 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 ${s.dark ? 'text-black' : 'text-white'}`}>
+      <div className="relative mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 delay-75 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 text-white">
         Подробнее
         <Icon name="ArrowRight" size={16} />
       </div>
