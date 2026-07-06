@@ -17,7 +17,7 @@ export default function IndexNews() {
           <Carousel opts={{ align: 'start' }} className="px-2">
             <CarouselContent>
               {NEWS.map((item) => (
-                <CarouselItem key={item.id} className="sm:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={item.id} className="py-2 sm:basis-1/2 lg:basis-1/3">
                   <NewsCard item={item} />
                 </CarouselItem>
               ))}
