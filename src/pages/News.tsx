@@ -8,17 +8,21 @@ import {
   PaginationContent,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
 } from '@/components/ui/pagination';
 
 const TAGS: NewsTag[] = ['новость', 'статья', 'полезно знать'];
 const PER_PAGE = 9;
 
+function parseDate(date: string) {
+  const [day, month, year] = date.split('.').map(Number);
+  return new Date(year, month - 1, day).getTime();
+}
+
 export default function News() {
   const [active, setActive] = useState<NewsTag | 'все'>('все');
   const [page, setPage] = useState(1);
-  const filtered = active === 'все' ? NEWS : NEWS.filter((n) => n.tag === active);
+  const sorted = useMemo(() => [...NEWS].sort((a, b) => parseDate(b.date) - parseDate(a.date)), []);
+  const filtered = active === 'все' ? sorted : sorted.filter((n) => n.tag === active);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const paginated = useMemo(
@@ -73,10 +77,13 @@ export default function News() {
             <Pagination className="mt-12">
               <PaginationContent>
                 <PaginationItem>
-                  <PaginationPrevious
+                  <PaginationLink
+                    size="default"
                     onClick={() => page > 1 && goToPage(page - 1)}
                     className={page === 1 ? 'pointer-events-none opacity-40' : 'cursor-pointer'}
-                  />
+                  >
+                    Пред.
+                  </PaginationLink>
                 </PaginationItem>
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                   <PaginationItem key={p}>
@@ -90,10 +97,13 @@ export default function News() {
                   </PaginationItem>
                 ))}
                 <PaginationItem>
-                  <PaginationNext
+                  <PaginationLink
+                    size="default"
                     onClick={() => page < totalPages && goToPage(page + 1)}
                     className={page === totalPages ? 'pointer-events-none opacity-40' : 'cursor-pointer'}
-                  />
+                  >
+                    След.
+                  </PaginationLink>
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
