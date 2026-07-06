@@ -278,9 +278,9 @@ export function MissionBlock() {
 }
 
 const TAG_STYLES: Record<NewsTag, string> = {
-  'новость': 'bg-brand-green/10 text-brand-green',
-  'статья': 'bg-brand-blue/10 text-brand-blue',
-  'полезно знать': 'bg-brand-orange/10 text-brand-orange',
+  'новость': 'bg-brand-green text-white',
+  'статья': 'bg-brand-blue text-white',
+  'полезно знать': 'bg-brand-orange text-white',
 };
 
 export function NewsCard({ item, className }: { item: NewsItem; className?: string }) {
