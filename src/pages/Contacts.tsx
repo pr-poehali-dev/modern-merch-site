@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import Icon from '@/components/ui/icon';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
@@ -31,12 +32,17 @@ export default function Contacts() {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !phone.trim() || !message.trim()) {
       toast.error('Заполните все поля');
+      return;
+    }
+    if (!consent) {
+      toast.error('Необходимо согласие на обработку персональных данных');
       return;
     }
 
@@ -55,6 +61,7 @@ export default function Contacts() {
       setFullName('');
       setPhone('');
       setMessage('');
+      setConsent(false);
     } catch (err) {
       toast.error('Не удалось отправить заявку. Попробуйте ещё раз.');
     } finally {
@@ -80,30 +87,34 @@ export default function Contacts() {
           <p className="mt-3 text-center text-neutral-500">Свяжитесь с нами удобным способом — мы всегда на связи</p>
 
           {/* Карточки сотрудников */}
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 max-w-5xl mx-auto">
             {PHONE_CARDS.map((p) => (
               <a
                 key={p.tel}
                 href={`tel:${p.tel}`}
-                className="group flex items-center gap-5 rounded-3xl border border-neutral-100 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:border-brand-green/30"
+                className="group flex items-center gap-6 rounded-3xl border border-neutral-100 bg-white p-8 shadow-sm transition-all hover:shadow-lg hover:border-brand-green/30"
               >
-                <img src={p.photo} alt={p.name} className="h-20 w-20 shrink-0 rounded-2xl object-cover" />
+                <img src={p.photo} alt={p.name} className="h-40 w-40 shrink-0 rounded-2xl object-cover" />
                 <div>
-                  <div className="text-lg font-bold text-neutral-900 group-hover:text-brand-green transition-colors">{p.num}</div>
-                  <div className="mt-1 text-sm font-semibold text-neutral-700">{p.name}</div>
-                  <div className="text-xs text-neutral-400">{p.role}</div>
+                  <div className="text-2xl font-bold text-neutral-900 group-hover:text-brand-green transition-colors">{p.num}</div>
+                  <div className="mt-2 text-base font-semibold text-neutral-700">{p.name}</div>
+                  <div className="text-sm text-neutral-400">{p.role}</div>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* Email */}
-          <div className="mt-8 flex justify-center">
+          {/* Адрес + Email */}
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+            <div className="inline-flex items-center gap-3 rounded-full border border-neutral-100 bg-neutral-50 px-6 py-3 text-sm font-semibold text-neutral-700">
+              <Icon name="MapPin" size={18} className="text-brand-green shrink-0" />
+              Россия, г. Москва, ул. Циолковского, д. 1, оф. 1
+            </div>
             <a
               href="mailto:info@merch-groups.ru"
-              className="inline-flex items-center gap-3 rounded-full border border-neutral-100 bg-neutral-50 px-6 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-brand-green hover:text-brand-green"
+              className="inline-flex items-center gap-3 rounded-full bg-brand-green/10 px-7 py-3.5 text-base font-bold text-brand-green transition-colors hover:bg-brand-green hover:text-white"
             >
-              <Icon name="Mail" size={18} className="text-brand-blue" />
+              <Icon name="Mail" size={20} />
               info@merch-groups.ru
             </a>
           </div>
@@ -162,6 +173,18 @@ export default function Contacts() {
                 >
                   {loading ? 'Отправляем...' : 'Отправить'}
                 </Button>
+
+                <div className="flex items-start gap-3">
+                  <Checkbox
+                    id="consent"
+                    checked={consent}
+                    onCheckedChange={(v) => setConsent(v === true)}
+                    className="mt-0.5"
+                  />
+                  <Label htmlFor="consent" className="text-xs font-normal leading-relaxed text-neutral-500">
+                    Нажимая на кнопку «Отправить» я принимаю политику конфиденциальности и даю согласие на обработку персональных данных.
+                  </Label>
+                </div>
               </form>
             </div>
           </div>
