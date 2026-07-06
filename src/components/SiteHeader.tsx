@@ -235,8 +235,15 @@ export default function SiteHeader() {
                     </Link>
                   );
                 }
+                if (n === 'Главная') {
+                  return (
+                    <Link key={n} to="/" className="text-sm font-semibold uppercase tracking-wide text-brand-green transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
                 return (
-                  <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-brand-blue'}`}>
+                  <a key={n} href="#" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
                     {n}
                   </a>
                 );
@@ -313,8 +320,15 @@ export default function SiteHeader() {
                     </Link>
                   );
                 }
+                if (n === 'Главная') {
+                  return (
+                    <Link key={n} to="/" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-brand-green transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
                 return (
-                  <a key={n} href="#" onClick={() => setMobileMenuOpen(false)} className={`border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-neutral-900'}`}>
+                  <a key={n} href="#" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                     {n}
                   </a>
                 );

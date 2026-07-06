@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import Icon from '@/components/ui/icon';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
+import SiteCTA from '@/components/SiteCTA';
 import funcUrls from '../../backend/func2url.json';
 
 const PHONE_CARDS = [
@@ -198,6 +199,7 @@ export default function Contacts() {
         </div>
       </section>
 
+      <SiteCTA />
       <SiteFooter />
     </div>
   );
