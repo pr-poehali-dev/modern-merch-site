@@ -4,7 +4,7 @@ import Icon from '@/components/ui/icon';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import SiteCTA from '@/components/SiteCTA';
-import { NEWS } from '@/pages/index/shared';
+import { NEWS, TAG_STYLES } from '@/pages/index/shared';
 
 function slugify(text: string) {
   return text
@@ -76,6 +76,9 @@ export default function NewsDetail() {
             <span className="flex items-center gap-1.5">
               <Icon name="Calendar" size={15} />
               {item.date}
+            </span>
+            <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${TAG_STYLES[item.tag]}`}>
+              {item.tag}
             </span>
           </div>
 
