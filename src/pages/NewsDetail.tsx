@@ -68,7 +68,7 @@ export default function NewsDetail() {
       <section className="py-12 md:py-16">
         <div className="container max-w-4xl">
           <h1 className="font-heading text-3xl font-bold leading-tight md:text-5xl">{item.title}</h1>
-          <div className="mt-5 flex items-center gap-5 text-sm text-neutral-400">
+          <div className="mt-5 flex flex-col items-start gap-3 text-sm text-neutral-400 sm:flex-row sm:items-center sm:gap-5">
             <span className="flex items-center gap-1.5">
               <Icon name="User" size={15} />
               {item.author}
