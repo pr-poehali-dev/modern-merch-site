@@ -11,6 +11,7 @@ import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
 import Contacts from "./pages/Contacts";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

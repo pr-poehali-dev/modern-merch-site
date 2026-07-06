@@ -91,7 +91,7 @@ export default function SiteFooter() {
           <span>© 2026 MGroups — агентство мерчандайзинга</span>
           <div className="flex gap-5">
             <Link to="/privacy-policy" className="hover:text-white/60 transition-colors">Политика конфиденциальности</Link>
-            <a href="#" className="hover:text-white/60 transition-colors">Пользовательское соглашение</a>
+            <Link to="/terms-of-use" className="hover:text-white/60 transition-colors">Пользовательское соглашение</Link>
           </div>
         </div>
       </div>

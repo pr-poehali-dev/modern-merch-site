@@ -186,7 +186,10 @@ export default function Contacts() {
                     <Link to="/privacy-policy" target="_blank" className="font-medium text-brand-green underline hover:no-underline">
                       политику конфиденциальности
                     </Link>{' '}
-                    и даю согласие на обработку персональных данных.
+                    и даю согласие на{' '}
+                    <Link to="/terms-of-use" target="_blank" className="font-medium text-brand-green underline hover:no-underline">
+                      обработку персональных данных
+                    </Link>.
                   </Label>
                 </div>
               </form>
