@@ -182,7 +182,11 @@ export default function Contacts() {
                     className="mt-0.5"
                   />
                   <Label htmlFor="consent" className="text-xs font-normal leading-relaxed text-neutral-500">
-                    Нажимая на кнопку «Отправить» я принимаю политику конфиденциальности и даю согласие на обработку персональных данных.
+                    Нажимая на кнопку «Отправить» я принимаю{' '}
+                    <Link to="/privacy-policy" target="_blank" className="font-medium text-brand-green underline hover:no-underline">
+                      политику конфиденциальности
+                    </Link>{' '}
+                    и даю согласие на обработку персональных данных.
                   </Label>
                 </div>
               </form>
