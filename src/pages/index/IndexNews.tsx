@@ -4,9 +4,6 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 import { NEWS, NewsCard, SlideIn } from './shared';
 
 export default function IndexNews() {
-  const latest = NEWS.slice(0, 3);
-  const rest = NEWS.slice(3);
-
   return (
     <section className="py-20 md:py-28">
       <div className="container">
@@ -15,18 +12,11 @@ export default function IndexNews() {
           <p className="mt-3 text-center text-neutral-500">Свежие материалы о жизни компании и полезные советы</p>
         </SlideIn>
 
-        {/* 3 последние новости */}
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {latest.map((item) => (
-            <NewsCard key={item.id} item={item} />
-          ))}
-        </div>
-
-        {/* Слайдер остальных новостей */}
-        <div className="mt-14">
+        {/* Слайдер новостей: первые 3 видны сразу, остальные — по свайпу/стрелкам */}
+        <div className="mt-12">
           <Carousel opts={{ align: 'start' }} className="px-2">
             <CarouselContent>
-              {rest.map((item) => (
+              {NEWS.map((item) => (
                 <CarouselItem key={item.id} className="sm:basis-1/2 lg:basis-1/3">
                   <NewsCard item={item} />
                 </CarouselItem>
