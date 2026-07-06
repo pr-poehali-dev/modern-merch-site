@@ -1,9 +1,12 @@
 import React from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
+import { useContactPopup } from '@/context/ContactPopupContext';
 import { HERO_BG, STATS, CountUp } from './shared';
 
 export default function IndexHero() {
+  const { open: openContactPopup } = useContactPopup();
+
   return (
     <>
       {/* Hero */}
@@ -21,7 +24,7 @@ export default function IndexHero() {
             <p className="mt-6 text-lg leading-relaxed text-neutral-500">
               Специализированное агентство, предоставляющее услуги по мерчандайзингу, проведению независимого аудита, техническому мерчандайзингу и организации промоакций и праздничных мероприятий.
             </p>
-            <Button size="lg" className="mt-8 rounded-full bg-brand-green px-6 text-sm font-bold text-white hover:bg-brand-green/90 sm:px-8 sm:text-base">
+            <Button onClick={openContactPopup} size="lg" className="mt-8 rounded-full bg-brand-green px-6 text-sm font-bold text-white hover:bg-brand-green/90 sm:px-8 sm:text-base">
               Получить расчет стоимости
               <Icon name="ArrowRight" size={16} className="ml-2 shrink-0" />
             </Button>

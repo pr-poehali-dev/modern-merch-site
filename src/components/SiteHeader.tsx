@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useContactPopup } from '@/context/ContactPopupContext';
 
 const LOGO = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/ad788e8b-54f0-4b45-98bf-2d5f3e89f035.png';
 
@@ -71,6 +72,7 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const { open: openContactPopup } = useContactPopup();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -125,7 +127,10 @@ export default function SiteHeader() {
             <Icon name="Mail" size={16} className="text-brand-blue" />
             <span className="text-sm">info@merch-groups.ru</span>
           </a>
-          <Button className="mt-6 w-full rounded-full bg-brand-green font-bold text-white hover:bg-brand-green/90">
+          <Button
+            onClick={() => { setPhonePopupOpen(false); openContactPopup(); }}
+            className="mt-6 w-full rounded-full bg-brand-green font-bold text-white hover:bg-brand-green/90"
+          >
             Связаться с нами
           </Button>
         </div>
@@ -155,7 +160,7 @@ export default function SiteHeader() {
               <a href="mailto:info@merch-groups.ru" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-800">
                 <Icon name="Mail" size={16} /> info@merch-groups.ru
               </a>
-              <Button className="rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
+              <Button onClick={openContactPopup} className="rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
                 Связаться с нами
               </Button>
             </div>
@@ -165,7 +170,7 @@ export default function SiteHeader() {
               <button onClick={() => setPhonePopupOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green">
                 <Icon name="Phone" size={20} className="text-white" />
               </button>
-              <Button className="hidden rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90 sm:flex">
+              <Button onClick={openContactPopup} className="hidden rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90 sm:flex">
                 Связаться с нами
               </Button>
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 text-neutral-700 lg:hidden">
