@@ -228,6 +228,13 @@ export default function SiteHeader() {
                     </Link>
                   );
                 }
+                if (n === 'Контакты') {
+                  return (
+                    <Link key={n} to="/contacts" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
                 return (
                   <a key={n} href="#" className={`text-sm font-semibold uppercase tracking-wide transition-colors ${i === 0 ? 'text-brand-green' : 'text-neutral-600 hover:text-brand-blue'}`}>
                     {n}
@@ -295,6 +302,13 @@ export default function SiteHeader() {
                 if (n === 'Новости') {
                   return (
                     <Link key={n} to="/news" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
+                if (n === 'Контакты') {
+                  return (
+                    <Link key={n} to="/contacts" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                       {n}
                     </Link>
                   );

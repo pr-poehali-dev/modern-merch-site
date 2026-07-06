@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Успешная отправка формы",
+      "method": "POST",
+      "path": "/",
+      "body": {"full_name": "Иван Иванов", "phone": "+7 999 123 45 67", "message": "Хочу узнать про мерчандайзинг"},
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Пустые поля",
+      "method": "POST",
+      "path": "/",
+      "body": {"full_name": "", "phone": "", "message": ""},
+      "expectedStatus": 400
+    }
+  ]
+}

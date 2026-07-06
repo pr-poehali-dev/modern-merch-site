@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Merchandising from "./pages/Merchandising";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
+import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/merchandising" element={<Merchandising />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/contacts" element={<Contacts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
