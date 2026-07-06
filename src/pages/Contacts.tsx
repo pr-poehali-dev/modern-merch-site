@@ -92,7 +92,7 @@ export default function Contacts() {
               <a
                 key={p.tel}
                 href={`tel:${p.tel}`}
-                className="group flex items-center gap-6 rounded-3xl border border-neutral-100 bg-white p-8 shadow-sm transition-all hover:shadow-lg hover:border-brand-green/30"
+                className="group flex flex-col items-center gap-6 rounded-3xl border border-neutral-100 bg-white p-8 text-center shadow-sm transition-all hover:shadow-lg hover:border-brand-green/30 sm:flex-row sm:text-left"
               >
                 <img src={p.photo} alt={p.name} className="h-40 w-40 shrink-0 rounded-2xl object-cover" />
                 <div>
