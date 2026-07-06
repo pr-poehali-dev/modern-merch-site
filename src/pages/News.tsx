@@ -1,14 +1,40 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import SiteCTA from '@/components/SiteCTA';
 import { NEWS, NewsCard, NewsTag } from '@/pages/index/shared';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+} from '@/components/ui/pagination';
 
 const TAGS: NewsTag[] = ['новость', 'статья', 'полезно знать'];
+const PER_PAGE = 9;
 
 export default function News() {
   const [active, setActive] = useState<NewsTag | 'все'>('все');
+  const [page, setPage] = useState(1);
   const filtered = active === 'все' ? NEWS : NEWS.filter((n) => n.tag === active);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const paginated = useMemo(
+    () => filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE),
+    [filtered, page]
+  );
+
+  const selectTag = (tag: NewsTag | 'все') => {
+    setActive(tag);
+    setPage(1);
+  };
+
+  const goToPage = (p: number) => {
+    setPage(p);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-white font-sans text-black">
@@ -21,7 +47,7 @@ export default function News() {
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <button
-              onClick={() => setActive('все')}
+              onClick={() => selectTag('все')}
               className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${active === 'все' ? 'bg-brand-green text-white' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'}`}
             >
               Все
@@ -29,7 +55,7 @@ export default function News() {
             {TAGS.map((tag) => (
               <button
                 key={tag}
-                onClick={() => setActive(tag)}
+                onClick={() => selectTag(tag)}
                 className={`rounded-full px-5 py-2 text-sm font-semibold capitalize transition-colors ${active === tag ? 'bg-brand-green text-white' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'}`}
               >
                 {tag}
@@ -38,10 +64,40 @@ export default function News() {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((item) => (
+            {paginated.map((item) => (
               <NewsCard key={item.id} item={item} />
             ))}
           </div>
+
+          {totalPages > 1 && (
+            <Pagination className="mt-12">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => page > 1 && goToPage(page - 1)}
+                    className={page === 1 ? 'pointer-events-none opacity-40' : 'cursor-pointer'}
+                  />
+                </PaginationItem>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <PaginationItem key={p}>
+                    <PaginationLink
+                      isActive={p === page}
+                      onClick={() => goToPage(p)}
+                      className="cursor-pointer"
+                    >
+                      {p}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => page < totalPages && goToPage(page + 1)}
+                    className={page === totalPages ? 'pointer-events-none opacity-40' : 'cursor-pointer'}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
         </div>
       </section>
 
