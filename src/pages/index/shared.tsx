@@ -5,6 +5,40 @@ import Icon from '@/components/ui/icon';
 export const HERO_BG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/28fac548-2488-4d76-8d83-7a1bd9f1c28f.jpg';
 export const MISSION_IMG = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d2809aca-e2f0-4e42-993f-19153ade8fd1.jpg';
 
+const NEWS_IMG = [
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/b522b244-f2c9-4aee-a2e4-821d64a282a7.jpg',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/e085a25c-8fca-414d-b9bc-0ac5a29ed8ad.jpg',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/808469aa-d847-40fd-a159-5dc24a576f26.jpg',
+  'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d69a6fcd-1c71-4277-b0dd-01cae0544679.jpg',
+];
+
+export type NewsTag = 'новость' | 'статья' | 'полезно знать';
+
+export interface NewsItem {
+  id: number;
+  title: string;
+  desc: string;
+  date: string;
+  author: string;
+  tag: NewsTag;
+  img: string;
+}
+
+export const NEWS: NewsItem[] = [
+  { id: 1, title: 'MGroups запускает новое направление технического мерчандайзинга', desc: 'Мы расширили команду и добавили услуги по логистике и изготовлению торгового оборудования для клиентов.', date: '01.07.2026', author: 'Лилия Петрова', tag: 'новость', img: NEWS_IMG[0] },
+  { id: 2, title: 'Как правильно выкладывать товар: 5 проверенных принципов', desc: 'Разбираем базовые правила мерчандайзинга, которые повышают продажи на полке без дополнительных вложений.', date: '28.06.2026', author: 'Николоз Гелашвили', tag: 'статья', img: NEWS_IMG[1] },
+  { id: 3, title: 'Зачем нужен тайный покупатель и как читать его отчёты', desc: 'Рассказываем, какие метрики важны в отчётах mystery shopper и как их использовать для роста сервиса.', date: '22.06.2026', author: 'Лилия Петрова', tag: 'полезно знать', img: NEWS_IMG[2] },
+  { id: 4, title: 'MGroups расширила географию присутствия до 87 регионов', desc: 'Теперь наши мерчендайзеры работают ещё в 6 новых городах России — подробности в новости.', date: '15.06.2026', author: 'Николоз Гелашвили', tag: 'новость', img: NEWS_IMG[3] },
+  { id: 5, title: 'BTL-акции: как выбрать формат под ваш бюджет', desc: 'Сравниваем дегустации, промоакции и праздничные мероприятия — что выбрать для разного бюджета.', date: '10.06.2026', author: 'Лилия Петрова', tag: 'статья', img: NEWS_IMG[0] },
+  { id: 6, title: 'Чек-лист аудита торговой точки перед запуском акции', desc: 'Полезный список проверок, которые стоит провести до старта промо-кампании в рознице.', date: '03.06.2026', author: 'Николоз Гелашвили', tag: 'полезно знать', img: NEWS_IMG[1] },
+  { id: 7, title: 'Итоги полугодия: рост полевого персонала на 18%', desc: 'Делимся результатами работы команды MGroups за первое полугодие 2026 года.', date: '28.05.2026', author: 'Лилия Петрова', tag: 'новость', img: NEWS_IMG[2] },
+  { id: 8, title: 'Планограмма: что это и почему её важно соблюдать', desc: 'Объясняем простыми словами, зачем нужна планограмма и как она влияет на продажи.', date: '20.05.2026', author: 'Николоз Гелашвили', tag: 'статья', img: NEWS_IMG[3] },
+  { id: 9, title: '3 ошибки при найме промоперсонала', desc: 'Собрали частые ошибки заказчиков при подборе команды для мероприятий и как их избежать.', date: '14.05.2026', author: 'Лилия Петрова', tag: 'полезно знать', img: NEWS_IMG[0] },
+  { id: 10, title: 'Новое мобильное приложение для полевых сотрудников', desc: 'Обновили приложение для мерчендайзеров: удобнее фотоотчёты и быстрее синхронизация данных.', date: '05.05.2026', author: 'Николоз Гелашвили', tag: 'новость', img: NEWS_IMG[1] },
+  { id: 11, title: 'Как читать аналитику по представленности товара', desc: 'Разбираем ключевые показатели retail-аудита и как принимать решения на их основе.', date: '27.04.2026', author: 'Лилия Петрова', tag: 'статья', img: NEWS_IMG[2] },
+  { id: 12, title: 'Сезонная выкладка: советы к праздничным датам', desc: 'Как заранее подготовить точки продаж к пиковым датам и не потерять продажи.', date: '20.04.2026', author: 'Николоз Гелашвили', tag: 'полезно знать', img: NEWS_IMG[3] },
+];
+
 export const STATS = [
   { num: '87', title: 'регионов покрытия', desc: 'В каждом городе у нас есть мерчендайзер под Ваш проект', color: 'text-brand-green' },
   { num: '2 244', title: 'полевого персонала', desc: 'И с каждым проектом наша команда растет', color: 'text-brand-blue' },
@@ -238,6 +272,39 @@ export function MissionBlock() {
         <p className="text-xl leading-relaxed text-neutral-600 md:text-2xl">
           Оказывать качественные услуги в сфере рекламы и маркетинга, способствующие развитию клиентского бизнеса и укрепления его на рынке.
         </p>
+      </div>
+    </div>
+  );
+}
+
+const TAG_STYLES: Record<NewsTag, string> = {
+  'новость': 'bg-brand-green/10 text-brand-green',
+  'статья': 'bg-brand-blue/10 text-brand-blue',
+  'полезно знать': 'bg-brand-orange/10 text-brand-orange',
+};
+
+export function NewsCard({ item, className }: { item: NewsItem; className?: string }) {
+  return (
+    <div className={`group flex h-full flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-white shadow-sm transition-all hover:shadow-lg ${className || ''}`}>
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <img src={item.img} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${TAG_STYLES[item.tag]}`}>
+          {item.tag}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-heading text-lg font-bold leading-snug text-neutral-900 line-clamp-2">{item.title}</h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500 line-clamp-3">{item.desc}</p>
+        <div className="mt-5 flex items-center justify-between text-xs text-neutral-400">
+          <span className="flex items-center gap-1.5">
+            <Icon name="User" size={14} />
+            {item.author}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Icon name="Calendar" size={14} />
+            {item.date}
+          </span>
+        </div>
       </div>
     </div>
   );

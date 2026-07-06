@@ -6,6 +6,7 @@ import IndexHero from './index/IndexHero';
 import IndexAbout from './index/IndexAbout';
 import IndexServices from './index/IndexServices';
 import IndexCoverage from './index/IndexCoverage';
+import IndexNews from './index/IndexNews';
 
 export default function Index() {
   return (
@@ -15,6 +16,7 @@ export default function Index() {
       <IndexAbout />
       <IndexServices />
       <IndexCoverage />
+      <IndexNews />
       <SiteCTA />
       <SiteFooter />
     </div>
