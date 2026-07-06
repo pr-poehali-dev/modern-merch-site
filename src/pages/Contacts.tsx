@@ -120,7 +120,7 @@ export default function Contacts() {
             </div>
 
             <div className="rounded-3xl border border-neutral-100 bg-neutral-50 p-6 shadow-sm md:p-8">
-              <h2 className="font-heading text-2xl font-bold text-neutral-900">Форма обратной связи</h2>
+              <h2 className="font-heading text-2xl font-bold text-neutral-900">Нужна консультация?</h2>
               <p className="mt-2 text-sm text-neutral-500">Оставьте заявку — мы перезвоним в течение рабочего дня</p>
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-5">
