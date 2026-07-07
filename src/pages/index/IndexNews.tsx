@@ -1,13 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from '@/components/ui/carousel';
 import { NEWS, NewsCard, SlideIn } from './shared';
 
+function parseDate(date: string) {
+  const [day, month, year] = date.split('.').map(Number);
+  return new Date(year, month - 1, day).getTime();
+}
+
 export default function IndexNews() {
   const [api, setApi] = useState<CarouselApi>();
   const [selected, setSelected] = useState(0);
   const [count, setCount] = useState(0);
+  const sortedNews = useMemo(() => [...NEWS].sort((a, b) => parseDate(b.date) - parseDate(a.date)), []);
 
   useEffect(() => {
     if (!api) return;
@@ -28,7 +34,7 @@ export default function IndexNews() {
         <div className="mt-12">
           <Carousel opts={{ align: 'start' }} setApi={setApi} className="px-2">
             <CarouselContent>
-              {NEWS.map((item) => (
+              {sortedNews.map((item) => (
                 <CarouselItem key={item.id} className="py-2 sm:basis-1/2 lg:basis-1/3">
                   <NewsCard item={item} />
                 </CarouselItem>
