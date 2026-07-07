@@ -188,10 +188,10 @@ export default function SiteHeader() {
                 if (n === 'Услуги') {
                   return (
                     <div key={n} className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-                      <a href="/services" className="flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
+                      <span className="flex cursor-default items-center gap-1 text-sm font-semibold uppercase tracking-wide text-neutral-600 transition-colors">
                         {n}
                         <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
-                      </a>
+                      </span>
                       <div className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
                         <div className="w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
                           {TABS.map((service) => (
@@ -276,12 +276,15 @@ export default function SiteHeader() {
                 if (n === 'Услуги') {
                   return (
                     <div key={n} className="border-b border-neutral-100">
-                      <div className="flex items-center justify-between py-4">
-                        <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-brand-green transition-colors">{n}</a>
-                        <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-100">
+                      <button
+                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                        className="flex w-full items-center justify-between py-4 text-left"
+                      >
+                        <span className="text-sm font-semibold uppercase tracking-wider text-neutral-600">{n}</span>
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-100">
                           <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
+                        </span>
+                      </button>
                       {mobileServicesOpen && (
                         <div className="mb-3 space-y-2">
                           {TABS.map((service) => (
