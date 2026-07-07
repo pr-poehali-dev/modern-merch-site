@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from '@/components/ui/carousel';
 
 export const CLIENTS = [
   'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fde397df-26e6-4375-a03e-4fd9bea6373c.png',
@@ -99,6 +101,296 @@ export const NETWORKS = [
   { name: 'Лэтуаль', color: '#D4008C' },
   { name: 'Улыбка радуги', color: '#E91E8C' },
 ];
+
+export interface CaseItem {
+  id: number;
+  title: string;
+  category: string;
+  photos: string[];
+}
+
+const CASE_IMG = {
+  shelfWide: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d4b008e4-d5fe-4964-b0bb-24383acb35ca.jpg',
+  shelfCloseup: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/38afcf42-ba2b-4832-8613-d2827433508f.jpg',
+  aisleWide: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/9684ea90-80bd-47bd-ac09-b0de4a2f3091.jpg',
+  cosmetics: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/1f0f7f8d-8c61-4e0e-90cb-680c47262518.jpg',
+  merchandiser: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/ca21f882-5073-49b0-acd8-80a848d1e9d6.jpg',
+  neatRows: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/79c41586-f7f2-488b-95d3-5d0e5217ba7d.jpg',
+  beverages: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/8b6c9089-c8ff-4a0b-87fb-a030609b1f6b.jpg',
+  snacks: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/af368e9f-2d55-42cb-8649-804f10dd148d.jpg',
+  household: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/37ff7b7f-e34c-470c-8661-66924baacb18.jpg',
+  dairy: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d3446be2-8e16-4216-9c99-eba6d969ce40.jpg',
+};
+
+export const WORKFLOW_IMG_APPROACH = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/4bbd1a4c-118d-48f8-b1c4-b90a30637d01.jpg';
+export const WORKFLOW_IMG_QUALITY = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d536c6e7-cc98-4a48-a349-f359d104bc01.jpg';
+
+export const CASES: CaseItem[] = [
+  { id: 1, title: 'Объект 1', category: 'Продуктовый супермаркет · Выкладка товара', photos: [CASE_IMG.shelfWide, CASE_IMG.shelfCloseup, CASE_IMG.beverages] },
+  { id: 2, title: 'Объект 2', category: 'Магазин косметики · Мерчандайзинг полки', photos: [CASE_IMG.cosmetics, CASE_IMG.merchandiser, CASE_IMG.neatRows] },
+  { id: 3, title: 'Объект 3', category: 'Сеть напитков · Ротация ассортимента', photos: [CASE_IMG.beverages, CASE_IMG.aisleWide, CASE_IMG.neatRows] },
+  { id: 4, title: 'Объект 4', category: 'Бытовая химия · Контроль остатков', photos: [CASE_IMG.household, CASE_IMG.dairy, CASE_IMG.snacks] },
+  { id: 5, title: 'Объект 5', category: 'Кондитерские изделия · Фотоотчётность', photos: [CASE_IMG.snacks, CASE_IMG.neatRows, CASE_IMG.shelfCloseup] },
+];
+
+export function CaseCard({ item, delay, onOpen }: { item: CaseItem; delay?: number; onOpen: (item: CaseItem, photoIndex: number) => void }) {
+  const [current, setCurrent] = useState(0);
+
+  const prev = (e: React.MouseEvent) => { e.stopPropagation(); setCurrent((c) => (c - 1 + item.photos.length) % item.photos.length); };
+  const next = (e: React.MouseEvent) => { e.stopPropagation(); setCurrent((c) => (c + 1) % item.photos.length); };
+
+  return (
+    <FadeIn delay={delay}>
+      <div className="overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50">
+        <div
+          className="group relative aspect-square cursor-pointer overflow-hidden"
+          onClick={() => onOpen(item, current)}
+        >
+          <div
+            className="flex h-full w-full transition-transform duration-300 ease-out"
+            style={{ transform: `translateX(-${current * 100}%)` }}
+          >
+            {item.photos.map((src, i) => (
+              <img key={i} src={src} alt={`${item.title} — фото ${i + 1}`} className="h-full w-full shrink-0 object-cover" />
+            ))}
+          </div>
+
+          {item.photos.length > 1 && (
+            <>
+              <button
+                onClick={prev}
+                aria-label="Предыдущее фото"
+                className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-neutral-800 opacity-0 shadow transition-opacity duration-200 group-hover:opacity-100 hover:bg-white"
+              >
+                <Icon name="ChevronLeft" size={18} />
+              </button>
+              <button
+                onClick={next}
+                aria-label="Следующее фото"
+                className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-neutral-800 opacity-0 shadow transition-opacity duration-200 group-hover:opacity-100 hover:bg-white"
+              >
+                <Icon name="ChevronRight" size={18} />
+              </button>
+              <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                {item.photos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
+                    aria-label={`Фото ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all ${i === current ? 'w-5 bg-white' : 'w-1.5 bg-white/60'}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div className="p-5">
+          <p className="font-semibold text-neutral-800">{item.title}</p>
+          <p className="mt-1 text-sm text-neutral-500">{item.category}</p>
+        </div>
+      </div>
+    </FadeIn>
+  );
+}
+
+export function CaseLightbox({ item, initialIndex, open, onOpenChange }: {
+  item: CaseItem | null;
+  initialIndex: number;
+  open: boolean;
+  onOpenChange: (v: boolean) => void;
+}) {
+  const [index, setIndex] = useState(initialIndex);
+
+  useEffect(() => { setIndex(initialIndex); }, [initialIndex, item]);
+
+  if (!item) return null;
+
+  const prev = () => setIndex((i) => (i - 1 + item.photos.length) % item.photos.length);
+  const next = () => setIndex((i) => (i + 1) % item.photos.length);
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl overflow-hidden rounded-3xl p-0">
+        <div className="relative aspect-square bg-neutral-100">
+          <img src={item.photos[index]} alt={`${item.title} — фото ${index + 1}`} className="h-full w-full object-cover" />
+          {item.photos.length > 1 && (
+            <>
+              <button
+                onClick={prev}
+                aria-label="Предыдущее фото"
+                className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-neutral-800 shadow transition-colors hover:bg-white"
+              >
+                <Icon name="ChevronLeft" size={20} />
+              </button>
+              <button
+                onClick={next}
+                aria-label="Следующее фото"
+                className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-neutral-800 shadow transition-colors hover:bg-white"
+              >
+                <Icon name="ChevronRight" size={20} />
+              </button>
+              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-1.5">
+                {item.photos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIndex(i)}
+                    aria-label={`Фото ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all ${i === index ? 'w-6 bg-brand-green' : 'w-1.5 bg-neutral-300'}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div className="p-6">
+          <p className="font-heading text-xl font-bold text-neutral-900">{item.title}</p>
+          <p className="mt-1 text-sm text-neutral-500">{item.category}</p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function CasesShowcase() {
+  const [lightboxCase, setLightboxCase] = useState<CaseItem | null>(null);
+  const [lightboxPhoto, setLightboxPhoto] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selected, setSelected] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [count, setCount] = useState(0);
+  const useSlider = CASES.length > 3;
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setSelected(api.selectedScrollSnap());
+    api.on('select', () => setSelected(api.selectedScrollSnap()));
+  }, [api]);
+
+  const openLightbox = (item: CaseItem, photoIndex: number) => {
+    setLightboxCase(item);
+    setLightboxPhoto(photoIndex);
+    setLightboxOpen(true);
+  };
+
+  return (
+    <>
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <FadeIn>
+            <h2 className="font-heading text-3xl font-bold md:text-4xl">Примеры работ</h2>
+            <p className="mt-3 text-neutral-500">Результаты нашей работы на реальных объектах</p>
+          </FadeIn>
+
+          <div className="mt-12">
+            {useSlider ? (
+              <Carousel opts={{ align: 'start' }} setApi={setApi} className="px-2">
+                <CarouselContent>
+                  {CASES.map((item, i) => (
+                    <CarouselItem key={item.id} className="py-2 sm:basis-1/2 lg:basis-1/3">
+                      <CaseCard item={item} delay={i * 80} onOpen={openLightbox} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden sm:flex" />
+                <CarouselNext className="hidden sm:flex" />
+              </Carousel>
+            ) : (
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {CASES.map((item, i) => (
+                  <CaseCard key={item.id} item={item} delay={i * 100} onOpen={openLightbox} />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {useSlider && count > 1 && (
+            <div className="mt-8 flex justify-center gap-2">
+              {Array.from({ length: count }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => api?.scrollTo(i)}
+                  aria-label={`Слайд ${i + 1}`}
+                  className={`h-2 rounded-full transition-all ${i === selected ? 'w-6 bg-brand-green' : 'w-2 bg-neutral-200 hover:bg-neutral-300'}`}
+                />
+              ))}
+            </div>
+          )}
+
+          <div className="mt-8 flex justify-center">
+            <Button className="rounded-full bg-brand-green px-8 py-3 text-sm font-bold text-white hover:bg-brand-green/90 md:px-10 md:py-4 md:text-base">
+              Смотреть все кейсы
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <CaseLightbox item={lightboxCase} initialIndex={lightboxPhoto} open={lightboxOpen} onOpenChange={setLightboxOpen} />
+    </>
+  );
+}
+
+function useSlideIn(direction: 'left' | 'right' = 'left') {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  const style: React.CSSProperties = {
+    opacity: visible ? 1 : 0,
+    transform: visible ? 'translateX(0)' : `translateX(${direction === 'left' ? '-30px' : '30px'})`,
+    transition: 'opacity 0.7s ease, transform 0.7s ease',
+  };
+  return { ref, style };
+}
+
+export function WorkflowBlocks() {
+  const imgLeft = useSlideIn('left');
+  const textRight = useSlideIn('right');
+  const textLeft = useSlideIn('left');
+  const imgRight = useSlideIn('right');
+
+  return (
+    <section className="py-20 md:py-28">
+      <div className="container space-y-16 md:space-y-20">
+        {/* Фото слева — текст справа */}
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+          <div ref={imgLeft.ref} style={imgLeft.style} className="overflow-hidden rounded-3xl">
+            <img src={WORKFLOW_IMG_APPROACH} alt="Индивидуальный подход к каждому проекту" className="aspect-[4/3] w-full object-cover" />
+          </div>
+          <div ref={textRight.ref} style={textRight.style}>
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">Наш подход</span>
+            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl">Индивидуальная стратегия под ваш бизнес</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-600">
+              Перед запуском проекта мы изучаем специфику вашей категории, торговых точек и целевой аудитории — чтобы выстроить решение, которое действительно увеличивает продажи, а не просто наводит порядок на полке.
+            </p>
+          </div>
+        </div>
+
+        {/* Текст слева — фото справа */}
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+          <div ref={textLeft.ref} style={textLeft.style} className="md:order-1">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">Контроль качества</span>
+            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl">Каждый визит фиксируется и проверяется</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-600">
+              Наши мерчандайзеры отчитываются о каждом посещении с фотофиксацией, а супервайзеры регулярно проверяют качество работы — вы всегда видите реальную картину на полке.
+            </p>
+          </div>
+          <div ref={imgRight.ref} style={imgRight.style} className="overflow-hidden rounded-3xl md:order-2">
+            <img src={WORKFLOW_IMG_QUALITY} alt="Контроль качества выкладки" className="aspect-[4/3] w-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);

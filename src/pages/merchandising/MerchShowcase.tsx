@@ -1,5 +1,5 @@
 import Icon from '@/components/ui/icon';
-import { FadeIn, CLIENTS } from './shared';
+import { FadeIn, CLIENTS, CasesShowcase, WorkflowBlocks } from './shared';
 
 export default function MerchShowcase({ clientsExpanded, setClientsExpanded }: { clientsExpanded: boolean; setClientsExpanded: (v: boolean) => void }) {
   return (
@@ -60,40 +60,10 @@ export default function MerchShowcase({ clientsExpanded, setClientsExpanded }: {
       </section>
 
       {/* 6. Примеры работ */}
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <FadeIn>
-            <h2 className="font-heading text-3xl font-bold md:text-4xl">Примеры работ</h2>
-            <p className="mt-3 text-neutral-500">До и после — результаты нашей работы</p>
-          </FadeIn>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div className="overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50">
-                  <div className="grid grid-cols-2 divide-x divide-neutral-200">
-                    <div className="relative">
-                      <div className="absolute left-2 top-2 z-10 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide">До</div>
-                      <div className="h-44 bg-neutral-200 flex items-center justify-center">
-                        <Icon name="ImageOff" size={32} className="text-neutral-400" />
-                      </div>
-                    </div>
-                    <div className="relative">
-                      <div className="absolute right-2 top-2 z-10 rounded-full bg-brand-green/90 px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide">После</div>
-                      <div className="h-44 bg-neutral-200 flex items-center justify-center">
-                        <Icon name="ImageOff" size={32} className="text-neutral-400" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-5">
-                    <p className="font-semibold text-neutral-800">Объект {i}</p>
-                    <p className="mt-1 text-sm text-neutral-500">Розничная торговля · Выкладка товара</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CasesShowcase />
+
+      {/* 7. Наш подход / Контроль качества */}
+      <WorkflowBlocks />
     </>
   );
 }
