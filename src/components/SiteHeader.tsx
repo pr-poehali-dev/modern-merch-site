@@ -226,6 +226,13 @@ export default function SiteHeader() {
                     </Link>
                   );
                 }
+                if (n === 'Наши кейсы') {
+                  return (
+                    <Link key={n} to="/cases" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
                 if (n === 'Новости') {
                   return (
                     <Link key={n} to="/news" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
@@ -310,6 +317,13 @@ export default function SiteHeader() {
                 if (n === 'Мерчандайзинг') {
                   return (
                     <Link key={n} to="/merchandising" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
+                if (n === 'Наши кейсы') {
+                  return (
+                    <Link key={n} to="/cases" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                       {n}
                     </Link>
                   );

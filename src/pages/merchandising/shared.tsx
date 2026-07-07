@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -318,8 +319,8 @@ export function CasesShowcase() {
           )}
 
           <div className="mt-8 flex justify-center">
-            <Button className="rounded-full bg-brand-green px-8 py-3 text-sm font-bold text-white hover:bg-brand-green/90 md:px-10 md:py-4 md:text-base">
-              Смотреть все кейсы
+            <Button asChild className="rounded-full bg-brand-green px-8 py-3 text-sm font-bold text-white hover:bg-brand-green/90 md:px-10 md:py-4 md:text-base">
+              <Link to="/cases">Смотреть все кейсы</Link>
             </Button>
           </div>
         </div>

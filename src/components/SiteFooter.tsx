@@ -34,6 +34,13 @@ export default function SiteFooter() {
           <nav className="hidden md:flex flex-col gap-2 content-start">
             <span className="mb-2 text-xs font-bold uppercase tracking-widest text-white/30">Меню сайта</span>
             {NAV.filter((n) => n !== 'Услуги').map((n, i) => {
+              if (n === 'Наши кейсы') {
+                return (
+                  <Link key={n} to="/cases" className="text-sm text-white/60 transition-colors hover:text-brand-green">
+                    {n}
+                  </Link>
+                );
+              }
               if (n === 'Новости') {
                 return (
                   <Link key={n} to="/news" className="text-sm text-white/60 transition-colors hover:text-brand-green">
