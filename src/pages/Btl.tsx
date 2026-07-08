@@ -1,0 +1,50 @@
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
+import SiteCTA from '@/components/SiteCTA';
+import { ServiceBreadcrumb, ServiceHero, ServiceFeatures, SubServiceGrid, ServiceCases } from '@/pages/services/shared';
+
+const SUB_SERVICES = [
+  { name: 'Промоакции', slug: '/btl/promoakcii', icon: 'Percent' },
+];
+
+export default function Btl() {
+  return (
+    <div className="min-h-screen bg-white font-sans text-neutral-900">
+      <SiteHeader />
+      <ServiceBreadcrumb label="BTL услуги + Организация дегустаций" />
+
+      <ServiceHero
+        badge="Услуга"
+        title="BTL услуги + Организация дегустаций"
+        description="Промоакции, дегустации и праздничные мероприятия с подбором и обучением персонала под ключ."
+        image="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/41cccab1-353e-4501-96a7-0b9371141f2b.jpg"
+        bgClass="bg-brand-green"
+        buttonTextClass="text-brand-green"
+      />
+
+      <ServiceFeatures
+        title="Что мы организуем"
+        subtitle="Полный цикл BTL-мероприятий — от идеи до отчёта"
+        items={[
+          { text: 'Дегустации новых продуктов с подбором промоперсонала', icon: 'Utensils' },
+          { text: 'Промоакции и розыгрыши призов в торговых точках', icon: 'Percent' },
+          { text: 'Праздничные мероприятия и активации бренда в ТЦ', icon: 'PartyPopper' },
+          { text: 'Обучение и инструктаж промоутеров перед стартом', icon: 'GraduationCap' },
+          { text: 'Ротацию персонала для долгосрочных проектов без простоев', icon: 'RefreshCw' },
+          { text: 'Сбор обратной связи и подробную отчётность по итогам', icon: 'FileCheck' },
+        ]}
+      />
+
+      <SubServiceGrid
+        title="Направления работы"
+        subtitle="Выберите интересующее направление, чтобы узнать подробнее"
+        items={SUB_SERVICES}
+      />
+
+      <ServiceCases category="BTL услуги + Организация дегустаций" />
+
+      <SiteCTA />
+      <SiteFooter />
+    </div>
+  );
+}

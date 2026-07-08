@@ -21,10 +21,10 @@ const TABS = [
     icon: 'Store',
     dark: false,
     sub: [
-      { name: 'Стационарный', slug: '/merchandising#стационарный' },
-      { name: 'Визитный', slug: '/merchandising#визитный' },
-      { name: 'Совмещенный', slug: '/merchandising#совмещенный' },
-      { name: 'Выделенный', slug: '/merchandising#выделенный' },
+      { name: 'Стационарный', slug: '/merchandising/stacionarny' },
+      { name: 'Визитный', slug: '/merchandising/vizitny' },
+      { name: 'Совмещенный', slug: '/merchandising/sovmeshchenny' },
+      { name: 'Выделенный', slug: '/merchandising/vydelenny' },
     ],
   },
   {
@@ -34,10 +34,10 @@ const TABS = [
     icon: 'Wrench',
     dark: false,
     sub: [
-      { name: 'Логистика', slug: '/tech-merchandising#логистика' },
-      { name: 'Утилизация', slug: '/tech-merchandising#утилизация' },
-      { name: 'Изготовление', slug: '/tech-merchandising#изготовление' },
-      { name: 'Замеры', slug: '/tech-merchandising#замеры' },
+      { name: 'Логистика', slug: '/tech-merchandising/logistika' },
+      { name: 'Утилизация', slug: '/tech-merchandising/utilizaciya' },
+      { name: 'Изготовление', slug: '/tech-merchandising/izgotovlenie' },
+      { name: 'Замеры', slug: '/tech-merchandising/zamery' },
     ],
   },
   {
@@ -46,7 +46,7 @@ const TABS = [
     color: '#eab308',
     icon: 'UserSearch',
     dark: true,
-    sub: [{ name: 'Проверка инкогнито', slug: '/mystery-shopper#проверка' }],
+    sub: [{ name: 'Проверка инкогнито', slug: '/mystery-shopper/proverka' }],
   },
   {
     name: 'Аудит торговых сетей',
@@ -54,7 +54,7 @@ const TABS = [
     color: '#b85c7b',
     icon: 'ClipboardCheck',
     dark: true,
-    sub: [{ name: 'Независимый аудит', slug: '/retail-audit#аудит' }],
+    sub: [{ name: 'Независимый аудит', slug: '/retail-audit/audit' }],
   },
   {
     name: 'BTL услуги + Организация дегустаций',
@@ -62,7 +62,7 @@ const TABS = [
     color: '#ea580c',
     icon: 'Users',
     dark: false,
-    sub: [{ name: 'Промоакции', slug: '/btl#промоакции' }],
+    sub: [{ name: 'Промоакции', slug: '/btl/promoakcii' }],
   },
 ];
 

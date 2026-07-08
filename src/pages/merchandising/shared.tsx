@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from '@/components/ui/carousel';
+import { CASES as ALL_CASES } from '@/pages/cases/shared';
 
 export const CLIENTS = [
   'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/fde397df-26e6-4375-a03e-4fd9bea6373c.png',
@@ -110,29 +111,15 @@ export interface CaseItem {
   photos: string[];
 }
 
-const CASE_IMG = {
-  shelfWide: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d4b008e4-d5fe-4964-b0bb-24383acb35ca.jpg',
-  shelfCloseup: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/38afcf42-ba2b-4832-8613-d2827433508f.jpg',
-  aisleWide: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/9684ea90-80bd-47bd-ac09-b0de4a2f3091.jpg',
-  cosmetics: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/1f0f7f8d-8c61-4e0e-90cb-680c47262518.jpg',
-  merchandiser: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/ca21f882-5073-49b0-acd8-80a848d1e9d6.jpg',
-  neatRows: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/79c41586-f7f2-488b-95d3-5d0e5217ba7d.jpg',
-  beverages: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/8b6c9089-c8ff-4a0b-87fb-a030609b1f6b.jpg',
-  snacks: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/af368e9f-2d55-42cb-8649-804f10dd148d.jpg',
-  household: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/37ff7b7f-e34c-470c-8661-66924baacb18.jpg',
-  dairy: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d3446be2-8e16-4216-9c99-eba6d969ce40.jpg',
-};
-
 export const WORKFLOW_IMG_APPROACH = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/4bbd1a4c-118d-48f8-b1c4-b90a30637d01.jpg';
 export const WORKFLOW_IMG_QUALITY = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/d536c6e7-cc98-4a48-a349-f359d104bc01.jpg';
 
-export const CASES: CaseItem[] = [
-  { id: 1, title: 'Объект 1', category: 'Продуктовый супермаркет · Выкладка товара', photos: [CASE_IMG.shelfWide, CASE_IMG.shelfCloseup, CASE_IMG.beverages] },
-  { id: 2, title: 'Объект 2', category: 'Магазин косметики · Мерчандайзинг полки', photos: [CASE_IMG.cosmetics, CASE_IMG.merchandiser, CASE_IMG.neatRows] },
-  { id: 3, title: 'Объект 3', category: 'Сеть напитков · Ротация ассортимента', photos: [CASE_IMG.beverages, CASE_IMG.aisleWide, CASE_IMG.neatRows] },
-  { id: 4, title: 'Объект 4', category: 'Бытовая химия · Контроль остатков', photos: [CASE_IMG.household, CASE_IMG.dairy, CASE_IMG.snacks] },
-  { id: 5, title: 'Объект 5', category: 'Кондитерские изделия · Фотоотчётность', photos: [CASE_IMG.snacks, CASE_IMG.neatRows, CASE_IMG.shelfCloseup] },
-];
+export const CASES: CaseItem[] = ALL_CASES.slice(-5).reverse().map((c) => ({
+  id: c.id,
+  title: c.title,
+  category: c.category,
+  photos: c.photos,
+}));
 
 export function CaseCard({ item, delay, onOpen }: { item: CaseItem; delay?: number; onOpen: (item: CaseItem, photoIndex: number) => void }) {
   const [current, setCurrent] = useState(0);

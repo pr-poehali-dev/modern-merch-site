@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { FadeIn, CITIES, NETWORKS } from './shared';
 
@@ -24,13 +25,13 @@ export default function MerchCoverage({
           <div className="mt-12 flex flex-wrap gap-3">
             {CITIES.map((city, i) => (
               <FadeIn key={city} delay={Math.floor(i / 6) * 60} className={i >= 14 && !citiesExpanded ? 'hidden sm:block' : ''}>
-                <a
-                  href={`/merchandising/${city.toLowerCase().replace(/\s+/g, '-').replace(/ё/g, 'e')}`}
+                <Link
+                  to={`/merchandising/city/${city.toLowerCase().replace(/\s+/g, '-').replace(/ё/g, 'e')}`}
                   className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-all hover:border-brand-green hover:bg-brand-green/5 hover:text-brand-green shadow-sm"
                 >
                   <Icon name="MapPin" size={13} className="text-brand-green" />
                   {city}
-                </a>
+                </Link>
               </FadeIn>
             ))}
           </div>
@@ -56,8 +57,8 @@ export default function MerchCoverage({
           <div className="mt-12 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {NETWORKS.map((net, i) => (
               <FadeIn key={net.name} delay={i * 50} className={i >= 8 && !networksExpanded ? 'hidden sm:block' : ''}>
-                <a
-                  href={`/merchandising/network/${net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
+                <Link
+                  to={`/merchandising/network/${net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
                   className="group flex h-24 flex-col items-center justify-center gap-2 rounded-2xl border border-neutral-100 bg-white p-4 shadow-sm transition-all hover:shadow-md hover:border-neutral-200"
                 >
                   <div
@@ -67,7 +68,7 @@ export default function MerchCoverage({
                     {net.name.charAt(0)}
                   </div>
                   <span className="text-center text-xs font-semibold text-neutral-700 group-hover:text-brand-green transition-colors leading-tight">{net.name}</span>
-                </a>
+                </Link>
               </FadeIn>
             ))}
           </div>
