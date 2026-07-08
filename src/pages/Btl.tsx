@@ -18,8 +18,8 @@ export default function Btl() {
         title="BTL услуги + Организация дегустаций"
         description="Промоакции, дегустации и праздничные мероприятия с подбором и обучением персонала под ключ."
         image="https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/41cccab1-353e-4501-96a7-0b9371141f2b.jpg"
-        bgClass="bg-brand-green"
-        buttonTextClass="text-brand-green"
+        bgClass="bg-[#ea580c]"
+        buttonTextClass="text-[#ea580c]"
       />
 
       <ServiceFeatures
