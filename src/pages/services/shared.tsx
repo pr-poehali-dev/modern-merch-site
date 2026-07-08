@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import SiteCTA from '@/components/SiteCTA';
-import { FadeIn } from '@/pages/merchandising/shared';
-import { CASES, type CaseCategory } from '@/pages/cases/shared';
+import { FadeIn, useSlideIn } from '@/pages/merchandising/shared';
+import { CASES, CasesCarousel, type CaseCategory } from '@/pages/cases/shared';
 
 export function ServiceBreadcrumb({ label }: { label: string }) {
   return (
@@ -118,7 +118,7 @@ export function SubServiceGrid({ title, subtitle, items }: {
 }
 
 export function ServiceCases({ category }: { category: CaseCategory }) {
-  const items = CASES.filter((c) => c.category === category).slice(0, 6);
+  const items = CASES.filter((c) => c.category === category);
   if (items.length === 0) return null;
 
   return (
@@ -128,29 +128,52 @@ export function ServiceCases({ category }: { category: CaseCategory }) {
           <h2 className="font-heading text-3xl font-bold md:text-4xl">Примеры работ</h2>
           <p className="mt-3 text-neutral-500">Результаты нашей работы на реальных объектах</p>
         </FadeIn>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item, i) => (
-            <FadeIn key={item.id} delay={i * 80}>
-              <Link
-                to={`/cases/${item.id}`}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-white shadow-sm transition-shadow hover:shadow-lg"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <img src={item.photos[0]} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="font-semibold text-neutral-900">{item.title}</p>
-                  <p className="mt-1 text-sm text-brand-green">{item.category}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-500 line-clamp-2">{item.description}</p>
-                </div>
-              </Link>
-            </FadeIn>
-          ))}
+        <div className="mt-12">
+          <CasesCarousel items={items} viewAllHref={`/cases?category=${encodeURIComponent(category)}`} />
         </div>
-        <div className="mt-10 flex justify-center">
-          <Button asChild className="rounded-full bg-brand-green px-8 py-3 text-sm font-bold text-white hover:bg-brand-green/90 md:px-10 md:py-4 md:text-base">
-            <Link to={`/cases?category=${encodeURIComponent(category)}`}>Смотреть все кейсы</Link>
-          </Button>
+      </div>
+    </section>
+  );
+}
+
+export function ServiceApproachBlocks({ blocks }: {
+  blocks: [
+    { eyebrow: string; title: string; text: string; image: string; alt: string },
+    { eyebrow: string; title: string; text: string; image: string; alt: string },
+  ];
+}) {
+  const imgLeft = useSlideIn('left');
+  const textRight = useSlideIn('right');
+  const textLeft = useSlideIn('left');
+  const imgRight = useSlideIn('right');
+
+  const [first, second] = blocks;
+
+  return (
+    <section className="py-20 md:py-28">
+      <div className="container space-y-16 md:space-y-20">
+        {/* Фото слева — текст справа */}
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+          <div ref={imgLeft.ref} style={imgLeft.style} className="overflow-hidden rounded-3xl">
+            <img src={first.image} alt={first.alt} className="aspect-[4/3] w-full object-cover" />
+          </div>
+          <div ref={textRight.ref} style={textRight.style}>
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">{first.eyebrow}</span>
+            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl">{first.title}</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-600">{first.text}</p>
+          </div>
+        </div>
+
+        {/* Текст слева — фото справа */}
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+          <div ref={textLeft.ref} style={textLeft.style} className="md:order-1">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-400">{second.eyebrow}</span>
+            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl">{second.title}</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-600">{second.text}</p>
+          </div>
+          <div ref={imgRight.ref} style={imgRight.style} className="overflow-hidden rounded-3xl md:order-2">
+            <img src={second.image} alt={second.alt} className="aspect-[4/3] w-full object-cover" />
+          </div>
         </div>
       </div>
     </section>

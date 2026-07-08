@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from '@/components/ui/carousel';
 
 export type CaseCategory = 'Мерчандайзинг' | 'Технический мерчандайзинг' | 'BTL услуги + Организация дегустаций';
 
@@ -305,5 +307,68 @@ export function CaseLightbox({ photos, title, initialIndex, open, onOpenChange }
         </div>
       </DialogContent>
     </Dialog>
+  );
+}
+
+export function CasesCarousel({ items, viewAllHref }: { items: CaseItem[]; viewAllHref?: string }) {
+  const [selected, setSelected] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [count, setCount] = useState(0);
+  const useSlider = items.length > 3;
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setSelected(api.selectedScrollSnap());
+    api.on('select', () => setSelected(api.selectedScrollSnap()));
+  }, [api]);
+
+  if (items.length === 0) return null;
+
+  return (
+    <>
+      <div>
+        {useSlider ? (
+          <Carousel opts={{ align: 'start' }} setApi={setApi} className="px-2">
+            <CarouselContent>
+              {items.map((item) => (
+                <CarouselItem key={item.id} className="py-2 sm:basis-1/2 lg:basis-1/3">
+                  <CaseCard item={item} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex" />
+            <CarouselNext className="hidden sm:flex" />
+          </Carousel>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((item) => (
+              <CaseCard key={item.id} item={item} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {useSlider && count > 1 && (
+        <div className="mt-8 flex justify-center gap-2">
+          {Array.from({ length: count }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => api?.scrollTo(i)}
+              aria-label={`Слайд ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${i === selected ? 'w-6 bg-brand-green' : 'w-2 bg-neutral-200 hover:bg-neutral-300'}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {viewAllHref && (
+        <div className="mt-8 flex justify-center">
+          <Button asChild className="rounded-full bg-brand-green px-8 py-3 text-sm font-bold text-white hover:bg-brand-green/90 md:px-10 md:py-4 md:text-base">
+            <Link to={viewAllHref}>Смотреть все кейсы</Link>
+          </Button>
+        </div>
+      )}
+    </>
   );
 }

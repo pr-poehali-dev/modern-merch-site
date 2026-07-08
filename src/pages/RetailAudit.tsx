@@ -1,7 +1,7 @@
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import SiteCTA from '@/components/SiteCTA';
-import { ServiceBreadcrumb, ServiceHero, ServiceFeatures, SubServiceGrid } from '@/pages/services/shared';
+import { ServiceBreadcrumb, ServiceHero, ServiceFeatures, SubServiceGrid, ServiceApproachBlocks } from '@/pages/services/shared';
 
 const SUB_SERVICES = [
   { name: 'Независимый аудит', slug: '/retail-audit/audit', icon: 'ClipboardCheck' },
@@ -39,6 +39,25 @@ export default function RetailAudit() {
         title="Направления работы"
         subtitle="Выберите интересующее направление, чтобы узнать подробнее"
         items={SUB_SERVICES}
+      />
+
+      <ServiceApproachBlocks
+        blocks={[
+          {
+            eyebrow: 'Наш подход',
+            title: 'Маршрут аудита под структуру вашей сети',
+            text: 'Перед запуском проверок мы прорабатываем маршрут и критерии аудита с учётом географии и специфики торговых точек — чтобы данные были сопоставимы и полезны для принятия решений.',
+            image: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/2c9c29f4-54ff-4625-9e41-f4add2d59fd0.jpg',
+            alt: 'Планирование маршрута аудита торговых точек',
+          },
+          {
+            eyebrow: 'Контроль качества',
+            title: 'Данные проверяются на каждом этапе',
+            text: 'Каждое наблюдение аудитора сверяется с фотофиксацией и данными системы — вы получаете точную и проверенную картину представленности товара в рознице.',
+            image: 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/files/ec35a963-54e9-40db-9eb7-81ec33200a89.jpg',
+            alt: 'Проверка данных аудита цен и выкладки',
+          },
+        ]}
       />
 
       <SiteCTA />
