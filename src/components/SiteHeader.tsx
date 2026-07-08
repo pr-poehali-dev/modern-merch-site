@@ -219,6 +219,13 @@ export default function SiteHeader() {
                     </div>
                   );
                 }
+                if (n === 'О компании') {
+                  return (
+                    <Link key={n} to="/about" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
+                      {n}
+                    </Link>
+                  );
+                }
                 if (n === 'Мерчандайзинг') {
                   return (
                     <Link key={n} to="/merchandising" className="text-sm font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors">
@@ -312,6 +319,13 @@ export default function SiteHeader() {
                         </div>
                       )}
                     </div>
+                  );
+                }
+                if (n === 'О компании') {
+                  return (
+                    <Link key={n} to="/about" onClick={() => setMobileMenuOpen(false)} className="border-b border-neutral-100 py-4 text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
+                      {n}
+                    </Link>
                   );
                 }
                 if (n === 'Мерчандайзинг') {

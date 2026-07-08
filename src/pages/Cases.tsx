@@ -8,16 +8,13 @@ import {
   PaginationItem,
   PaginationLink,
 } from '@/components/ui/pagination';
-import { CASES, CASE_CATEGORIES, CaseCard, CaseLightbox, CaseCategory, CaseItem } from '@/pages/cases/shared';
+import { CASES, CASE_CATEGORIES, CaseCard, CaseCategory } from '@/pages/cases/shared';
 
 const PER_PAGE = 12;
 
 export default function Cases() {
   const [active, setActive] = useState<CaseCategory | 'все'>('все');
   const [page, setPage] = useState(1);
-  const [lightboxCase, setLightboxCase] = useState<CaseItem | null>(null);
-  const [lightboxPhoto, setLightboxPhoto] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const filtered = active === 'все' ? CASES : CASES.filter((c) => c.category === active);
 
@@ -35,12 +32,6 @@ export default function Cases() {
   const goToPage = (p: number) => {
     setPage(p);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const openLightbox = (item: CaseItem, photoIndex: number) => {
-    setLightboxCase(item);
-    setLightboxPhoto(photoIndex);
-    setLightboxOpen(true);
   };
 
   return (
@@ -74,7 +65,7 @@ export default function Cases() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {paginated.map((item) => (
-              <CaseCard key={item.id} item={item} onOpen={openLightbox} />
+              <CaseCard key={item.id} item={item} />
             ))}
           </div>
 
@@ -115,8 +106,6 @@ export default function Cases() {
           )}
         </div>
       </section>
-
-      <CaseLightbox item={lightboxCase} initialIndex={lightboxPhoto} open={lightboxOpen} onOpenChange={setLightboxOpen} />
 
       <SiteCTA />
       <SiteFooter />
