@@ -30,6 +30,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
 import { ContactPopupProvider } from "@/context/ContactPopupContext";
+import CookieConsent from "@/components/CookieConsent";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -74,6 +75,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <CookieConsent />
         </ContactPopupProvider>
       </BrowserRouter>
     </TooltipProvider>
