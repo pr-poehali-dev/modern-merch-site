@@ -85,10 +85,11 @@ export const CITIES = [
 ];
 
 export const NETWORKS = [
+  { name: 'Лента', color: '#FFCC00' },
+  { name: 'Перекрёсток', color: '#00954E' },
   { name: 'Магнит', color: '#CC0000' },
   { name: 'X5 Group', color: '#E31E24' },
   { name: 'Mercury Retail Group', color: '#1A3A6B' },
-  { name: 'Лента', color: '#FF6600' },
   { name: 'Fix Price', color: '#FF0000' },
   { name: 'Kari', color: '#E31E2F' },
   { name: 'Melon Fashion Group', color: '#222222' },

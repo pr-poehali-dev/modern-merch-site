@@ -56,7 +56,7 @@ export default function MerchCoverage({
           </FadeIn>
           <div className="mt-12 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {NETWORKS.map((net, i) => (
-              <FadeIn key={net.name} delay={i * 50} className={i >= 8 && !networksExpanded ? 'hidden sm:block' : ''}>
+              <FadeIn key={net.name} delay={i * 50} className={i >= 8 && !networksExpanded ? 'hidden' : ''}>
                 <Link
                   to={`/merchandising/network/${net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
                   className="group flex h-24 flex-col items-center justify-center gap-2 rounded-2xl border border-neutral-100 bg-white p-4 shadow-sm transition-all hover:shadow-md hover:border-neutral-200"
@@ -78,6 +78,15 @@ export default function MerchCoverage({
               className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-6 py-2.5 text-sm font-semibold text-neutral-700 shadow-sm transition-all hover:border-brand-green hover:text-brand-green"
             >
               {networksExpanded ? 'Свернуть' : 'Показать все'}
+              <Icon name={networksExpanded ? 'ChevronUp' : 'ChevronDown'} size={16} />
+            </button>
+          </div>
+          <div className="mt-8 hidden justify-center sm:flex">
+            <button
+              onClick={() => setNetworksExpanded(!networksExpanded)}
+              className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-7 py-3 text-sm font-semibold text-neutral-700 shadow-sm transition-all hover:border-brand-green hover:text-brand-green"
+            >
+              {networksExpanded ? 'Свернуть' : 'Посмотреть все сети (40+)'}
               <Icon name={networksExpanded ? 'ChevronUp' : 'ChevronDown'} size={16} />
             </button>
           </div>
