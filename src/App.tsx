@@ -16,6 +16,7 @@ import MerchSubService from "./pages/merchandising/MerchSubService";
 import MerchCityPage from "./pages/merchandising/MerchCityPage";
 import MerchNetworkPage from "./pages/merchandising/MerchNetworkPage";
 import LentaPage from "./pages/merchandising/LentaPage";
+import SpbPage from "./pages/merchandising/SpbPage";
 import TechSubService from "./pages/tech-merchandising/TechSubService";
 import MysterySubService from "./pages/mystery-shopper/MysterySubService";
 import RetailSubService from "./pages/retail-audit/RetailSubService";
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/merchandising" element={<Merchandising />} />
+            <Route path="/merchandising/city/санкт-петербург" element={<SpbPage />} />
             <Route path="/merchandising/city/:city" element={<MerchCityPage />} />
             <Route path="/merchandising/network/lenta" element={<LentaPage />} />
             <Route path="/merchandising/network/:network" element={<MerchNetworkPage />} />
