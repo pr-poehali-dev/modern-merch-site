@@ -38,6 +38,8 @@ const WHY_ITEMS = [
   { text: 'Федеральное покрытие', icon: 'Globe' },
 ];
 
+const SPB_IMAGE = 'https://cdn.poehali.dev/projects/f54777b0-87fc-4f92-93d7-a263150798ce/bucket/1234bf31-6146-40a7-9cfd-2e760def7a03.jpg';
+
 export default function SpbPage() {
   const { open: openContactPopup } = useContactPopup();
   const [citiesExpanded, setCitiesExpanded] = useState(false);
@@ -59,15 +61,25 @@ export default function SpbPage() {
         </div>
       </div>
 
-      {/* Заголовок */}
+      {/* Заголовок + фото */}
       <section className="bg-neutral-50 py-16 md:py-24">
-        <div className="container max-w-4xl">
-          <FadeIn>
-            <h1 className="font-heading text-3xl font-black text-neutral-900 sm:text-5xl leading-tight">Мерчендайзинг в Санкт-Петербурге</h1>
-            <p className="mt-4 text-lg text-neutral-500 leading-relaxed sm:text-xl">
-              MerchGroup оказывает услуги визитного и стационарного мерчендайзинга в Санкт-Петербурге и на всей территории Ленинградской области.
-            </p>
-          </FadeIn>
+        <div className="container">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_460px]">
+            <FadeIn>
+              <h1 className="font-heading text-3xl font-black text-neutral-900 sm:text-5xl leading-tight">Мерчендайзинг в Санкт-Петербурге</h1>
+              <p className="mt-4 max-w-2xl text-lg text-neutral-500 leading-relaxed sm:text-xl">
+                MerchGroup оказывает услуги визитного и стационарного мерчендайзинга в Санкт-Петербурге и на всей территории Ленинградской области.
+              </p>
+            </FadeIn>
+            <FadeIn delay={150}>
+              <img
+                src={SPB_IMAGE}
+                alt="Санкт-Петербург"
+                className="w-full rounded-3xl object-cover shadow-2xl"
+                style={{ maxHeight: 360 }}
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 
