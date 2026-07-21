@@ -93,9 +93,9 @@ export default function LentaPage() {
 
       {/* Основной текст */}
       <section className="py-20 md:py-28">
-        <div className="container max-w-3xl">
+        <div className="container">
           <FadeIn>
-            <div className="rounded-3xl bg-brand-green p-6 text-white md:p-10">
+            <div className="mx-auto max-w-4xl rounded-3xl bg-brand-green p-6 text-white md:p-10">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/20">
                   <Icon name="Store" size={20} className="text-white" />
