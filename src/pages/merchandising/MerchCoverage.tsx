@@ -56,7 +56,19 @@ export default function MerchCoverage({
           </FadeIn>
           <div className="mt-12 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {NETWORKS.map((net, i) => (
-              <FadeIn key={net.name} delay={i * 50} className={i >= 8 && !networksExpanded ? 'hidden' : ''}>
+              <FadeIn
+                key={net.name}
+                delay={i * 50}
+                className={
+                  networksExpanded
+                    ? ''
+                    : i >= 10
+                    ? 'hidden'
+                    : i >= 8
+                    ? 'hidden sm:block'
+                    : ''
+                }
+              >
                 <Link
                   to={`/merchandising/network/${net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
                   className="group flex h-24 flex-col items-center justify-center gap-2 rounded-2xl border border-neutral-100 bg-white p-4 shadow-sm transition-all hover:shadow-md hover:border-neutral-200"
