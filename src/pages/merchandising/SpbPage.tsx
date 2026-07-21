@@ -129,7 +129,7 @@ export default function SpbPage() {
             <h2 className="font-heading text-3xl font-bold md:text-4xl">Работаем практически со всеми федеральными сетями</h2>
             <p className="mt-3 text-neutral-500">Наши команды работают в:</p>
           </FadeIn>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 grid-cols-2 lg:grid-cols-4">
             {NETWORK_PHOTOS.map((net, i) => (
               <FadeIn key={net.name} delay={i * 60}>
                 <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
