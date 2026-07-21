@@ -85,7 +85,7 @@ export const CITIES = [
 ];
 
 export const NETWORKS = [
-  { name: 'Лента', color: '#FFCC00' },
+  { name: 'Лента', color: '#FFCC00', slug: 'lenta' },
   { name: 'Перекрёсток', color: '#00954E' },
   { name: 'Магнит', color: '#CC0000' },
   { name: 'X5 Group', color: '#E31E24' },

@@ -70,7 +70,7 @@ export default function MerchCoverage({
                 }
               >
                 <Link
-                  to={`/merchandising/network/${net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
+                  to={`/merchandising/network/${net.slug || net.name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '')}`}
                   className="group flex h-24 flex-col items-center justify-center gap-2 rounded-2xl border border-neutral-100 bg-white p-4 shadow-sm transition-all hover:shadow-md hover:border-neutral-200"
                 >
                   <div

@@ -23,11 +23,11 @@ const WORK_ITEMS = [
 ];
 
 const FEATURES_ITEMS = [
-  'Регулярно контролировать остатки',
-  'Оперативно реагировать на отсутствие товара',
-  'Поддерживать корректную выкладку',
-  'Своевременно обновлять ценники и рекламные материалы',
-  'Обеспечивать фотоотчётность по каждому визиту',
+  { title: 'Контроль остатков', desc: 'Регулярно отслеживаем остатки товара на полке, чтобы не допустить простоев в продажах.' },
+  { title: 'Реакция на OOS', desc: 'Оперативно реагируем на отсутствие товара и восполняем полку в кратчайшие сроки.' },
+  { title: 'Корректная выкладка', desc: 'Поддерживаем выкладку согласно планограмме на каждой точке присутствия.' },
+  { title: 'Актуальные материалы', desc: 'Своевременно обновляем ценники и рекламные материалы в торговом зале.' },
+  { title: 'Фотоотчётность', desc: 'Обеспечиваем фотоотчётность по каждому визиту мерчендайзера.' },
 ];
 
 const ONLINE_ITEMS = [
@@ -70,7 +70,7 @@ export default function LentaPage() {
       </div>
 
       {/* Заголовок + фото */}
-      <section className="py-16 md:py-24">
+      <section className="bg-neutral-50 py-16 md:py-24">
         <div className="container">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_460px]">
             <FadeIn>
@@ -92,21 +92,29 @@ export default function LentaPage() {
       </section>
 
       {/* Основной текст */}
-      <section className="pb-20 md:pb-28">
+      <section className="py-20 md:py-28">
         <div className="container max-w-3xl">
           <FadeIn>
-            <p className="text-lg leading-relaxed text-neutral-600">
-              MerchGroup оказывает услуги визитного и стационарного мерчендайзинга в сети Лента. Мы обеспечиваем контроль представленности продукции, соблюдение планограмм, наличие товара на полке и оперативную отчётность по каждой торговой точке.
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-neutral-600">
-              Наши команды работают как в гипермаркетах, так и в супермаркетах сети, обеспечивая единые стандарты обслуживания во всех регионах присутствия.
-            </p>
+            <div className="rounded-3xl bg-brand-green p-6 text-white md:p-10">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/20">
+                  <Icon name="Store" size={20} className="text-white" />
+                </div>
+                <h2 className="font-heading text-2xl font-bold">О сотрудничестве</h2>
+              </div>
+              <p className="mt-4 text-lg leading-relaxed md:text-xl">
+                MerchGroup оказывает услуги визитного и стационарного мерчендайзинга в сети Лента. Мы обеспечиваем контроль представленности продукции, соблюдение планограмм, наличие товара на полке и оперативную отчётность по каждой торговой точке.
+              </p>
+              <p className="mt-4 text-lg leading-relaxed md:text-xl">
+                Наши команды работают как в гипермаркетах, так и в супермаркетах сети, обеспечивая единые стандарты обслуживания во всех регионах присутствия.
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>
 
       {/* Что входит в работу */}
-      <section className="bg-neutral-50 py-20 md:py-28">
+      <section className="py-20 md:py-28">
         <div className="container">
           <FadeIn>
             <h2 className="font-heading text-3xl font-bold md:text-4xl">Что входит в работу мерчендайзера в Ленте</h2>
@@ -114,7 +122,7 @@ export default function LentaPage() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {WORK_ITEMS.map((item, i) => (
               <FadeIn key={item.text} delay={i * 60}>
-                <div className="flex h-full items-center gap-4 rounded-3xl bg-white p-6 shadow-sm">
+                <div className="flex h-full items-center gap-4 rounded-3xl bg-neutral-50 p-6 shadow-sm">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-green/10">
                     <Icon name={item.icon} size={22} className="text-brand-green" />
                   </div>
@@ -127,25 +135,32 @@ export default function LentaPage() {
       </section>
 
       {/* Особенности работы */}
-      <section className="py-20 md:py-28">
-        <div className="container max-w-3xl">
+      <section className="bg-neutral-50 py-20 md:py-28">
+        <div className="container max-w-4xl">
           <FadeIn>
-            <h2 className="font-heading text-3xl font-bold md:text-4xl">Особенности работы в сети Лента</h2>
-          </FadeIn>
-          <FadeIn delay={80}>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-              Сеть Лента предъявляет высокие требования к качеству представленности продукции и соблюдению внутренних стандартов.
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-blue/10">
+                <Icon name="ShieldCheck" size={20} className="text-brand-blue" />
+              </div>
+              <h2 className="font-heading text-2xl font-bold md:text-3xl">Особенности работы в сети Лента</h2>
+            </div>
+            <p className="mt-5 text-base leading-relaxed text-neutral-600 md:text-lg">
+              Сеть Лента предъявляет высокие требования к качеству представленности продукции и соблюдению внутренних стандартов. Для эффективной работы важно:
             </p>
-            <p className="mt-4 text-lg leading-relaxed text-neutral-600">Для эффективной работы важно:</p>
-            <ul className="mt-6 space-y-3">
-              {FEATURES_ITEMS.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-green" />
-                  <span className="text-lg text-neutral-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+          </FadeIn>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES_ITEMS.map((item, i) => (
+              <FadeIn key={item.title} delay={i * 70}>
+                <div className="h-full rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm">
+                  <span className="font-heading text-3xl font-black text-neutral-100">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="mt-2 font-heading text-base font-bold text-neutral-900">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-500">{item.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn delay={FEATURES_ITEMS.length * 70}>
+            <p className="mt-8 border-l-2 border-brand-green/30 pl-6 text-base italic leading-relaxed text-neutral-500 md:text-lg">
               Наши сотрудники проходят обучение и работают по единым стандартам обслуживания.
             </p>
           </FadeIn>
