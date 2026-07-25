@@ -28,7 +28,7 @@ import NewsDetail from "./pages/NewsDetail";
 import Contacts from "./pages/Contacts";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/Custom404";
 import { ContactPopupProvider } from "@/context/ContactPopupContext";
 import CookieConsent from "@/components/CookieConsent";
 
