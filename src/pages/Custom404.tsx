@@ -21,8 +21,8 @@ const Custom404 = () => {
 
       <section className="py-24 md:py-32">
         <div className="container max-w-2xl text-center">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-green/10">
-            <span className="font-heading text-2xl font-black text-brand-green">404</span>
+          <div className="mx-auto flex h-60 w-60 items-center justify-center rounded-3xl bg-brand-green/10">
+            <span className="font-heading text-6xl font-black text-brand-green">404</span>
           </div>
           <h1 className="mt-8 font-heading text-3xl font-black md:text-5xl">Страница не найдена</h1>
           <p className="mt-6 text-lg text-neutral-500">Запрашиваемая Вами страница не найдена, была перемещена или более не существует.</p>
