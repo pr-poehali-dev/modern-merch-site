@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { FadeIn, Calculator, MerchTypeCard, MERCH_TYPES } from './shared';
+import { ServiceFeatures } from '@/pages/services/shared';
 
 export default function MerchHero() {
   return (
@@ -31,6 +32,20 @@ export default function MerchHero() {
           </div>
         </div>
       </section>
+
+      {/* 1.5 Что входит в услугу */}
+      <ServiceFeatures
+        title="Что входит в услугу"
+        subtitle="Полный цикл работ по управлению представлением товара на полке"
+        items={[
+          { text: 'Выкладку товара согласно планограмме и стандартам бренда', icon: 'LayoutGrid' },
+          { text: 'Контроль наличия товара и оперативное выявление дефицитов', icon: 'PackageCheck' },
+          { text: 'Пополнение полки и поддержание её в привлекательном виде', icon: 'PackagePlus' },
+          { text: 'Проверку актуальности ценников и размещения POS-материалов', icon: 'Tag' },
+          { text: 'Ротацию продукции с учётом сроков годности и спроса', icon: 'RefreshCw' },
+          { text: 'Фотоотчёты и онлайн-отчётность по каждому визиту или смене', icon: 'Camera' },
+        ]}
+      />
 
       {/* 2. Преимущества */}
       <section className="py-20 md:py-28">

@@ -131,19 +131,29 @@ export default function StacionarnyPage() {
       </div>
 
       {/* 1. Заголовок + краткое описание */}
-      <section className="relative overflow-hidden bg-brand-green py-20 md:py-24">
+      <section className="relative overflow-hidden bg-brand-green py-24">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, white 0%, transparent 60%)' }} />
-        <div className="container relative max-w-3xl">
-          <FadeIn>
-            <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white mb-6">Услуга</span>
-            <h1 className="font-heading text-3xl font-black text-white sm:text-5xl md:text-6xl leading-tight">Стационарный мерчендайзинг</h1>
-            <p className="mt-5 text-base text-white/85 leading-relaxed sm:text-xl">
-              Эффективный инструмент для усиления присутствия вашего товара на полке и роста продаж.
-            </p>
-            <Button className="mt-10 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
-              Получить консультацию
-            </Button>
-          </FadeIn>
+        <div className="container relative">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
+            <FadeIn>
+              <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white mb-6">Услуга</span>
+              <h1 className="font-heading text-3xl font-black text-white sm:text-5xl md:text-7xl leading-tight">Стационарный мерчендайзинг</h1>
+              <p className="mt-4 max-w-2xl text-base text-white/85 leading-relaxed sm:mt-6 sm:text-xl">
+                Эффективный инструмент для усиления присутствия вашего товара на полке и роста продаж.
+              </p>
+              <Button className="mt-10 rounded-full bg-white px-10 py-4 text-base font-bold text-brand-green hover:bg-white/90">
+                Получить консультацию
+              </Button>
+            </FadeIn>
+            <FadeIn delay={150} className="hidden lg:block">
+              <img
+                src={SLIDER_PHOTOS[0]}
+                alt="Стационарный мерчендайзинг"
+                className="w-full rounded-3xl object-cover shadow-2xl"
+                style={{ maxHeight: 380 }}
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 
