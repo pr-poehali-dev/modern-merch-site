@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
@@ -70,12 +70,26 @@ export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [phonePopupOpen, setPhonePopupOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showDesktopBar, setShowDesktopBar] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const { open: openContactPopup } = useContactPopup();
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 60);
+
+      if (currentY < 120) {
+        setShowDesktopBar(false);
+      } else if (currentY < lastScrollY.current) {
+        setShowDesktopBar(true);
+      } else if (currentY > lastScrollY.current) {
+        setShowDesktopBar(false);
+      }
+      lastScrollY.current = currentY;
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -94,6 +108,40 @@ export default function SiteHeader() {
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-9 w-9 items-center justify-center rounded-full bg-black/10 text-neutral-800">
                 <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={20} />
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Плавающая компактная шапка (desktop) */}
+      <div className={`fixed top-0 left-0 right-0 z-30 hidden lg:block transition-all duration-300 ease-out ${showDesktopBar ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+        <div className="backdrop-blur-md border-b border-black/5 bg-white/85 shadow-sm">
+          <div className="container flex items-center justify-between gap-6 py-2.5">
+            <Link to="/" className="shrink-0"><img src={LOGO} alt="MGroups" className="h-8 w-auto" /></Link>
+
+            <nav className="flex items-center gap-6">
+              <Link to="/merchandising" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Мерчандайзинг</Link>
+              <Link to="/cases" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Наши кейсы</Link>
+              <Link to="/news" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Новости</Link>
+              <Link to="/contacts" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Контакты</Link>
+            </nav>
+
+            <div className="flex items-center gap-4">
+              <div className="hidden items-center gap-2 rounded-full bg-neutral-100 px-3 py-1.5 xl:flex">
+                <Icon name="Search" size={14} className="text-neutral-400" />
+                <input placeholder="Поиск по сайту" className="w-32 bg-transparent text-xs text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
+              </div>
+              {PHONES.slice(0, 1).map((p) => (
+                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-2 text-neutral-800">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
+                    <Icon name="Phone" size={14} className="text-brand-green" />
+                  </div>
+                  <span className="text-sm font-bold tracking-wide transition-colors group-hover:text-brand-green">{p.num}</span>
+                </a>
+              ))}
+              <Button onClick={openContactPopup} size="sm" className="rounded-full bg-brand-green px-5 font-semibold text-white hover:bg-brand-green/90">
+                Связаться с нами
+              </Button>
             </div>
           </div>
         </div>
