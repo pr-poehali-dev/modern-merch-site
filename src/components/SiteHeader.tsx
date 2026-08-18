@@ -94,6 +94,46 @@ export default function SiteHeader() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const renderDesktopNav = (linkClass: string) => (
+    <>
+      <div className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+        <span className={`flex cursor-default items-center gap-1 ${linkClass}`}>
+          Услуги
+          <Icon name="ChevronDown" size={14} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
+        </span>
+        <div className={`absolute left-0 top-full z-50 pt-2 transition-all duration-200 ${servicesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+          <div className="w-[680px] rounded-2xl border border-neutral-100 bg-white shadow-xl p-4 grid grid-cols-2 gap-3">
+            {TABS.map((service) => (
+              <div key={service.name} className="group relative rounded-xl bg-neutral-50 p-4 hover:bg-neutral-100 transition-colors overflow-hidden">
+                <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity" style={{ backgroundColor: service.color }}>
+                  <Icon name={service.icon} size={18} className="text-white" />
+                </div>
+                <Link to={service.slug} onClick={() => setServicesOpen(false)} className="block text-sm font-bold text-neutral-900 hover:text-brand-green mb-2 pr-10 transition-colors">
+                  {service.name}
+                </Link>
+                <ul className="space-y-1">
+                  {service.sub.map((sub) => (
+                    <li key={sub.name}>
+                      <Link to={sub.slug} onClick={() => setServicesOpen(false)} className="flex items-center gap-2 text-sm text-neutral-500 hover:text-brand-green transition-colors">
+                        <span className="h-1 w-1 rounded-full bg-brand-green shrink-0" />
+                        {sub.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Link to="/about" className={linkClass}>О компании</Link>
+      <Link to="/merchandising" className={linkClass}>Мерчандайзинг</Link>
+      <Link to="/cases" className={linkClass}>Наши кейсы</Link>
+      <Link to="/news" className={linkClass}>Новости</Link>
+      <Link to="/contacts" className={linkClass}>Контакты</Link>
+    </>
+  );
+
   return (
     <>
       {/* Плавающая мобильная шапка */}
@@ -115,33 +155,39 @@ export default function SiteHeader() {
 
       {/* Плавающая компактная шапка (desktop) */}
       <div className={`fixed top-0 left-0 right-0 z-30 hidden lg:block transition-all duration-300 ease-out ${showDesktopBar ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-        <div className="backdrop-blur-md border-b border-black/5 bg-white/85 shadow-sm">
-          <div className="container flex items-center justify-between gap-6 py-2.5">
-            <Link to="/" className="shrink-0"><img src={LOGO} alt="MGroups" className="h-8 w-auto" /></Link>
+        <div className="backdrop-blur-md bg-white/95 shadow-md">
+          {/* Строка 1: лого + контакты, компактно */}
+          <div className="border-b border-neutral-100">
+            <div className="container flex items-center justify-between gap-4 py-2">
+              <Link to="/" className="shrink-0"><img src={LOGO} alt="MGroups" className="h-7 w-auto" /></Link>
 
-            <nav className="flex items-center gap-6">
-              <Link to="/merchandising" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Мерчандайзинг</Link>
-              <Link to="/cases" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Наши кейсы</Link>
-              <Link to="/news" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Новости</Link>
-              <Link to="/contacts" className="text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-green transition-colors">Контакты</Link>
-            </nav>
-
-            <div className="flex items-center gap-4">
-              <div className="hidden items-center gap-2 rounded-full bg-neutral-100 px-3 py-1.5 xl:flex">
-                <Icon name="Search" size={14} className="text-neutral-400" />
-                <input placeholder="Поиск по сайту" className="w-32 bg-transparent text-xs text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
-              </div>
-              {PHONES.slice(0, 1).map((p) => (
-                <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-2 text-neutral-800">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
-                    <Icon name="Phone" size={14} className="text-brand-green" />
-                  </div>
-                  <span className="text-sm font-bold tracking-wide transition-colors group-hover:text-brand-green">{p.num}</span>
+              <div className="flex items-center gap-6">
+                {PHONES.map((p) => (
+                  <a key={p.tel} href={`tel:${p.tel}`} className="group flex items-center gap-2 text-neutral-800">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-green/10 transition-colors group-hover:bg-brand-green/20">
+                      <Icon name="Phone" size={13} className="text-brand-green" />
+                    </div>
+                    <span className="text-sm font-bold tracking-wide transition-colors group-hover:text-brand-green">{p.num}</span>
+                  </a>
+                ))}
+                <a href="mailto:info@merch-groups.ru" className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-800">
+                  <Icon name="Mail" size={14} /> info@merch-groups.ru
                 </a>
-              ))}
-              <Button onClick={openContactPopup} size="sm" className="rounded-full bg-brand-green px-5 font-semibold text-white hover:bg-brand-green/90">
-                Связаться с нами
-              </Button>
+                <Button onClick={openContactPopup} size="sm" className="rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green/90">
+                  Связаться с нами
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Строка 2: меню + поиск */}
+          <div className="container flex items-center justify-between gap-4 py-2">
+            <nav className="flex flex-wrap items-center gap-x-8 gap-y-1">
+              {renderDesktopNav('text-xs font-semibold uppercase tracking-wide text-neutral-600 hover:text-brand-blue transition-colors')}
+            </nav>
+            <div className="flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1.5">
+              <Icon name="Search" size={14} className="text-neutral-400" />
+              <input placeholder="Поиск по сайту" className="w-40 bg-transparent text-xs text-neutral-700 placeholder:text-neutral-400 focus:outline-none" />
             </div>
           </div>
         </div>
